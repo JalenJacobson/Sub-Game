@@ -354,6 +354,7 @@
 "Assets/RiddlePannel.cs"
 "Assets/RiddleTrigger.cs"
 "Assets/Scripts/VesselMovement.cs"
+"Assets/WishyWashy.cs"
 -langversion:9.0
 
 /deterministic
