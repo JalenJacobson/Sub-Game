@@ -7,12 +7,14 @@ public class PanelManager : MonoBehaviour
 {
 
     public GameObject RiddlePannel;
+    public GameObject NewRiddleAvalable;
     public bool riddlePannelIsOpen = false;
 
     // Start is called before the first frame update
     void Start()
     {
        RiddlePannel.SetActive(false); 
+       NewRiddleAvalable.SetActive(false); 
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class PanelManager : MonoBehaviour
     public void RiddlePannelOpen()
     {
         RiddlePannel.SetActive(true);
+        NewRiddleAvalable.SetActive(false);
         // Time.timeScale = 0f;
         riddlePannelIsOpen = true;
         // Music.volume = .24f;

@@ -7,6 +7,7 @@ public class RiddleTrigger : MonoBehaviour
 
     public GameObject RiddlePannel;
     public RiddlePannel RiddlePannel_Script;
+    public GameObject NewRiddleAvalable;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class RiddleTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         RiddlePannel_Script.addRiddlePart();
+        NewRiddleAvalable.SetActive(true);
         
     }
 }
