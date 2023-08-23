@@ -5432,6 +5432,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 243163234}
+  currentRiddleTrigger: 0
+  riddleTriggers:
+  - {fileID: 391463992}
+  - {fileID: 2055772367}
+  playerControlling: 0
 --- !u!54 &243163234
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5831,6 +5836,8 @@ MonoBehaviour:
   RiddlePannel: {fileID: 1160768632}
   RiddlePannel_Script: {fileID: 0}
   NewRiddleAvalable: {fileID: 1822271736}
+  Vessel: {fileID: 243163231}
+  VesselMovement_Script: {fileID: 0}
 --- !u!122 &391463994
 Halo:
   m_ObjectHideFlags: 0
@@ -5905,7 +5912,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392271965}
-  m_LocalRotation: {x: -0.024747504, y: -0.000000004300278, z: -1.0645375e-10, w: 0.99969375}
+  m_LocalRotation: {x: -0.024747504, y: 0.000000004300278, z: 1.0645375e-10, w: 0.99969375}
   m_LocalPosition: {x: 0, y: 4.209999, z: -15.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20865,7 +20872,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.024747504, y: -0.000000004300278, z: -1.0645375e-10, w: 0.99969375}
+  m_LocalRotation: {x: -0.024747504, y: 0.000000004300278, z: 1.0645375e-10, w: 0.99969375}
   m_LocalPosition: {x: 0, y: 4.209999, z: -15.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31568,6 +31575,8 @@ MonoBehaviour:
   RiddlePannel: {fileID: 1160768632}
   RiddlePannel_Script: {fileID: 0}
   NewRiddleAvalable: {fileID: 1822271736}
+  Vessel: {fileID: 243163231}
+  VesselMovement_Script: {fileID: 0}
 --- !u!122 &2055772363
 Halo:
   m_ObjectHideFlags: 0
@@ -31651,7 +31660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055772361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2000}
+  m_LocalPosition: {x: 0, y: -2000, z: 2000}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
