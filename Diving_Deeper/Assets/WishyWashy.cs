@@ -21,14 +21,14 @@ public class WishyWashy : MonoBehaviour
     {
         if (other.attachedRigidbody)
         {
-            if (timer < 3f)
+            if (timer < 1f)
             {   
-                other.attachedRigidbody.AddForce(Vector3.forward * 50);
+                other.attachedRigidbody.AddForce(Vector3.forward * 5);
             }
             else
             {
-                other.attachedRigidbody.AddForce(-Vector3.forward * 50);
-                if (timer >= 6f) timer = 0f;
+                other.attachedRigidbody.AddForce(-Vector3.forward * 5);
+                if (timer >= 2f) timer = 0f;
             }
         }
             

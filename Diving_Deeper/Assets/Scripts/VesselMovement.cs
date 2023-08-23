@@ -20,7 +20,7 @@ public class VesselMovement : MonoBehaviour
         if (Keyboard.current[Key.Space].isPressed)
         {
             print("space");
-            rb.AddForce(transform.forward * 50);
+            rb.AddForce(transform.forward * 600);
         }
 
         if (Keyboard.current[Key.UpArrow].isPressed)
