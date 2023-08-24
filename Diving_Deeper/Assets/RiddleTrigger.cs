@@ -14,8 +14,11 @@ public class RiddleTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
+        Vessel = GameObject.FindGameObjectWithTag("Vessel");
         VesselMovement_Script = Vessel.GetComponent<VesselMovement>();
+        RiddlePannel = GameObject.Find("RiddlePannel");
+        RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
+        NewRiddleAvalable = GameObject.Find("NewRiddleAvailable");
     }
 
     // Update is called once per frame
