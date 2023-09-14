@@ -6,6 +6,8 @@ TagManager:
   tags:
   - RiddleTrigger
   - Vessel
+  - Slug
+  - Speeder
   layers:
   - Default
   - TransparentFX

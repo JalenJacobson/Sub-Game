@@ -12,13 +12,20 @@ public class RiddleTrigger : MonoBehaviour
     public GameObject Vessel;
     public VesselMovement VesselMovement_Script;
     // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
-        Vessel = GameObject.FindGameObjectWithTag("Vessel");
-        VesselMovement_Script = Vessel.GetComponent<VesselMovement>();
         RiddlePannel = GameObject.Find("RiddlePannel");
         RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
-        NewRiddleAvalable = GameObject.Find("NewRiddleAvailable");
+        NewRiddleAvalable = GameObject.Find("NewIndicator");
+    }
+
+    void Start()
+    {
+        
+        
+        Vessel = GameObject.FindGameObjectWithTag("Vessel");
+        VesselMovement_Script = Vessel.GetComponent<VesselMovement>();
     }
 
     // Update is called once per frame
@@ -31,6 +38,7 @@ public class RiddleTrigger : MonoBehaviour
     {
         RiddlePannel_Script.addRiddlePart();
         NewRiddleAvalable.SetActive(true);
-        VesselMovement_Script.currentRiddleTrigger++;
+        VesselMovement_Script.nextTrigger();
+        Destroy(gameObject);
     }
 }

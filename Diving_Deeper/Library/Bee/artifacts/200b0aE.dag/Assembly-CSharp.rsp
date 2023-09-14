@@ -353,6 +353,11 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/DefenderFollow.cs"
+"Assets/InitiateDriveMotherShip.cs"
+"Assets/InputReader.cs"
+"Assets/MSLanding.cs"
+"Assets/OpenShield.cs"
+"Assets/openURL.cs"
 "Assets/PanelManager.cs"
 "Assets/PyroParticles/Prefab/Script/FireBaseScript.cs"
 "Assets/PyroParticles/Prefab/Script/FireCollisionForwardScript.cs"
@@ -364,6 +369,10 @@
 "Assets/RiddlePannel.cs"
 "Assets/RiddleTrigger.cs"
 "Assets/Scripts/VesselMovement.cs"
+"Assets/slugTrigger.cs"
+"Assets/SpeedTrigger.cs"
+"Assets/testscript.cs"
+"Assets/WaterFilter.cs"
 "Assets/WishyWashy.cs"
 -langversion:9.0
 
