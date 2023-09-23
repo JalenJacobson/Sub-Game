@@ -22,7 +22,8 @@ public class FireBullet : MonoBehaviour
         {
             var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             var direction = new Vector3(0,0,90);
-            bullet.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 100);
+            // bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
+            bullet.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed);
             print("should be shooting");
         }
     }
