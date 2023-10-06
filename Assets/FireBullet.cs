@@ -30,4 +30,9 @@ public class FireBullet : MonoBehaviour
             
         }
     }
+
+    public void changeAmmoType()
+    {
+
+    }
 }
