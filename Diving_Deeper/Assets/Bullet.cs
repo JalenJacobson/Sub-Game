@@ -7,6 +7,11 @@ public class Bullet : MonoBehaviour
     public Vector3 aim;
     public float bulletSpeed = 10000f;
 
+    void Awake()
+    {
+        Destroy(gameObject, 5);
+    }
+
     void Start()
     {
         bulletSpeed = 1000f;
@@ -20,5 +25,11 @@ public class Bullet : MonoBehaviour
             gameObject.GetComponent<Rigidbody>().velocity = aim * bulletSpeed;
         }
         
+    }
+
+     void OnTriggerEnter(Collider other)
+    {
+        print(other.name);
+        Destroy(gameObject);
     }
 }
