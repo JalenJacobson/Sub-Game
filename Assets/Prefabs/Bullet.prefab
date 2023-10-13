@@ -4734,7 +4734,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2394387560235080341}
   serializedVersion: 8
   lengthInSec: 1
-  simulationSpeed: 3
+  simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
@@ -4748,7 +4748,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.1
+    scalar: 0.07
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -4808,7 +4808,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.3
+      scalar: 1.55
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4843,7 +4843,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1.04
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -4960,7 +4960,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 1
-      minScalar: 0.01
+      minScalar: 2.01
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5206,8 +5206,8 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.34906584
-      minScalar: -0.34906584
+      scalar: 1.5707963
+      minScalar: 1.5707963
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5246,7 +5246,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.25
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -9413,8 +9413,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607259976875946721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1535, y: 2.4244, z: 323.80936}
-  m_LocalScale: {x: 0.50551, y: 0.48513043, z: 1}
+  m_LocalPosition: {x: 2.1593, y: 2.429, z: 323.77}
+  m_LocalScale: {x: 0.9433827, y: 0.9053504, z: 1.8662}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8441629099526259890}
@@ -9479,10 +9479,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607259976875946721}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.81
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1246550168866257541
 MonoBehaviour:
@@ -9539,8 +9539,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5334979147241538854}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.026252544, y: -0.054695025, z: 0.03063242}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.026186319, y: -0.054848246, z: 0.039860606}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9550,7 +9550,7 @@ Transform:
   - {fileID: 2444296225215394438}
   m_Father: {fileID: 8441629099526259890}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
 --- !u!114 &1291627800865432650
 MonoBehaviour:
   m_ObjectHideFlags: 0

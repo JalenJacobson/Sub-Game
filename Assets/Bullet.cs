@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public Vector3 aim;
-    public float bulletSpeed = 10000f;
+    public float bulletSpeed = 100f;
 
     void Awake()
     {
-        Destroy(gameObject, 5);
+        Destroy(gameObject, 2);
     }
 
     void Start()
@@ -27,9 +27,8 @@ public class Bullet : MonoBehaviour
         
     }
 
-     void OnTriggerEnter(Collider other)
+     void OnCollisionEnter(Collision collision)
     {
-        print(other.name);
         Destroy(gameObject);
     }
 }
