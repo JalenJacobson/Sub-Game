@@ -13,17 +13,17 @@ public class AmmoSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.mouseScrollDelta.y != 0)
-        {
-            if(Input.mouseScrollDelta.y > 2)
-            {
-                print("Down");
-            }
-            if(Input.mouseScrollDelta.y < -2)
-            {
-                print("Up");
-            }
-        }
+        // if(Input.mouseScrollDelta.y != 0)
+        // {
+        //     if(Input.mouseScrollDelta.y > 2)
+        //     {
+        //         print("Down");
+        //     }
+        //     if(Input.mouseScrollDelta.y < -2)
+        //     {
+        //         print("Up");
+        //     }
+        // }
         
     }
 }

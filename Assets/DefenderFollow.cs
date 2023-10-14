@@ -11,7 +11,8 @@ public class DefenderFollow : MonoBehaviour
     public float speed = 1;
 
     public bool attackMode = false;
-
+    public bool holdBeforeAttack = false;
+    public Vector3 currentRelativePosition;
     //public ParentConstraint pc;
     //public ConstraintSource constraintSource;
     public bool firstAttack = true;
@@ -36,6 +37,11 @@ public class DefenderFollow : MonoBehaviour
         if(attackMode)
         {
             attack();
+        }
+        if(holdBeforeAttack)
+        {
+            
+            transform.position = target.transform.TransformPoint(currentRelativePosition);
         }
     }
 
@@ -73,14 +79,19 @@ public class DefenderFollow : MonoBehaviour
 
     public IEnumerator initiateAttack()
     {
-        speed = 10;
+        speed = 30;
         attackMode = true;
         anim.Play("DefenderAttack");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.3f);
+        currentRelativePosition = target.transform.InverseTransformPoint(transform.position);
+        print(target.transform.InverseTransformPoint(transform.position));
         attackMode = false;
+        holdBeforeAttack = true;
         //pc.constraintActive = true;
         anim.Play("DefenderCircle");
         yield return new WaitForSeconds(5f);
+        holdBeforeAttack = false;
+        yield return new WaitForSeconds(.5f);
         speed = 50;
         attackMode = true;
         //pc.constraintActive = false;
