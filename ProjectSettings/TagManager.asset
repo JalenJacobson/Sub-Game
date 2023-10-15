@@ -8,6 +8,7 @@ TagManager:
   - Vessel
   - Slug
   - Speeder
+  - cube
   layers:
   - Default
   - TransparentFX

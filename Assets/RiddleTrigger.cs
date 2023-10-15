@@ -36,9 +36,9 @@ public class RiddleTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        RiddlePannel_Script.addRiddlePart();
-        NewRiddleAvalable.SetActive(true);
-        VesselMovement_Script.nextTrigger();
-        Destroy(gameObject);
+        //RiddlePannel_Script.addRiddlePart();
+        //NewRiddleAvalable.SetActive(true);
+        //VesselMovement_Script.nextTrigger();
+       // Destroy(gameObject);
     }
 }

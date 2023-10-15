@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public Vector3 aim;
     public float bulletSpeed = 100f;
+    public Animator anim;
 
     void Awake()
     {
@@ -15,6 +16,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         bulletSpeed = 1000f;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -29,6 +31,8 @@ public class Bullet : MonoBehaviour
 
      void OnCollisionEnter(Collision collision)
     {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        anim.Play("BulletExplode");
         Destroy(gameObject);
     }
 }

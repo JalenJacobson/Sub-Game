@@ -9,6 +9,7 @@ public class AimCrosshairs : MonoBehaviour
     public CinemachineVirtualCamera virtualCamera;
     public Camera cam;
     public float zoffset;
+    public float yoffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class AimCrosshairs : MonoBehaviour
         // transform.position = mousePos;
         
         // print(Input.mousePosition);
-        transform.position = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, zoffset));
+        transform.position = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y + yoffset, zoffset));
     }
 
     

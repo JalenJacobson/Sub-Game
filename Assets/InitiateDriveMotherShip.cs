@@ -6,9 +6,9 @@ using Cinemachine;
 public class InitiateDriveMotherShip : MonoBehaviour
 {
 
-    public GameObject RiddlePannel;
-    public RiddlePannel RiddlePannel_Script;
-    public GameObject NewRiddleAvalable;
+    //public GameObject RiddlePannel;
+   // public RiddlePannel RiddlePannel_Script;
+   // public GameObject NewRiddleAvalable;
     public GameObject vessel;
     public VesselMovement VesselMovement_Script;
     public GameObject Mothership;
@@ -25,9 +25,9 @@ public class InitiateDriveMotherShip : MonoBehaviour
 
     void Awake()
     {
-        RiddlePannel = GameObject.Find("RiddlePannel");
-        RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
-        NewRiddleAvalable = GameObject.Find("NewIndicator");
+       // RiddlePannel = GameObject.Find("RiddlePannel");
+       // RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
+       // NewRiddleAvalable = GameObject.Find("NewIndicator");
         Slugs = GameObject.FindGameObjectsWithTag("Slug");
         PurpleLight.SetActive(false);
     }
@@ -58,9 +58,9 @@ public class InitiateDriveMotherShip : MonoBehaviour
         
         if(other.name.Contains("weenie"))
         {
-            RiddlePannel_Script.addRiddlePart();
-            NewRiddleAvalable.SetActive(true);
-            VesselMovement_Script.nextTrigger();
+           // RiddlePannel_Script.addRiddlePart();
+           // NewRiddleAvalable.SetActive(true);
+           // VesselMovement_Script.nextTrigger();
             Speeders = GameObject.FindGameObjectsWithTag("Speeder");
             StartCoroutine("initiateDriveMotherShip");
         }

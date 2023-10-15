@@ -41,7 +41,7 @@ public class OpenShield : MonoBehaviour
         if(openSequenceStarted)
         {
               
-            VesselMovement_Script.lookAtNextTrigger();
+            //VesselMovement_Script.lookAtNextTrigger();
             
             
         }
@@ -49,9 +49,9 @@ public class OpenShield : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        RiddlePannel_Script.addRiddlePart();
-        NewRiddleAvalable.SetActive(true);
-        VesselMovement_Script.nextTrigger();
+       // RiddlePannel_Script.addRiddlePart();
+       // NewRiddleAvalable.SetActive(true);
+        //VesselMovement_Script.nextTrigger();
         gameObject.GetComponent<Transform>().position = new Vector3(10000, 10000, 0);
         StartCoroutine("openShieldRoutine");
     }

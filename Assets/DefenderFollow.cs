@@ -13,6 +13,8 @@ public class DefenderFollow : MonoBehaviour
     public bool attackMode = false;
     public bool holdBeforeAttack = false;
     public Vector3 currentRelativePosition;
+    public GameObject cube;
+    public Transform cubePosition;
     //public ParentConstraint pc;
     //public ConstraintSource constraintSource;
     public bool firstAttack = true;
@@ -21,7 +23,9 @@ public class DefenderFollow : MonoBehaviour
     {
 
         target =  GameObject.FindGameObjectWithTag("Vessel");
+        cube =  GameObject.FindGameObjectWithTag("cube");
         targetPosition = target.transform;
+        cubePosition = cube.transform;
         anim = GetComponent<Animator>();
         //pc = GetComponent<ParentConstraint>();
         //constraintSource.sourceTransform = target.transform;
@@ -50,13 +54,20 @@ public class DefenderFollow : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, speed * Time.deltaTime);
         transform.LookAt(targetPosition);
     }
+    public void getAttack()
+    {
+        StartCoroutine("initiateAttack");
+        firstAttack = false;   
+    }
 
     void OnTriggerEnter(Collider other)
     {
+        speed = 50;
         if(other.name.Contains("weenie") && firstAttack)
         {
-            StartCoroutine("initiateAttack");
-            firstAttack = false;
+            anim.Play("DefenderAttack");
+            transform.position = Vector3.MoveTowards(transform.position, cubePosition.position, speed * Time.deltaTime);
+            transform.LookAt(cubePosition); 
         }
     }
     void OnTriggerExit(Collider other)
@@ -71,27 +82,22 @@ public class DefenderFollow : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.name.Contains("Bullet"))
+        {
+        StopAllCoroutines();
         gameObject.GetComponent<Collider>().enabled=false;
         attackMode = false;
         anim.Play("DefenderExplode");
         Destroy(gameObject, 2);
+        }
     }
 
     public IEnumerator initiateAttack()
     {
-        speed = 30;
-        attackMode = true;
-        anim.Play("DefenderAttack");
-        yield return new WaitForSeconds(.3f);
-        currentRelativePosition = target.transform.InverseTransformPoint(transform.position);
-        print(target.transform.InverseTransformPoint(transform.position));
-        attackMode = false;
-        holdBeforeAttack = true;
-        //pc.constraintActive = true;
+        
         anim.Play("DefenderCircle");
         yield return new WaitForSeconds(5f);
-        holdBeforeAttack = false;
-        yield return new WaitForSeconds(.5f);
+        anim.Play("DefenderAttack");
         speed = 50;
         attackMode = true;
         //pc.constraintActive = false;
