@@ -74,8 +74,8 @@ public class VesselMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(vesselDead) return;
-        playerControlling = false;
+        // if(vesselDead) return;
+        // playerControlling = false;
         if (Keyboard.current[Key.Space].isPressed)
         {
             

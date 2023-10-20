@@ -18,6 +18,11 @@ public class DefenderFollow : MonoBehaviour
     //public ParentConstraint pc;
     //public ConstraintSource constraintSource;
     public bool firstAttack = true;
+
+    public bool startCircling = false;
+    public float angle = 0;
+    public float direction = -1;
+    public float radiusOffset = 350;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,14 +43,22 @@ public class DefenderFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(attackMode)
-        {
-            attack();
-        }
+        // if(attackMode)
+        // {
+        //     attack();
+        // }
         if(holdBeforeAttack)
         {
             
             transform.position = target.transform.TransformPoint(currentRelativePosition);
+        }
+        if(startCircling)
+        {
+            angle += Time.deltaTime * direction * 3;
+            float x = Mathf.Cos(angle) * radiusOffset;
+            float y = Mathf.Sin(angle) * radiusOffset;
+            transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z + 50);
+            print(target.transform.position);
         }
     }
 
@@ -65,8 +78,10 @@ public class DefenderFollow : MonoBehaviour
         speed = 50;
         if(other.name.Contains("weenie") && firstAttack)
         {
-            anim.Play("DefenderAttack");
-            transform.position = Vector3.MoveTowards(transform.position, cubePosition.position, speed * Time.deltaTime);
+            // anim.Play("DefenderAttack");
+            StartCoroutine("initiateAttack");
+            firstAttack = false;
+            // transform.position = Vector3.MoveTowards(transform.position, cubePosition.position, speed * Time.deltaTime);
             transform.LookAt(cubePosition); 
         }
     }
@@ -94,13 +109,20 @@ public class DefenderFollow : MonoBehaviour
 
     public IEnumerator initiateAttack()
     {
-        
-        anim.Play("DefenderCircle");
-        yield return new WaitForSeconds(5f);
-        anim.Play("DefenderAttack");
-        speed = 50;
-        attackMode = true;
-        //pc.constraintActive = false;
+        //Jalen left off here
+        // anim.Play("DefenderCircle");
+        yield return new WaitForSeconds(1f);
+        // anim.Play("DefenderAttack");
+        // speed = 50;
+        // attackMode = true;
+        // //pc.constraintActive = false;
 
+        //justin picked up here
+        currentRelativePosition = target.transform.InverseTransformPoint(transform.position);
+        holdBeforeAttack = true;
+
+        yield return new WaitForSeconds(3f);
+        holdBeforeAttack = false;
+        startCircling = true;
     }
 }
