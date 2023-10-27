@@ -15,6 +15,7 @@ public class DefenderFollow : MonoBehaviour
     public Vector3 currentRelativePosition;
     public GameObject cube;
     public Transform cubePosition;
+    public GameObject followPoint;
     //public ParentConstraint pc;
     //public ConstraintSource constraintSource;
     public bool firstAttack = true;
@@ -29,7 +30,7 @@ public class DefenderFollow : MonoBehaviour
     void Start()
     {
 
-        target =  GameObject.FindGameObjectWithTag("Vessel");
+        target =  GameObject.FindGameObjectWithTag("AttackPointFront");
         cube =  GameObject.FindGameObjectWithTag("cube");
         targetPosition = target.transform;
         cubePosition = cube.transform;
@@ -56,22 +57,19 @@ public class DefenderFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // if(attackMode)
-        // {
-        //     attack();
-        // }
+        transform.position = Vector3.Lerp(transform.position, followPoint.transform.position, .06f);
         if(holdBeforeAttack)
         {
             
-            transform.position = target.transform.TransformPoint(currentRelativePosition);
+            followPoint.transform.position = target.transform.TransformPoint(currentRelativePosition);
         }
         if(startCircling)
         {
             angle += Time.deltaTime * direction * circleSpeed;
             float x = Mathf.Cos(angle) * radiusOffset;
-            float y = Mathf.Cos(angle) * radiusOffset;
-            transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z + 50);
-            print(target.transform.position);
+            float y = Mathf.Sin(angle) * radiusOffset;
+            followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z);
+            // print(target.transform.position);
         }
     }
 
@@ -124,7 +122,7 @@ public class DefenderFollow : MonoBehaviour
     {
         //Jalen left off here
         // anim.Play("DefenderCircle");
-        yield return new WaitForSeconds(1f);
+        // yield return new WaitForSeconds(1f);
         // anim.Play("DefenderAttack");
         // speed = 50;
         // attackMode = true;
