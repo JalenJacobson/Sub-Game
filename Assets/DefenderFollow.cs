@@ -21,8 +21,10 @@ public class DefenderFollow : MonoBehaviour
 
     public bool startCircling = false;
     public float angle = 0;
+    public bool clockwise;
     public float direction = -1;
     public float radiusOffset = 350;
+    public float circleSpeed = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,17 @@ public class DefenderFollow : MonoBehaviour
         //pc.AddSource(constraintSource);
         //pc.translationAtRest = transform.position;
         //pc.SetSource(0,1);
+        clockwise = Random.value > 0.5;
+        if(clockwise)
+        {
+            direction = -1;
+        }
+        else
+        {
+            direction = 1;
+        }
+        radiusOffset = Random.Range(4, 30);
+        circleSpeed = Random.Range(1, 4);
     }
 
     // Update is called once per frame
@@ -54,9 +67,9 @@ public class DefenderFollow : MonoBehaviour
         }
         if(startCircling)
         {
-            angle += Time.deltaTime * direction * 3;
+            angle += Time.deltaTime * direction * circleSpeed;
             float x = Mathf.Cos(angle) * radiusOffset;
-            float y = Mathf.Sin(angle) * radiusOffset;
+            float y = Mathf.Cos(angle) * radiusOffset;
             transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z + 50);
             print(target.transform.position);
         }
