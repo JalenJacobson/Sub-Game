@@ -26,11 +26,12 @@ public class DefenderFollow : MonoBehaviour
     public float direction = -1;
     public float radiusOffset = 350;
     public float circleSpeed = 3;
+    public int attackPointNumber;
     // Start is called before the first frame update
     void Start()
     {
-
-        target =  GameObject.FindGameObjectWithTag("AttackPointFront");
+        pickRandoms();
+        
         cube =  GameObject.FindGameObjectWithTag("cube");
         targetPosition = target.transform;
         cubePosition = cube.transform;
@@ -50,8 +51,26 @@ public class DefenderFollow : MonoBehaviour
         {
             direction = 1;
         }
-        radiusOffset = Random.Range(4, 30);
+        
+    }
+
+    public void pickRandoms()
+    {
+        radiusOffset = Random.Range(4, 60);
         circleSpeed = Random.Range(1, 4);
+        attackPointNumber = Random.Range(0,3);
+        if(attackPointNumber == 0)
+        {
+            target =  GameObject.FindGameObjectWithTag("AttackPointFront");
+        }
+        else if(attackPointNumber == 1)
+        {
+            target =  GameObject.FindGameObjectWithTag("AttackPointTop");
+        }
+        if(attackPointNumber == 2)
+        {
+            target =  GameObject.FindGameObjectWithTag("AttackPointBack");
+        }
     }
 
     // Update is called once per frame
@@ -68,7 +87,11 @@ public class DefenderFollow : MonoBehaviour
             angle += Time.deltaTime * direction * circleSpeed;
             float x = Mathf.Cos(angle) * radiusOffset;
             float y = Mathf.Sin(angle) * radiusOffset;
-            followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z);
+            if(attackPointNumber == 1)
+            {
+                followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y, target.transform.position.z + y);
+            }
+            else {followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z);}
             // print(target.transform.position);
         }
     }
@@ -132,7 +155,7 @@ public class DefenderFollow : MonoBehaviour
         currentRelativePosition = target.transform.InverseTransformPoint(transform.position);
         holdBeforeAttack = true;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(.5f);
         holdBeforeAttack = false;
         startCircling = true;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Cinemachine;
 
 public class VesselMovement : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class VesselMovement : MonoBehaviour
     public GameObject startGamePannel;
     public Vector3 currentCheckPoint;
     public int speed = 600;
+
+    public CinemachineVirtualCamera virtualCamera;
 
     public bool drivingMS = false;
     public bool hasJoint = false;
@@ -40,6 +43,20 @@ public class VesselMovement : MonoBehaviour
     void Update()
     {
         timer = timer = timer + Time.deltaTime;
+
+        if(Input.GetKeyDown("z"))
+        {
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, -15, 4.20999f);
+        }
+        else if(Input.GetKeyDown("x"))
+        {
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, 15);
+        }
+        else if(Input.GetKeyDown("c"))
+        {
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, -15);
+        }
+        
     }
 
     void OnCollisionEnter(Collision collision)
