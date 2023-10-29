@@ -14,18 +14,19 @@ public class EnemyShooterProjectile : MonoBehaviour
     {
         target =  GameObject.FindGameObjectWithTag("Vessel");
         rb = GetComponent<Rigidbody>();
-        Destroy(gameObject, 7);
-        speed = 300;
+        Destroy(gameObject, 3);
+        speed = 800;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.AddForce(transform.forward * speed);
+        // rb.AddForce(transform.forward * speed);
+        gameObject.GetComponent<Rigidbody>().velocity = transform.forward * speed;
 
         Vector3 direction = target.GetComponent<Transform>().position - transform.position;
         Quaternion toRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, timeCount);
+        transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, .25f);
         timeCount = timeCount + Time.deltaTime;
         // transform.rotation = toRotation;
     }
