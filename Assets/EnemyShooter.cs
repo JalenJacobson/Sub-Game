@@ -9,17 +9,23 @@ public class EnemyShooter : MonoBehaviour
     public GameObject bulletPrefab;
     public float bulletSpeed = 50f;
     public GameObject target;
+    public Animator anim;
+    public bool timerStarted = false;
 
     // Start is called before the first frame update
     void Start()
     {
         target =  GameObject.FindGameObjectWithTag("Vessel");
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(timerStarted == true)
+        {
         timer += Time.deltaTime;
+        }
 
         if(timer >= 2)
         {
@@ -33,5 +39,22 @@ public class EnemyShooter : MonoBehaviour
         Vector3 direction = target.GetComponent<Transform>().position - bulletSpawnPoint.transform.position;
         Quaternion toRotation = Quaternion.LookRotation(direction);
         bulletSpawnPoint.transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 30f * Time.deltaTime);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.name.Contains("weenie"))
+        {
+        timerStarted = true;
+        anim.Play("Shoot");
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if(other.name.Contains("weenie"))
+        {
+        timerStarted = false;
+        anim.Play("ShooterIdle");
+        }
     }
 }
