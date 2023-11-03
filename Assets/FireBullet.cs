@@ -6,10 +6,12 @@ public class FireBullet : MonoBehaviour
 {
     public Transform bulletSpawnPoint;
     public GameObject[] bulletPrefabs;
+    public float[] reloadTimes;
     public float bulletSpeed = 100f;
     public Transform target;
     public int currentAmmo = 0;
-    
+    public float reloadTime = 0;
+    public bool canShoot = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,14 +23,23 @@ public class FireBullet : MonoBehaviour
     void Update()
     {
         transform.LookAt(target);
-
+        if(reloadTime > 0)
+        {
+            canShoot = false;
+            reloadTime -= 1f * Time.deltaTime;
+        }
+        else if(reloadTime <= 0)
+        {
+            canShoot = true;
+        }
         if(Input.GetMouseButtonDown(0))
         {
+            if(!canShoot)return;
             var bullet = Instantiate(bulletPrefabs[currentAmmo], bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             // var direction = new Vector3(0,0,90);
             // bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
             bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
-            
+            reloadTime += reloadTimes[currentAmmo];
         }
 
         if(Input.mouseScrollDelta.y != 0)

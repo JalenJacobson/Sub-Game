@@ -24,6 +24,7 @@ public class VesselMovement : MonoBehaviour
 
     public bool drivingMS = false;
     public bool hasJoint = false;
+    public int health = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -181,6 +182,12 @@ public class VesselMovement : MonoBehaviour
         
         
         // transform.rotation
+    }
+
+    public void takeDamage(int damageTaken)
+    {
+        health -= damageTaken;
+        print(health);
     }
 
     public void startGame()

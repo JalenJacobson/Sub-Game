@@ -6510,9 +6510,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 1705705309}
   bulletPrefabs: []
+  reloadTimes: []
   bulletSpeed: 0
   target: {fileID: 0}
   currentAmmo: 0
+  reloadTime: 0
+  canShoot: 1
 --- !u!136 &167273381
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7278,6 +7281,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 392271966}
   drivingMS: 0
   hasJoint: 0
+  health: 100
 --- !u!54 &243163234
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9035,7 +9039,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430259923}
   m_LocalRotation: {x: 0.029918771, y: 0.00000001705156, z: 5.103902e-10, w: 0.99955237}
-  m_LocalPosition: {x: 0, y: 0, z: 132.3}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 0.028628327, y: 0.028628327, z: 0.028628327}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9045,7 +9049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1.1, y: -11.8}
+  m_AnchoredPosition: {x: 1.1, y: -10.2}
   m_SizeDelta: {x: 3840, y: 2160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &430259925
@@ -25350,9 +25354,15 @@ MonoBehaviour:
   - {fileID: 4607259976875946721, guid: b317710d4f73145538f10c6f5ea467e2, type: 3}
   - {fileID: 4607259976875946721, guid: 37d557a68fdc84885b10a9333144b504, type: 3}
   - {fileID: 4607259976875946721, guid: a63a69679802e49d7a6cd5f4ff163832, type: 3}
+  reloadTimes:
+  - 0
+  - 0.75
+  - 2.5
   bulletSpeed: 100
   target: {fileID: 1502435728}
   currentAmmo: 0
+  reloadTime: 0
+  canShoot: 1
 --- !u!1001 &1600043900
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29464,7 +29474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036787889}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 307}
+  m_LocalPosition: {x: 0, y: 0, z: 224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

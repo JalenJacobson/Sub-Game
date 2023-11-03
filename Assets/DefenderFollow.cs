@@ -7,6 +7,7 @@ public class DefenderFollow : MonoBehaviour
 {
     public Animator anim;
     public GameObject target;
+    public GameObject vessel;
     public Transform targetPosition;
     public float speed = 1;
 
@@ -32,6 +33,7 @@ public class DefenderFollow : MonoBehaviour
     {
         pickRandoms();
         target =  GameObject.FindGameObjectWithTag("AttackPointFront");
+        vessel =  GameObject.FindGameObjectWithTag("Vessel");
         
         cube =  GameObject.FindGameObjectWithTag("cube");
         targetPosition = target.transform;
@@ -47,7 +49,7 @@ public class DefenderFollow : MonoBehaviour
 
     public void pickRandoms()
     {
-        radiusOffset = Random.Range(4, 60);
+        radiusOffset = Random.Range(4, 30);
         circleSpeed = Random.Range(1, 4); 
         clockwise = Random.value > 0.5;
         if(clockwise)
@@ -78,12 +80,18 @@ public class DefenderFollow : MonoBehaviour
             followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z);
             // print(target.transform.position);
         }
+        if(attackMode)
+        {
+            attack();
+        }
+            
+        
     }
 
     void attack()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition.position, speed * Time.deltaTime);
-        transform.LookAt(targetPosition);
+        transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, speed * Time.deltaTime);
+        transform.LookAt(vessel.transform.position);
     }
     public void getAttack()
     {
@@ -117,11 +125,20 @@ public class DefenderFollow : MonoBehaviour
     {
         if (collision.collider.name.Contains("Bullet"))
         {
-        StopAllCoroutines();
-        gameObject.GetComponent<Collider>().enabled=false;
-        attackMode = false;
-        anim.Play("DefenderExplode");
-        Destroy(gameObject, 2);
+            StopAllCoroutines();
+            gameObject.GetComponent<Collider>().enabled=false;
+            attackMode = false;
+            anim.Play("DefenderExplode");
+            Destroy(gameObject, 2);
+        }
+        else if (collision.collider.name.Contains("weenie"))
+        {
+            StopAllCoroutines();
+            gameObject.GetComponent<Collider>().enabled=false;
+            attackMode = false;
+            anim.Play("DefenderExplode");
+            Destroy(gameObject, 2);
+            collision.collider.SendMessage("takeDamage", 2);
         }
     }
 
@@ -142,5 +159,8 @@ public class DefenderFollow : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         holdBeforeAttack = false;
         startCircling = true;
+        yield return new WaitForSeconds(3f);
+        startCircling = false;
+        attackMode = true;
     }
 }
