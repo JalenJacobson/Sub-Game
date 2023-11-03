@@ -31,6 +31,7 @@ public class DefenderFollow : MonoBehaviour
     void Start()
     {
         pickRandoms();
+        target =  GameObject.FindGameObjectWithTag("AttackPointFront");
         
         cube =  GameObject.FindGameObjectWithTag("cube");
         targetPosition = target.transform;
@@ -42,6 +43,12 @@ public class DefenderFollow : MonoBehaviour
         //pc.AddSource(constraintSource);
         //pc.translationAtRest = transform.position;
         //pc.SetSource(0,1);
+    }
+
+    public void pickRandoms()
+    {
+        radiusOffset = Random.Range(4, 60);
+        circleSpeed = Random.Range(1, 4); 
         clockwise = Random.value > 0.5;
         if(clockwise)
         {
@@ -50,27 +57,7 @@ public class DefenderFollow : MonoBehaviour
         else
         {
             direction = 1;
-        }
-        
-    }
-
-    public void pickRandoms()
-    {
-        radiusOffset = Random.Range(4, 60);
-        circleSpeed = Random.Range(1, 4);
-        attackPointNumber = Random.Range(0,3);
-        if(attackPointNumber == 0)
-        {
-            target =  GameObject.FindGameObjectWithTag("AttackPointFront");
-        }
-        else if(attackPointNumber == 1)
-        {
-            target =  GameObject.FindGameObjectWithTag("AttackPointTop");
-        }
-        if(attackPointNumber == 2)
-        {
-            target =  GameObject.FindGameObjectWithTag("AttackPointBack");
-        }
+        }      
     }
 
     // Update is called once per frame
@@ -87,11 +74,8 @@ public class DefenderFollow : MonoBehaviour
             angle += Time.deltaTime * direction * circleSpeed;
             float x = Mathf.Cos(angle) * radiusOffset;
             float y = Mathf.Sin(angle) * radiusOffset;
-            if(attackPointNumber == 1)
-            {
-                followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y, target.transform.position.z + y);
-            }
-            else {followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z);}
+            
+            followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z);
             // print(target.transform.position);
         }
     }

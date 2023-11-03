@@ -426,7 +426,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3967999616125717699}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -447,6 +447,7 @@ MonoBehaviour:
   speed: 8
   rb: {fileID: 0}
   timeCount: 0
+  lockOn: 1
 --- !u!54 &923725870224166519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -475,6 +476,7 @@ GameObject:
   - component: {fileID: 7131596637029915989}
   - component: {fileID: 3478167502301830790}
   - component: {fileID: 7707514939729806206}
+  - component: {fileID: 2733306899126469710}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -556,10 +558,23 @@ BoxCollider:
   m_GameObject: {fileID: 4982384320150935745}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Center: {x: 0.0000076293945, y: 0, z: 0}
+--- !u!135 &2733306899126469710
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982384320150935745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 7
+  m_Center: {x: 0, y: 0, z: -0.00000047683716}
 --- !u!1 &8154760895740855203
 GameObject:
   m_ObjectHideFlags: 0

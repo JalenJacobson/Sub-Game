@@ -36,9 +36,10 @@ public class EnemyShooter : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 direction = target.GetComponent<Transform>().position - bulletSpawnPoint.transform.position;
-        Quaternion toRotation = Quaternion.LookRotation(direction);
-        bulletSpawnPoint.transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 30f * Time.deltaTime);
+        // Vector3 direction = target.GetComponent<Transform>().position - bulletSpawnPoint.transform.position;
+        // Quaternion toRotation = Quaternion.LookRotation(direction);
+        // bulletSpawnPoint.transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 30f * Time.deltaTime);
+        bulletSpawnPoint.transform.LookAt(target.GetComponent<Transform>());
     }
 
     void OnTriggerEnter(Collider other)
