@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 
 public class AimCrosshairs : MonoBehaviour
 {
@@ -10,9 +11,9 @@ public class AimCrosshairs : MonoBehaviour
     public Camera cam;
     public float zoffset;
     public float yoffset;
-    public SpriteRenderer spriteRendererWeapon;
+    public Image i_Weapon;
     public GameObject Weapon;
-    public SpriteRenderer spriteRendererAmmo;
+    public Image i_Ammo;
     public GameObject Ammo;
     public Sprite[] spriteArray1;
     public Sprite[] spriteArray2;
@@ -20,8 +21,8 @@ public class AimCrosshairs : MonoBehaviour
     void Start()
     {
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        spriteRendererWeapon = Weapon.GetComponent<SpriteRenderer>();
-        spriteRendererAmmo = Ammo.GetComponent<SpriteRenderer>();
+        i_Weapon = Weapon.GetComponent<Image>();
+        i_Ammo = Ammo.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -38,13 +39,18 @@ public class AimCrosshairs : MonoBehaviour
 
     public void standardAmmo()
         {
-            spriteRendererWeapon.sprite = spriteArray1[0];
-            spriteRendererAmmo.sprite = spriteArray2[0];  
+            i_Weapon.sprite = spriteArray1[0];
+            i_Ammo.sprite = spriteArray2[0];  
         }
     public void shotGunAmmo()
         {
-            spriteRendererWeapon.sprite = spriteArray1[1];
-            spriteRendererAmmo.sprite = spriteArray2[1];
+            i_Weapon.sprite = spriteArray1[1];
+            i_Ammo.sprite = spriteArray2[1];
+        }
+    public void sniperAmmo()
+        {
+            i_Weapon.sprite = spriteArray1[2];
+            i_Ammo.sprite = spriteArray2[2];
         }
 
     

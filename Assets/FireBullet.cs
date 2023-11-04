@@ -12,11 +12,12 @@ public class FireBullet : MonoBehaviour
     public int currentAmmo = 0;
     public float reloadTime = 0;
     public bool canShoot = true;
+    public GameObject Crosshairs;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
@@ -62,6 +63,19 @@ public class FireBullet : MonoBehaviour
                     currentAmmo ++;
                 }
             }
+        }
+
+        if(currentAmmo == 0)
+        {
+            Crosshairs.gameObject.SendMessage("standardAmmo");
+        }
+        else if(currentAmmo == 1)
+        {
+            Crosshairs.gameObject.SendMessage("shotGunAmmo");
+        }
+        else if(currentAmmo == 2)
+        {
+            Crosshairs.gameObject.SendMessage("sniperAmmo");
         }
     }
 
