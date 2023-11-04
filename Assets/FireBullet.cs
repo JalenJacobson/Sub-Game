@@ -44,7 +44,8 @@ public class FireBullet : MonoBehaviour
 
         if(Input.mouseScrollDelta.y != 0)
         {
-            if(Input.mouseScrollDelta.y > 2)
+            print(Input.mouseScrollDelta.y);
+            if(Input.mouseScrollDelta.y >= 1)
             {
                 print("Down");
                 if(currentAmmo >0)
@@ -53,7 +54,7 @@ public class FireBullet : MonoBehaviour
                 }
                 
             }
-            if(Input.mouseScrollDelta.y < -2)
+            if(Input.mouseScrollDelta.y <= -1)
             {
                 print("Up");
                 if(currentAmmo < 2)
