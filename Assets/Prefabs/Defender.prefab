@@ -52,6 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
   target: {fileID: 0}
+  vessel: {fileID: 0}
   targetPosition: {fileID: 0}
   speed: 15
   attackMode: 0
@@ -67,6 +68,8 @@ MonoBehaviour:
   direction: -1
   radiusOffset: 350
   circleSpeed: 3
+  attackWaitTime: 3
+  attackPointNumber: 0
 --- !u!135 &2536642118231054427
 SphereCollider:
   m_ObjectHideFlags: 0

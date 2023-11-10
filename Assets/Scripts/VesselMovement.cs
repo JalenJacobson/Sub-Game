@@ -13,18 +13,25 @@ public class VesselMovement : MonoBehaviour
     public bool playerControlling;
     public float timer = 0;
     public bool vesselDead = false;
+    public bool DamageOverloadCoroutineStarted = false;
    // public GameObject RiddlePannel;
     public GameObject MenuButton;
     public GameObject ResumeButton;
     public GameObject startGamePannel;
     public Vector3 currentCheckPoint;
     public int speed = 600;
+    public float damageOverloadCountdown;
+    public bool damageOverloadCountdownRunning;
+    public float damageInThisCountdown;
+    public GameObject Shield;
+    public bool lookForwardTime = false;
 
     public CinemachineVirtualCamera virtualCamera;
-
+    public bool canTakeDamage;
     public bool drivingMS = false;
     public bool hasJoint = false;
     public int health = 100;
+    public GameObject lookForwardObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +41,8 @@ public class VesselMovement : MonoBehaviour
         MenuButton = GameObject.Find("RiddleButton");
         ResumeButton = GameObject.Find("Close");
         startGamePannel = GameObject.Find("StartPannel");
+        Shield = GameObject.Find("Shield");
+        Shield.SetActive(false);
         // for(var i = 1; i<= riddleTriggers.Count - 1; i++)
         // {
         //     riddleTriggers[i].SetActive(false);
@@ -56,6 +65,24 @@ public class VesselMovement : MonoBehaviour
         else if(Input.GetKeyDown("c"))
         {
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, -15);
+        }
+
+        if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
+        {
+            StartCoroutine(DamageOverload());
+        }
+        
+        if(damageOverloadCountdownRunning)
+        {
+            if(damageOverloadCountdown > 0)
+            {
+                damageOverloadCountdown -= Time.deltaTime;
+            }
+            else if(damageOverloadCountdown <= 0)
+            {
+                damageOverloadCountdownRunning = false;
+                damageInThisCountdown = 0;
+            }
         }
         
     }
@@ -129,6 +156,12 @@ public class VesselMovement : MonoBehaviour
             playerControlling = true;
             timer = 0f;
         }
+
+        if(lookForwardTime)
+        {
+            lookForward();
+        }
+
         //if(!playerControlling && Keyboard.current[Key.F].isPressed)
         //{
             // StartCoroutine(lookAtNextTrigger());
@@ -186,15 +219,62 @@ public class VesselMovement : MonoBehaviour
 
     public void takeDamage(int damageTaken)
     {
-        health -= damageTaken;
-        print(health);
+        // if(canTakeDamage)
+        // {   
+            if(!damageOverloadCountdownRunning)
+            {
+                damageOverloadCountdownRunning = true;
+                damageOverloadCountdown = 5f;
+            }
+            
+            health -= damageTaken;
+            damageInThisCountdown += damageTaken;
+            print(health);
+            StartCoroutine(stopSpin());
+        // }
+        // else if(!canTakeDamage)
+        // {
+
+        // }
+        
+    }
+
+    public IEnumerator DamageOverload()
+    {
+        DamageOverloadCoroutineStarted = true;
+        Shield.SetActive(true);
+        StartCoroutine(stopSpin());
+        yield return new WaitForSeconds(2);
+        lookForwardTime = true;
+        yield return new WaitForSeconds(2f);
+        lookForwardTime = false;
+        yield return new WaitForSeconds(10f);
+        Shield.SetActive(false);
+        DamageOverloadCoroutineStarted = false;
+    }
+    
+    public void lookForward()
+    {
+        Vector3 direction = lookForwardObject.GetComponent<Transform>().position - transform.position;
+        Quaternion toRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 3f * Time.deltaTime);
+    }
+
+    public IEnumerator stopSpin()
+    {
+        yield return new WaitForSeconds(.01f);
+        rb.isKinematic = true;
+        yield return new WaitForSeconds(.01f);
+        rb.isKinematic = false;
     }
 
     public void startGame()
     {
+        print("should start 1");
         startGamePannel.SetActive(false);
         vesselDead = false;
         MenuButton.SetActive(true);
+        print("should start 2");
         // rb.AddForce(transform.forward * 20000);
     }
 

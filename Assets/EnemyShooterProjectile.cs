@@ -59,5 +59,16 @@ public class EnemyShooterProjectile : MonoBehaviour
         // anim.Play("DefenderExplode");
         Destroy(gameObject);
         }
+
+        else if (collision.collider.name.Contains("weenie"))
+        {
+            // StopAllCoroutines();
+            // gameObject.GetComponent<Collider>().enabled=false;
+            // attackMode = false;
+            // anim.Play("DefenderExplode");
+            collision.collider.SendMessage("takeDamage", 2);
+            Destroy(gameObject, 2);
+            
+        }
     }
 }

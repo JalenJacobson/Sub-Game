@@ -27,6 +27,7 @@ public class DefenderFollow : MonoBehaviour
     public float direction = -1;
     public float radiusOffset = 350;
     public float circleSpeed = 3;
+    public float attackWaitTime = 3;
     public int attackPointNumber;
     // Start is called before the first frame update
     void Start()
@@ -52,6 +53,7 @@ public class DefenderFollow : MonoBehaviour
         radiusOffset = Random.Range(4, 30);
         circleSpeed = Random.Range(1, 4); 
         clockwise = Random.value > 0.5;
+        attackWaitTime = Random.Range(3, 4);
         if(clockwise)
         {
             direction = -1;
@@ -65,7 +67,7 @@ public class DefenderFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, followPoint.transform.position, .06f);
+        // transform.position = Vector3.Lerp(transform.position, followPoint.transform.position, .06f);
         if(holdBeforeAttack)
         {
             
@@ -73,6 +75,7 @@ public class DefenderFollow : MonoBehaviour
         }
         if(startCircling)
         {
+            transform.position = Vector3.Lerp(transform.position, followPoint.transform.position, .06f);
             angle += Time.deltaTime * direction * circleSpeed;
             float x = Mathf.Cos(angle) * radiusOffset;
             float y = Mathf.Sin(angle) * radiusOffset;
@@ -90,14 +93,16 @@ public class DefenderFollow : MonoBehaviour
 
     void attack()
     {
-        transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, speed * Time.deltaTime);
+        // transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 1);
         transform.LookAt(vessel.transform.position);
+        print("attacking");
     }
-    public void getAttack()
-    {
-        StartCoroutine("initiateAttack");
-        firstAttack = false;   
-    }
+    // public void getAttack()
+    // {
+    //     StartCoroutine("initiateAttack");
+    //     firstAttack = false;   
+    // }
 
     void OnTriggerEnter(Collider other)
     {
@@ -111,35 +116,42 @@ public class DefenderFollow : MonoBehaviour
             transform.LookAt(cubePosition); 
         }
     }
-    void OnTriggerExit(Collider other)
-    {
-        if(other.name.Contains("weenie"))
-        {
-            attackMode = false;
-            anim.Play("DefenderIdle");
-            firstAttack = true;
-        }
-    }
+    // void OnTriggerExit(Collider other)
+    // {
+    //     if(other.name.Contains("weenie"))
+    //     {
+    //         // attackMode = false;
+    //         // anim.Play("DefenderIdle");
+    //         // firstAttack = true;
+    //     }
+    // }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.name.Contains("Bullet"))
         {
-            StopAllCoroutines();
-            gameObject.GetComponent<Collider>().enabled=false;
-            attackMode = false;
-            anim.Play("DefenderExplode");
-            Destroy(gameObject, 2);
+            explodeSequence();
         }
         else if (collision.collider.name.Contains("weenie"))
         {
+            print("weenie collisition" + gameObject.name);
             StopAllCoroutines();
             gameObject.GetComponent<Collider>().enabled=false;
             attackMode = false;
             anim.Play("DefenderExplode");
-            Destroy(gameObject, 2);
             collision.collider.SendMessage("takeDamage", 2);
+            Destroy(gameObject, 2);
+            
         }
+    }
+
+    public void explodeSequence()
+    {
+        StopAllCoroutines();
+        gameObject.GetComponent<Collider>().enabled=false;
+        attackMode = false;
+        anim.Play("DefenderExplode");
+        Destroy(gameObject, 2);
     }
 
     public IEnumerator initiateAttack()
@@ -152,6 +164,7 @@ public class DefenderFollow : MonoBehaviour
         // attackMode = true;
         // //pc.constraintActive = false;
 
+        print("startedCoroutine attackmode" + gameObject.name);
         //justin picked up here
         currentRelativePosition = target.transform.InverseTransformPoint(transform.position);
         holdBeforeAttack = true;
@@ -159,7 +172,7 @@ public class DefenderFollow : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         holdBeforeAttack = false;
         startCircling = true;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(attackWaitTime);
         startCircling = false;
         attackMode = true;
     }
