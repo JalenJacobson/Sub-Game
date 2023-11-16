@@ -426,11 +426,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3967999616125717699}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.43609354
-  m_Center: {x: 0.10311317, y: 0.039206658, z: 0}
+  m_Radius: 13.967571
+  m_Center: {x: -0.29067692, y: 0.039205804, z: 0}
 --- !u!114 &1453140747001764144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,10 +476,10 @@ GameObject:
   - component: {fileID: 5797533289939963048}
   - component: {fileID: 7131596637029915989}
   - component: {fileID: 3478167502301830790}
-  - component: {fileID: 7707514939729806206}
   - component: {fileID: 2733306899126469710}
+  - component: {fileID: 2982620050270133254}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -550,19 +550,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7707514939729806206
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4982384320150935745}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
-  m_Center: {x: 0.0000076293945, y: 0, z: 0}
 --- !u!135 &2733306899126469710
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -574,8 +561,21 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7
-  m_Center: {x: 0, y: 0, z: -0.00000047683716}
+  m_Radius: 0.21130662
+  m_Center: {x: 0.32055587, y: 0, z: 0.010291733}
+--- !u!114 &2982620050270133254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982384320150935745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb1ae2937c5401098947e9672c5c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentProjectile: {fileID: 3967999616125717699}
 --- !u!1 &8154760895740855203
 GameObject:
   m_ObjectHideFlags: 0

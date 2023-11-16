@@ -12,6 +12,7 @@ TagManager:
   - AttackPointFront
   - AttackPointTop
   - AttackPointBack
+  - Camera
   layers:
   - Default
   - TransparentFX

@@ -220,7 +220,8 @@ public class VesselMovement : MonoBehaviour
     public void takeDamage(int damageTaken)
     {
         // if(canTakeDamage)
-        // {   
+        // { 
+            StartCoroutine(CameraShake(damageTaken)); 
             if(!damageOverloadCountdownRunning)
             {
                 damageOverloadCountdownRunning = true;
@@ -230,7 +231,7 @@ public class VesselMovement : MonoBehaviour
             health -= damageTaken;
             damageInThisCountdown += damageTaken;
             print(health);
-            StartCoroutine(stopSpin());
+            // StartCoroutine(stopSpin());
         // }
         // else if(!canTakeDamage)
         // {
@@ -239,16 +240,24 @@ public class VesselMovement : MonoBehaviour
         
     }
 
+    public IEnumerator CameraShake(int damageTaken)
+    {
+        float shakeAmplitude = damageTaken * 2.5f;
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = shakeAmplitude;
+        yield return new WaitForSeconds(.5f);
+        virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
+    }
+
     public IEnumerator DamageOverload()
     {
         DamageOverloadCoroutineStarted = true;
         Shield.SetActive(true);
-        StartCoroutine(stopSpin());
+        // StartCoroutine(stopSpin());
         yield return new WaitForSeconds(2);
-        lookForwardTime = true;
-        yield return new WaitForSeconds(2f);
-        lookForwardTime = false;
-        yield return new WaitForSeconds(10f);
+        // lookForwardTime = true;
+        // yield return new WaitForSeconds(2f);
+        // lookForwardTime = false;
+        yield return new WaitForSeconds(7f);
         Shield.SetActive(false);
         DamageOverloadCoroutineStarted = false;
     }

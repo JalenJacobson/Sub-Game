@@ -58,4 +58,12 @@ public class EnemyShooter : MonoBehaviour
         anim.Play("ShooterIdle");
         }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.name.Contains("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

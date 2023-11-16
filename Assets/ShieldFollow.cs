@@ -26,7 +26,9 @@ public class ShieldFollow : MonoBehaviour
         }
         if(other.name.Contains("Projectile"))
         {
-            Destroy(other);
+            if(!other.GetComponent<EnemyShooterProjectileCrash>()) return;
+            
+            other.GetComponent<EnemyShooterProjectileCrash>().killProjectile();
         }
     }
 }

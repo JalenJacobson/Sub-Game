@@ -53,7 +53,7 @@ public class DefenderFollow : MonoBehaviour
         radiusOffset = Random.Range(4, 30);
         circleSpeed = Random.Range(1, 4); 
         clockwise = Random.value > 0.5;
-        attackWaitTime = Random.Range(3, 4);
+        attackWaitTime = Random.Range(3, 12);
         if(clockwise)
         {
             direction = -1;
@@ -126,24 +126,24 @@ public class DefenderFollow : MonoBehaviour
     //     }
     // }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.name.Contains("Bullet"))
-        {
-            explodeSequence();
-        }
-        else if (collision.collider.name.Contains("weenie"))
-        {
-            print("weenie collisition" + gameObject.name);
-            StopAllCoroutines();
-            gameObject.GetComponent<Collider>().enabled=false;
-            attackMode = false;
-            anim.Play("DefenderExplode");
-            collision.collider.SendMessage("takeDamage", 2);
-            Destroy(gameObject, 2);
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.collider.name.Contains("Bullet"))
+    //     {
+    //         explodeSequence();
+    //     }
+    //     else if (collision.collider.name.Contains("weenie"))
+    //     {
+    //         print("weenie collisition" + gameObject.name);
+    //         StopAllCoroutines();
+    //         gameObject.GetComponent<Collider>().enabled=false;
+    //         attackMode = false;
+    //         anim.Play("DefenderExplode");
+    //         collision.collider.SendMessage("takeDamage", 2);
+    //         Destroy(gameObject, 2);
             
-        }
-    }
+    //     }
+    // }
 
     public void explodeSequence()
     {

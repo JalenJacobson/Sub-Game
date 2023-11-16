@@ -7,10 +7,12 @@ public class Bullet : MonoBehaviour
     public Vector3 aim;
     public float bulletSpeed = 100f;
     public Animator anim;
+    public float lifeTime;
+    public float Timer;
 
     void Awake()
     {
-        Destroy(gameObject, 2);
+        // Destroy(gameObject, .25f);
     }
 
     void Start()
@@ -22,10 +24,17 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Timer += Time.deltaTime;
         if(aim != null)
         {
             gameObject.GetComponent<Rigidbody>().velocity = aim * bulletSpeed;
         }
+
+        if(Timer >= lifeTime)
+        {
+            Destroy(gameObject);
+        }
+        
         
     }
 

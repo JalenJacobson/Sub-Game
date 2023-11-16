@@ -37,11 +37,15 @@ public class FireBullet : MonoBehaviour
         {
             if(!canShoot)return;
             var bullet = Instantiate(bulletPrefabs[currentAmmo], bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            float lifetime = getBulletLifetime();
             // var direction = new Vector3(0,0,90);
             // bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
             bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
+            bullet.GetComponent<Bullet>().lifeTime = lifetime;
             reloadTime += reloadTimes[currentAmmo];
         }
+
+        
 
         if(Input.mouseScrollDelta.y != 0)
         {
@@ -77,6 +81,23 @@ public class FireBullet : MonoBehaviour
         {
             Crosshairs.gameObject.SendMessage("sniperAmmo");
         }
+    }
+
+    public float getBulletLifetime()
+    {
+        if(currentAmmo == 0)
+        {
+            return 2f;
+        }
+        else if(currentAmmo == 1)
+        {
+            return .25f;
+        }
+        else if(currentAmmo == 3)
+        {
+            return 99f;
+        }
+        else return 2f;
     }
 
     public void changeAmmoType()

@@ -48,27 +48,27 @@ public class EnemyShooterProjectile : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.name.Contains("Bullet"))
-        {
-            dead = true;
-        // StopAllCoroutines();
-        gameObject.GetComponent<Collider>().enabled=false;
-        // attackMode = false;
-        // anim.Play("DefenderExplode");
-        Destroy(gameObject);
-        }
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if (collision.collider.name.Contains("Bullet"))
+    //     {
+    //         dead = true;
+    //     // StopAllCoroutines();
+    //         gameObject.GetComponent<Collider>().enabled=false;
+    //     // attackMode = false;
+    //     // anim.Play("DefenderExplode");
+    //         Destroy(gameObject);
+    //     }
 
-        else if (collision.collider.name.Contains("weenie"))
-        {
-            // StopAllCoroutines();
-            // gameObject.GetComponent<Collider>().enabled=false;
-            // attackMode = false;
-            // anim.Play("DefenderExplode");
-            collision.collider.SendMessage("takeDamage", 2);
-            Destroy(gameObject, 2);
+    //     else if (collision.collider.name.Contains("weenie"))
+    //     {
+    //         // StopAllCoroutines();
+    //         // gameObject.GetComponent<Collider>().enabled=false;
+    //         // attackMode = false;
+    //         // anim.Play("DefenderExplode");
+    //         collision.collider.SendMessage("takeDamage", 2);
+    //         Destroy(gameObject);
             
-        }
-    }
+    //     }
+    // }
 }

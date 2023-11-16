@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 4025197514276221669}
   - component: {fileID: 4025197514276221664}
   - component: {fileID: 4025197514276221670}
+  - component: {fileID: 7580628051278022477}
   m_Layer: 0
   m_Name: E_Shooter
   m_TagString: Untagged
@@ -246,6 +247,20 @@ MonoBehaviour:
   bulletSpeed: 50
   target: {fileID: 0}
   anim: {fileID: 0}
+  timerStarted: 0
+--- !u!65 &7580628051278022477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259620202998647739}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.075914025, y: 0.068117805, z: 0.08025638}
+  m_Center: {x: 0.0034562014, y: 0.052935574, z: 0.0031438293}
 --- !u!1 &7160666849807481574
 GameObject:
   m_ObjectHideFlags: 0
