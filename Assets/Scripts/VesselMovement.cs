@@ -32,9 +32,26 @@ public class VesselMovement : MonoBehaviour
     public bool hasJoint = false;
     public int health = 100;
     public GameObject lookForwardObject;
+
+    // double tap variables
+    public float tapSpeed = 0.05f;
+    public float lastTapTimeDown = 0;
+    public float lastTapTimeUp = 0;
+    public float lastTapTimeRight = 0;
+    public float lastTapTimeLeft = 0;
+    public bool pressedFirstTime = false;
+    public bool forceJumpUp = false;
+    public bool forceJumpDown = false;
+    public bool forceJumpRight = false;
+    public bool forceJumpLeft = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        lastTapTimeDown = 0;
+        lastTapTimeUp = 0;
+        lastTapTimeRight = 0;
+        lastTapTimeLeft = 0;
         vesselDead = true;
         rb = GetComponent<Rigidbody>();
         //RiddlePannel = GameObject.Find("RiddlePannel");
@@ -52,7 +69,8 @@ public class VesselMovement : MonoBehaviour
 
     void Update()
     {
-        timer = timer = timer + Time.deltaTime;
+        timer = timer + Time.deltaTime;
+        print(Vector3.down);
 
         if(Input.GetKeyDown("z"))
         {
@@ -65,6 +83,49 @@ public class VesselMovement : MonoBehaviour
         else if(Input.GetKeyDown("c"))
         {
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, -15);
+        }
+
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey("s"))
+        {
+            print(Time.time - lastTapTimeDown);
+            if((Time.time - lastTapTimeDown) <= tapSpeed)
+            {
+                StartCoroutine(forceJumpDownCoroutine());
+            }
+            lastTapTimeDown = Time.time;
+            
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey("s"))
+        {
+            print(Time.time - lastTapTimeUp);
+            if((Time.time - lastTapTimeUp) <= tapSpeed)
+            {
+                // print("double tap Up");
+                // rb.AddForce(Vector3.up * 1000);
+                StartCoroutine(forceJumpUpCoroutine());
+            }
+            lastTapTimeUp = Time.time;
+            
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKey("s"))
+        {
+            print(Time.time - lastTapTimeRight);
+            if((Time.time - lastTapTimeRight) <= tapSpeed)
+            {
+                StartCoroutine(forceJumpRightCoroutine());
+            }
+            lastTapTimeRight = Time.time;
+            
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKey("s"))
+        {
+            print(Time.time - lastTapTimeLeft);
+            if((Time.time - lastTapTimeLeft) <= tapSpeed)
+            {
+                StartCoroutine(forceJumpLeftCoroutine());
+            }
+            lastTapTimeLeft = Time.time;
+            
         }
 
         if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
@@ -127,29 +188,51 @@ public class VesselMovement : MonoBehaviour
             rb.AddForce(transform.forward * speed);
         }
 
-        if (Keyboard.current[Key.UpArrow].isPressed || Input.GetKey("s"))
+        if(forceJumpUp)
         {
-           
-            
+            rb.AddRelativeForce (0, 5000, 0);
+        }
+        if(forceJumpDown)
+        {
+            rb.AddRelativeForce (0, -5000, 0);
+        }
+        if(forceJumpLeft)
+        {
+            rb.AddRelativeForce (-5000, 0, 0);
+        }
+        if(forceJumpRight)
+        {
+            rb.AddRelativeForce (5000, 0, 0);
+        }
+
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey("s"))
+        {
+            // print(lastTapTime);
+            // if(pressedFirstTime)
+            // if((Time.time - lastTapTime) < tapSpeed)
+            // {
+            //     print("double tap");
+            // }
+            // lastTapTime = Time.time;
             transform.Rotate(1, 0, 0, Space.Self);
             playerControlling = true;
             timer = 0f;
         }
-        if (Keyboard.current[Key.DownArrow].isPressed || Input.GetKey("w"))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey("w"))
         {
             
             transform.Rotate(-1, 0, 0, Space.Self);
             playerControlling = true;
             timer = 0f;
         }
-        if (Keyboard.current[Key.LeftArrow].isPressed  || Input.GetKey("a"))
+        if (Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey("a"))
         {
             
             transform.Rotate(0, -1, 0, Space.Self);
             playerControlling = true;
             timer = 0f;
         }
-        if (Keyboard.current[Key.RightArrow].isPressed || Input.GetKey("d"))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey("d"))
         {
             
             transform.Rotate(0, 1, 0, Space.Self);
@@ -176,6 +259,31 @@ public class VesselMovement : MonoBehaviour
         // print(riddleTriggers[currentRiddleTrigger]);
         // else Quaternion.Slerp(transform.rotation, transform.LookAt(riddleTriggers[currentRiddleTrigger]), .01f);  
         // else transform.LookAt(riddleTriggers[currentRiddleTrigger]); 
+    }
+
+    public IEnumerator forceJumpUpCoroutine()
+    {
+        forceJumpUp = true;
+        yield return new WaitForSeconds(.5f);
+        forceJumpUp = false;
+    }
+    public IEnumerator forceJumpDownCoroutine()
+    {
+        forceJumpDown = true;
+        yield return new WaitForSeconds(.5f);
+        forceJumpDown = false;
+    }
+    public IEnumerator forceJumpRightCoroutine()
+    {
+        forceJumpRight = true;
+        yield return new WaitForSeconds(.5f);
+        forceJumpRight = false;
+    }
+    public IEnumerator forceJumpLeftCoroutine()
+    {
+        forceJumpLeft = true;
+        yield return new WaitForSeconds(.5f);
+        forceJumpLeft = false;
     }
 
     // public void lookAtNextTrigger()
