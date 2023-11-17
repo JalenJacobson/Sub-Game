@@ -113,6 +113,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &1593025331648870870
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,6 +9612,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &3147608546715347836
 GameObject:
   m_ObjectHideFlags: 0
@@ -9723,6 +9727,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &4607259976875946721
 GameObject:
   m_ObjectHideFlags: 0
@@ -9830,7 +9836,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4607259976875946721}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 4.75
@@ -9850,6 +9856,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!54 &4767996951134298775
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9979,6 +9987,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &5334979147241538854
 GameObject:
   m_ObjectHideFlags: 0
@@ -15101,6 +15111,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &6500203889417390402
 GameObject:
   m_ObjectHideFlags: 0
@@ -15214,6 +15226,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &6599674332391440642
 GameObject:
   m_ObjectHideFlags: 0
@@ -15424,6 +15438,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &6810152872586571559
 GameObject:
   m_ObjectHideFlags: 0
@@ -15537,6 +15553,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &7533397859596132600
 GameObject:
   m_ObjectHideFlags: 0
@@ -15650,6 +15668,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &7952411617678293034
 GameObject:
   m_ObjectHideFlags: 0
@@ -15763,6 +15783,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &8647022906713455334
 GameObject:
   m_ObjectHideFlags: 0
@@ -15876,6 +15898,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &8751435309115344596
 GameObject:
   m_ObjectHideFlags: 0
@@ -15989,6 +16013,8 @@ MonoBehaviour:
   aim: {x: 0, y: 0, z: 0}
   bulletSpeed: 10000
   anim: {fileID: 0}
+  lifeTime: 0
+  Timer: 0
 --- !u!1 &9126076045137991116
 GameObject:
   m_ObjectHideFlags: 0

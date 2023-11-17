@@ -5,7 +5,9 @@ using UnityEngine;
 public class FireBullet : MonoBehaviour
 {
     public Transform bulletSpawnPoint;
+    public Transform bulletSpawnPointBack;
     public GameObject[] bulletPrefabs;
+    public List<GameObject> activeMines;
     public float[] reloadTimes;
     public float bulletSpeed = 100f;
     public Transform target;
@@ -36,23 +38,40 @@ public class FireBullet : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             if(!canShoot)return;
-            var bullet = Instantiate(bulletPrefabs[currentAmmo], bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-            float lifetime = getBulletLifetime();
-            // var direction = new Vector3(0,0,90);
-            // bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
-            bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
-            bullet.GetComponent<Bullet>().lifeTime = lifetime;
-            reloadTime += reloadTimes[currentAmmo];
+            if(currentAmmo == 2)
+            {
+                var bullet = Instantiate(bulletPrefabs[currentAmmo], bulletSpawnPointBack.position, bulletSpawnPoint.rotation);
+                bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
+                bullet.GetComponent<Bullet>().type = currentAmmo;
+                reloadTime += reloadTimes[currentAmmo];
+                activeMines.Add(bullet);
+            }
+            else
+            {
+                var bullet = Instantiate(bulletPrefabs[currentAmmo], bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+                bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
+                bullet.GetComponent<Bullet>().type = currentAmmo;
+                reloadTime += reloadTimes[currentAmmo];
+            }
+        }
+
+        if(Input.GetMouseButtonDown(1) && currentAmmo == 2)
+        {
+            foreach(GameObject mine in activeMines)
+            {
+                mine.GetComponent<Bullet>().detonate();
+                print("started");
+            }
+            activeMines.Clear();
+            print("should remove");
         }
 
         
 
         if(Input.mouseScrollDelta.y != 0)
         {
-            print(Input.mouseScrollDelta.y);
             if(Input.mouseScrollDelta.y >= 1)
             {
-                print("Down");
                 if(currentAmmo >0)
                 {
                     currentAmmo --;
@@ -61,7 +80,6 @@ public class FireBullet : MonoBehaviour
             }
             if(Input.mouseScrollDelta.y <= -1)
             {
-                print("Up");
                 if(currentAmmo < 2)
                 {
                     currentAmmo ++;
@@ -83,25 +101,16 @@ public class FireBullet : MonoBehaviour
         }
     }
 
-    public float getBulletLifetime()
-    {
-        if(currentAmmo == 0)
-        {
-            return 2f;
-        }
-        else if(currentAmmo == 1)
-        {
-            return .25f;
-        }
-        else if(currentAmmo == 3)
-        {
-            return 99f;
-        }
-        else return 2f;
-    }
+    // public IEnumerator detonateSequence()
+    // {
+    //     foreach(GameObject mine in activeMines)
+    //     {
+    //         mine.GetComponent<Bullet>().detonate();
+    //         print("started");
+    //     }
+    //     yield return new WaitForSeconds(3f);
+        
 
-    public void changeAmmoType()
-    {
+    // }
 
-    }
 }

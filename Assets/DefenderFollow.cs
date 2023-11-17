@@ -17,8 +17,6 @@ public class DefenderFollow : MonoBehaviour
     public GameObject cube;
     public Transform cubePosition;
     public GameObject followPoint;
-    //public ParentConstraint pc;
-    //public ConstraintSource constraintSource;
     public bool firstAttack = true;
 
     public bool startCircling = false;
@@ -29,23 +27,16 @@ public class DefenderFollow : MonoBehaviour
     public float circleSpeed = 3;
     public float attackWaitTime = 3;
     public int attackPointNumber;
-    // Start is called before the first frame update
+
     void Start()
     {
         pickRandoms();
         target =  GameObject.FindGameObjectWithTag("AttackPointFront");
         vessel =  GameObject.FindGameObjectWithTag("Vessel");
-        
         cube =  GameObject.FindGameObjectWithTag("cube");
         targetPosition = target.transform;
         cubePosition = cube.transform;
         anim = GetComponent<Animator>();
-        //pc = GetComponent<ParentConstraint>();
-        //constraintSource.sourceTransform = target.transform;
-        //constraintSource.weight = 1;
-        //pc.AddSource(constraintSource);
-        //pc.translationAtRest = transform.position;
-        //pc.SetSource(0,1);
     }
 
     public void pickRandoms()
@@ -64,13 +55,11 @@ public class DefenderFollow : MonoBehaviour
         }      
     }
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-        // transform.position = Vector3.Lerp(transform.position, followPoint.transform.position, .06f);
         if(holdBeforeAttack)
         {
-            
             followPoint.transform.position = target.transform.TransformPoint(currentRelativePosition);
         }
         if(startCircling)
@@ -79,30 +68,19 @@ public class DefenderFollow : MonoBehaviour
             angle += Time.deltaTime * direction * circleSpeed;
             float x = Mathf.Cos(angle) * radiusOffset;
             float y = Mathf.Sin(angle) * radiusOffset;
-            
             followPoint.transform.position = new Vector3(target.transform.position.x + x, target.transform.position.y + y, target.transform.position.z);
-            // print(target.transform.position);
         }
         if(attackMode)
         {
             attack();
-        }
-            
-        
+        }   
     }
 
     void attack()
     {
-        // transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, speed * Time.deltaTime);
         transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 1);
         transform.LookAt(vessel.transform.position);
-        print("attacking");
     }
-    // public void getAttack()
-    // {
-    //     StartCoroutine("initiateAttack");
-    //     firstAttack = false;   
-    // }
 
     void OnTriggerEnter(Collider other)
     {
@@ -156,19 +134,8 @@ public class DefenderFollow : MonoBehaviour
 
     public IEnumerator initiateAttack()
     {
-        //Jalen left off here
-        // anim.Play("DefenderCircle");
-        // yield return new WaitForSeconds(1f);
-        // anim.Play("DefenderAttack");
-        // speed = 50;
-        // attackMode = true;
-        // //pc.constraintActive = false;
-
-        print("startedCoroutine attackmode" + gameObject.name);
-        //justin picked up here
         currentRelativePosition = target.transform.InverseTransformPoint(transform.position);
         holdBeforeAttack = true;
-
         yield return new WaitForSeconds(.5f);
         holdBeforeAttack = false;
         startCircling = true;

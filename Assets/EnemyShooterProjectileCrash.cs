@@ -14,7 +14,7 @@ public class EnemyShooterProjectileCrash : MonoBehaviour
             gameObject.GetComponent<Collider>().enabled=false;
         
         
-            Destroy(gameObject);
+            killProjectile();
         }
 
         else if (other.name.Contains("weenie"))

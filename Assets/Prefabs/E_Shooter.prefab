@@ -170,7 +170,6 @@ GameObject:
   - component: {fileID: 4025197514276221669}
   - component: {fileID: 4025197514276221664}
   - component: {fileID: 4025197514276221670}
-  - component: {fileID: 7580628051278022477}
   m_Layer: 0
   m_Name: E_Shooter
   m_TagString: Untagged
@@ -248,19 +247,6 @@ MonoBehaviour:
   target: {fileID: 0}
   anim: {fileID: 0}
   timerStarted: 0
---- !u!65 &7580628051278022477
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4259620202998647739}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.075914025, y: 0.068117805, z: 0.08025638}
-  m_Center: {x: 0.0034562014, y: 0.052935574, z: 0.0031438293}
 --- !u!1 &7160666849807481574
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +513,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1430378484239241908}
   - component: {fileID: 8493276696477951423}
+  - component: {fileID: 3022696384760929943}
+  - component: {fileID: 7246954531209462238}
   m_Layer: 0
   m_Name: E_Shooter
   m_TagString: Untagged
@@ -614,3 +602,29 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0008929372, y: 0.02458864, z: 0.0016927887}
     m_Extent: {x: 0.04804663, y: 0.0609343, z: 0.035197057}
   m_DirtyAABB: 0
+--- !u!65 &3022696384760929943
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948805964559555290}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.050630044, y: 0.07599715, z: 0.054458853}
+  m_Center: {x: 0.0010858221, y: 0.038545348, z: 0.00028736304}
+--- !u!114 &7246954531209462238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8948805964559555290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67eb41c25aeb469a996ca719e67b3a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentShooter: {fileID: 4259620202998647739}

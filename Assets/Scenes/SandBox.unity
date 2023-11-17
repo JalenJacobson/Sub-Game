@@ -6568,6 +6568,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1705705309}
+  - {fileID: 1030078595}
   m_Father: {fileID: 1599618359}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -6584,7 +6585,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 1705705309}
+  bulletSpawnPointBack: {fileID: 0}
   bulletPrefabs: []
+  activeMines: []
   reloadTimes: []
   bulletSpeed: 0
   target: {fileID: 0}
@@ -9007,7 +9010,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392271965}
-  m_LocalRotation: {x: -0.029918766, y: 0.000000017642392, z: 5.2807503e-10, w: 0.99955237}
+  m_LocalRotation: {x: -0.02991876, y: -0.000000017230326, z: -5.1574084e-10, w: 0.99955237}
   m_LocalPosition: {x: 0, y: 4.209999, z: 309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19850,7 +19853,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.029918766, y: 0.000000017642392, z: 5.2807503e-10, w: 0.99955237}
+  m_LocalRotation: {x: -0.02991876, y: -0.000000017230326, z: -5.1574084e-10, w: 0.99955237}
   m_LocalPosition: {x: 0, y: 4.209999, z: 309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -20738,6 +20741,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6033382818828912965, guid: 1f16abbddf9054efe949941b08c5064b, type: 3}
   m_PrefabInstance: {fileID: 1356893055}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1030078594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1030078595}
+  m_Layer: 0
+  m_Name: BulletSpawnPointBack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1030078595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030078594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -20.5, z: 14.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 167273379}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1044648569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27306,10 +27340,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 1705705309}
+  bulletSpawnPointBack: {fileID: 1030078595}
   bulletPrefabs:
   - {fileID: 4607259976875946721, guid: b317710d4f73145538f10c6f5ea467e2, type: 3}
   - {fileID: 4607259976875946721, guid: 37d557a68fdc84885b10a9333144b504, type: 3}
   - {fileID: 4607259976875946721, guid: a63a69679802e49d7a6cd5f4ff163832, type: 3}
+  activeMines: []
   reloadTimes:
   - 0
   - 0.75

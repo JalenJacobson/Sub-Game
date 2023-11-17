@@ -27,7 +27,7 @@ public class EnemyShooter : MonoBehaviour
         timer += Time.deltaTime;
         }
 
-        if(timer >= 2)
+        if(timer >= 1.25f)
         {
             var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
             timer = 0;

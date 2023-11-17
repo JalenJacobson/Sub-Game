@@ -70,8 +70,6 @@ public class VesselMovement : MonoBehaviour
     void Update()
     {
         timer = timer + Time.deltaTime;
-        print(Vector3.down);
-
         if(Input.GetKeyDown("z"))
         {
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, -15, 4.20999f);
@@ -87,7 +85,6 @@ public class VesselMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey("s"))
         {
-            print(Time.time - lastTapTimeDown);
             if((Time.time - lastTapTimeDown) <= tapSpeed)
             {
                 StartCoroutine(forceJumpDownCoroutine());
@@ -97,7 +94,6 @@ public class VesselMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey("s"))
         {
-            print(Time.time - lastTapTimeUp);
             if((Time.time - lastTapTimeUp) <= tapSpeed)
             {
                 // print("double tap Up");
@@ -109,7 +105,6 @@ public class VesselMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKey("s"))
         {
-            print(Time.time - lastTapTimeRight);
             if((Time.time - lastTapTimeRight) <= tapSpeed)
             {
                 StartCoroutine(forceJumpRightCoroutine());
@@ -119,13 +114,11 @@ public class VesselMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKey("s"))
         {
-            print(Time.time - lastTapTimeLeft);
             if((Time.time - lastTapTimeLeft) <= tapSpeed)
             {
                 StartCoroutine(forceJumpLeftCoroutine());
             }
             lastTapTimeLeft = Time.time;
-            
         }
 
         if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
@@ -207,13 +200,6 @@ public class VesselMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey("s"))
         {
-            // print(lastTapTime);
-            // if(pressedFirstTime)
-            // if((Time.time - lastTapTime) < tapSpeed)
-            // {
-            //     print("double tap");
-            // }
-            // lastTapTime = Time.time;
             transform.Rotate(1, 0, 0, Space.Self);
             playerControlling = true;
             timer = 0f;
@@ -248,7 +234,7 @@ public class VesselMovement : MonoBehaviour
         //if(!playerControlling && Keyboard.current[Key.F].isPressed)
         //{
             // StartCoroutine(lookAtNextTrigger());
-            // timer = timer = timer + Time.deltaTime;
+            // timer = timer + Time.deltaTime;
             // if (timer > 8f)
             // {   
                // lookAtNextTrigger();
@@ -256,9 +242,7 @@ public class VesselMovement : MonoBehaviour
             
        // }
 
-        // print(riddleTriggers[currentRiddleTrigger]);
-        // else Quaternion.Slerp(transform.rotation, transform.LookAt(riddleTriggers[currentRiddleTrigger]), .01f);  
-        // else transform.LookAt(riddleTriggers[currentRiddleTrigger]); 
+        
     }
 
     public IEnumerator forceJumpUpCoroutine()
@@ -327,8 +311,6 @@ public class VesselMovement : MonoBehaviour
 
     public void takeDamage(int damageTaken)
     {
-        // if(canTakeDamage)
-        // { 
             StartCoroutine(CameraShake(damageTaken)); 
             if(!damageOverloadCountdownRunning)
             {
@@ -339,13 +321,6 @@ public class VesselMovement : MonoBehaviour
             health -= damageTaken;
             damageInThisCountdown += damageTaken;
             print(health);
-            // StartCoroutine(stopSpin());
-        // }
-        // else if(!canTakeDamage)
-        // {
-
-        // }
-        
     }
 
     public IEnumerator CameraShake(int damageTaken)
@@ -360,11 +335,7 @@ public class VesselMovement : MonoBehaviour
     {
         DamageOverloadCoroutineStarted = true;
         Shield.SetActive(true);
-        // StartCoroutine(stopSpin());
         yield return new WaitForSeconds(2);
-        // lookForwardTime = true;
-        // yield return new WaitForSeconds(2f);
-        // lookForwardTime = false;
         yield return new WaitForSeconds(7f);
         Shield.SetActive(false);
         DamageOverloadCoroutineStarted = false;
@@ -387,12 +358,9 @@ public class VesselMovement : MonoBehaviour
 
     public void startGame()
     {
-        print("should start 1");
         startGamePannel.SetActive(false);
         vesselDead = false;
         MenuButton.SetActive(true);
-        print("should start 2");
-        // rb.AddForce(transform.forward * 20000);
     }
 
     public void speedMove()
@@ -406,30 +374,4 @@ public class VesselMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         speed = 600;
     }
-
-    // IEnumerator WaitAndP()
-    // {
-    //     // suspend execution for 5 seconds
-    //     yield return new WaitForSeconds(5);
-    //     print("WaitAndPrint " + Time.time);
-    // }
-
-    // public void OnRotateUp()
-    // {
-    //     print("hello");
-    //     // print(context);
-    // }
-    // public void OnRotateDown()
-    // {
-    //     print("Down");
-    // }
-    // public void OnRotateLeft()
-    // {
-    //     print("left");
-    // }
-    // public void OnRotateRight()
-    // {
-    //     print("right");
-    // }
-    
 }

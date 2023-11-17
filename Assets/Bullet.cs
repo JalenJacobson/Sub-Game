@@ -9,16 +9,17 @@ public class Bullet : MonoBehaviour
     public Animator anim;
     public float lifeTime;
     public float Timer;
+    public float type;
 
     void Awake()
     {
-        // Destroy(gameObject, .25f);
+        
     }
 
     void Start()
     {
-        bulletSpeed = 1000f;
         anim = GetComponent<Animator>();
+        getBulletProperties();
     }
 
     // Update is called once per frame
@@ -35,13 +36,71 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         
-        
     }
 
-     void OnCollisionEnter(Collision collision)
+    public void getBulletProperties()
     {
+        getBulletLifetime();
+        getBulletSpeed();
+    }
+
+    public void getBulletLifetime()
+    {
+        if(type == 0)
+        {
+            lifeTime =  2f;
+        }
+        else if(type == 1)
+        {
+            lifeTime =  .25f;
+        }
+        else if(type == 2)
+        {
+            lifeTime =  99f;
+        }
+        else lifeTime =  2f;
+    }
+    
+    public void getBulletSpeed()
+    {
+        if(type == 0)
+        {
+            bulletSpeed =  1000f;
+        }
+        else if(type == 1)
+        {
+            bulletSpeed =  1000f;
+        }
+        else if(type == 2)
+        {
+            bulletSpeed =  0f;
+        }
+        else bulletSpeed =  1000f;
+    }
+
+    public void detonate()
+    {
+        // StartCoroutine(detonateSequence());
+        print("detonate");
+        Destroy(gameObject);  
+    }
+
+    // public IEnumerator detonateSequence()
+    // {
+    //     print("detonate");
+    //     yield return new WaitForSeconds(6);
+    //     Destroy(gameObject); 
+    // }
+
+     void OnTriggerEnter(Collider other)
+    {
+        if(type == 2)return;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        anim.Play("BulletExplode");
+        if(anim)
+        {
+            anim.Play("BulletExplode");
+        }
+        
         Destroy(gameObject);
     }
 }
