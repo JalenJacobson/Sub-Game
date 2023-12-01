@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4861184061127275408}
   - component: {fileID: 657378728650084724}
   m_Layer: 0
-  m_Name: Defender
+  m_Name: Defender_LargeTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,8 +243,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.86811805
-  m_Center: {x: -0.19728118, y: 0.41000015, z: -0.27103648}
+  m_Radius: 2.0829563
+  m_Center: {x: -0.19728148, y: 0.41000032, z: -0.1394871}
 --- !u!122 &3563524284852917535
 Halo:
   m_ObjectHideFlags: 0
@@ -270,6 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefenderParent: {fileID: 6283894910427883956}
+  virtualCamera: {fileID: 0}
 --- !u!4 &3449908350851475944 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4434618974185950741, guid: ec2ad43bb9f464765acc478c78bc8791, type: 3}

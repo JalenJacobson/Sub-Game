@@ -15,9 +15,9 @@ public class RiddleTrigger : MonoBehaviour
 
     void Awake()
     {
-        RiddlePannel = GameObject.Find("RiddlePannel");
-        RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
-        NewRiddleAvalable = GameObject.Find("NewIndicator");
+        // RiddlePannel = GameObject.Find("RiddlePannel");
+        // RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
+        // NewRiddleAvalable = GameObject.Find("NewIndicator");
     }
 
     void Start()
@@ -36,9 +36,13 @@ public class RiddleTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.name.Contains("weenie"))
+        {
+            VesselMovement_Script.nextTrigger();
+            Destroy(gameObject);
+        }
         //RiddlePannel_Script.addRiddlePart();
         //NewRiddleAvalable.SetActive(true);
-        //VesselMovement_Script.nextTrigger();
-       // Destroy(gameObject);
+        
     }
 }

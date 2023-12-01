@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet_Shotgun : MonoBehaviour
 {
     public Vector3 aim;
     public float bulletSpeed = 100f;
@@ -10,24 +10,22 @@ public class Bullet : MonoBehaviour
     public float lifeTime;
     public float Timer;
     public float type;
-    public float scaleTimer;
 
     void Awake()
     {
-        
+        getBulletProperties();
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
-        getBulletProperties();
+        // getBulletProperties();
     }
 
     // Update is called once per frame
     void Update()
     {
         Timer += Time.deltaTime;
-        scaleTimer = Timer * 10;
         if(aim != null)
         {
             gameObject.GetComponent<Rigidbody>().velocity = aim * bulletSpeed;
@@ -37,11 +35,6 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
             
-        }
-
-        if(type == 1)
-        {
-            gameObject.transform.localScale += new Vector3(scaleTimer, scaleTimer, scaleTimer);
         }
         
     }

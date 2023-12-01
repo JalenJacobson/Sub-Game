@@ -35,7 +35,6 @@ public class EnemyShooterProjectile : MonoBehaviour
     {
         if(other.name.Contains("weenie"))
         {
-            print("entered");
             lockOn = false;
         }
     }

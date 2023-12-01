@@ -115,6 +115,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &1593025331648870870
 GameObject:
   m_ObjectHideFlags: 0
@@ -9614,6 +9615,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &3147608546715347836
 GameObject:
   m_ObjectHideFlags: 0
@@ -9729,6 +9731,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &4607259976875946721
 GameObject:
   m_ObjectHideFlags: 0
@@ -9759,8 +9762,8 @@ Transform:
   m_GameObject: {fileID: 4607259976875946721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.1593, y: 2.429, z: 323.77}
-  m_LocalScale: {x: 0.9433827, y: 0.9053504, z: 1.8662}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.06502953, y: 0.06240788, z: 0.12864146}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8441629099526259890}
   - {fileID: 902730134900721014}
@@ -9858,6 +9861,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!54 &4767996951134298775
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9989,6 +9993,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &5334979147241538854
 GameObject:
   m_ObjectHideFlags: 0
@@ -15113,6 +15118,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &6500203889417390402
 GameObject:
   m_ObjectHideFlags: 0
@@ -15228,6 +15234,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &6599674332391440642
 GameObject:
   m_ObjectHideFlags: 0
@@ -15440,6 +15447,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &6810152872586571559
 GameObject:
   m_ObjectHideFlags: 0
@@ -15555,6 +15563,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &7533397859596132600
 GameObject:
   m_ObjectHideFlags: 0
@@ -15670,6 +15679,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &7952411617678293034
 GameObject:
   m_ObjectHideFlags: 0
@@ -15785,6 +15795,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &8647022906713455334
 GameObject:
   m_ObjectHideFlags: 0
@@ -15900,6 +15911,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &8751435309115344596
 GameObject:
   m_ObjectHideFlags: 0
@@ -16015,6 +16027,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
 --- !u!1 &9126076045137991116
 GameObject:
   m_ObjectHideFlags: 0

@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 4025197514276221664}
   - component: {fileID: 4025197514276221670}
   m_Layer: 0
-  m_Name: E_Shooter
+  m_Name: E_Shooter_LargeTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

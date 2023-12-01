@@ -9,8 +9,8 @@ public class VesselMovement : MonoBehaviour
 
     public Rigidbody rb;
     public Animator anim;
-    //public int currentRiddleTrigger = 0;
-    //public List<GameObject> riddleTriggers;
+    public int currentRiddleTrigger = 0;
+    public List<GameObject> riddleTriggers;
     public bool playerControlling;
     public float timer = 0;
     public bool vesselDead = false;
@@ -85,7 +85,7 @@ public class VesselMovement : MonoBehaviour
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, -15);
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKey("s"))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown("s"))
         {
             if((Time.time - lastTapTimeDown) <= tapSpeed)
             {
@@ -94,7 +94,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeDown = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey("w"))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("w"))
         {
             if((Time.time - lastTapTimeUp) <= tapSpeed)
             {
@@ -105,7 +105,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeUp = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKey("d"))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("d"))
         {
             if((Time.time - lastTapTimeRight) <= tapSpeed)
             {
@@ -114,7 +114,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeRight = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKey("a"))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("a"))
         {
             if((Time.time - lastTapTimeLeft) <= tapSpeed)
             {
@@ -228,21 +228,15 @@ public class VesselMovement : MonoBehaviour
             timer = 0f;
         }
 
-        if(lookForwardTime)
-        {
-            lookForward();
-        }
+        // if(lookForwardTime)
+        // {
+        //     lookForward();
+        // }
 
-        //if(!playerControlling && Keyboard.current[Key.F].isPressed)
-        //{
-            // StartCoroutine(lookAtNextTrigger());
-            // timer = timer + Time.deltaTime;
-            // if (timer > 8f)
-            // {   
-               // lookAtNextTrigger();
-            // }
-            
-       // }
+        if(Input.GetKey("f"))
+        {
+            lookAtNextTrigger();
+        }
 
         
     }
@@ -280,19 +274,19 @@ public class VesselMovement : MonoBehaviour
         forceJumpLeft = false;
     }
 
-    // public void lookAtNextTrigger()
-    // {
-    //     Vector3 direction = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position - transform.position;
-    //     Quaternion toRotation = Quaternion.LookRotation(direction);
-    //     transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 3f * Time.deltaTime);
-    // }
+    public void lookAtNextTrigger()
+    {
+        Vector3 direction = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position - transform.position;
+        Quaternion toRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 3f * Time.deltaTime);
+    }
 
-    // public void nextTrigger()
-    // {
-    //     currentCheckPoint = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position;
-    //     currentRiddleTrigger++;
-    //     riddleTriggers[currentRiddleTrigger].SetActive(true);
-    // }
+    public void nextTrigger()
+    {
+        currentCheckPoint = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position;
+        currentRiddleTrigger++;
+        riddleTriggers[currentRiddleTrigger].SetActive(true);
+    }
 
     // public void revertToCheckPoint()
     // {
