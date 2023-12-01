@@ -189,7 +189,7 @@ public class VesselMovement : MonoBehaviour
         }
         if(forceJumpDown)
         {
-            rb.AddRelativeForce (0, -3000, 0);
+            rb.AddRelativeForce (0, -2000, 0);
         }
         if(forceJumpLeft)
         {
@@ -257,6 +257,8 @@ public class VesselMovement : MonoBehaviour
     }
     public IEnumerator forceJumpDownCoroutine()
     {
+        anim.Play("BarrelRoll_Down");
+        yield return new WaitForSeconds(.15f);
         forceJumpDown = true;
         yield return new WaitForSeconds(.3f);
         forceJumpDown = false;
