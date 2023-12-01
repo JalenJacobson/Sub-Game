@@ -8,6 +8,7 @@ public class VesselMovement : MonoBehaviour
 {
 
     public Rigidbody rb;
+    public Animator anim;
     //public int currentRiddleTrigger = 0;
     //public List<GameObject> riddleTriggers;
     public bool playerControlling;
@@ -65,6 +66,7 @@ public class VesselMovement : MonoBehaviour
         //     riddleTriggers[i].SetActive(false);
         // }
         currentCheckPoint = new Vector3(0, 0, 324);
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -92,7 +94,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeDown = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey("s"))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKey("w"))
         {
             if((Time.time - lastTapTimeUp) <= tapSpeed)
             {
@@ -103,7 +105,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeUp = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKey("s"))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKey("d"))
         {
             if((Time.time - lastTapTimeRight) <= tapSpeed)
             {
@@ -112,7 +114,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeRight = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKey("s"))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKey("a"))
         {
             if((Time.time - lastTapTimeLeft) <= tapSpeed)
             {
@@ -183,19 +185,19 @@ public class VesselMovement : MonoBehaviour
 
         if(forceJumpUp)
         {
-            rb.AddRelativeForce (0, 5000, 0);
+            rb.AddRelativeForce (0, 2000, 0);
         }
         if(forceJumpDown)
         {
-            rb.AddRelativeForce (0, -5000, 0);
+            rb.AddRelativeForce (0, -3000, 0);
         }
         if(forceJumpLeft)
         {
-            rb.AddRelativeForce (-5000, 0, 0);
+            rb.AddRelativeForce (-3000, 0, 0);
         }
         if(forceJumpRight)
         {
-            rb.AddRelativeForce (5000, 0, 0);
+            rb.AddRelativeForce (3000, 0, 0);
         }
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey("s"))
@@ -247,26 +249,32 @@ public class VesselMovement : MonoBehaviour
 
     public IEnumerator forceJumpUpCoroutine()
     {
+        anim.Play("BarrelRoll_Up");
+        yield return new WaitForSeconds(.15f);
         forceJumpUp = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         forceJumpUp = false;
     }
     public IEnumerator forceJumpDownCoroutine()
     {
         forceJumpDown = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         forceJumpDown = false;
     }
     public IEnumerator forceJumpRightCoroutine()
     {
+        anim.Play("BarrelRoll_Right");
+        yield return new WaitForSeconds(.15f);
         forceJumpRight = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         forceJumpRight = false;
     }
     public IEnumerator forceJumpLeftCoroutine()
     {
+        anim.Play("BarrelRoll_Left");
+        yield return new WaitForSeconds(.15f);
         forceJumpLeft = true;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.3f);
         forceJumpLeft = false;
     }
 
