@@ -72,17 +72,21 @@ public class VesselMovement : MonoBehaviour
     void Update()
     {
         timer = timer + Time.deltaTime;
-        if(Input.GetKeyDown("z"))
+        // if(Input.GetKeyDown("z"))
+        // {
+        //     virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, -15, 4.20999f);
+        // }
+        // else if(Input.GetKeyDown("x"))
+        // {
+            
+        // }
+        if(Input.GetKeyUp("c"))
         {
-            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, -15, 4.20999f);
-        }
-        else if(Input.GetKeyDown("x"))
-        {
-            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, 15);
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, -15);
         }
         else if(Input.GetKeyDown("c"))
         {
-            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, -15);
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, 15);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown("s"))
