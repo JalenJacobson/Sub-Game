@@ -27,7 +27,7 @@ public class EnemyShooterProjectileCrash : MonoBehaviour
             killProjectile();
             
         }
-        else if(other.name.Contains("Bullet") || other.name.Contains("Env") || other.name.Contains("walls") || other.name.Contains("cave") || other.name.Contains("Door") || other.name.Contains("Spine") || other.name.Contains("Mountain") || other.name.Contains("Vein"))
+        else if(other.name.Contains("Bullet") || other.name.Contains("Env") || other.name.Contains("walls") || other.name.Contains("cave") || other.name.Contains("Door") || other.name.Contains("Spine") || other.name.Contains("Mountain") || other.name.Contains("Vein") || other.name.Contains("Shield"))
         {
             parentProjectile.GetComponent<EnemyShooterProjectile>().dead = true;
             gameObject.GetComponent<Collider>().enabled=false;
@@ -39,6 +39,6 @@ public class EnemyShooterProjectileCrash : MonoBehaviour
 
     public void killProjectile()
     {
-        Destroy(parentProjectile);        
+        parentProjectile.GetComponent<EnemyShooterProjectile>().Pop();     
     }
 }

@@ -66,4 +66,9 @@ public class EnemyShooter : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void StopShooting()
+    {
+        timerStarted = false;
+    }
 }

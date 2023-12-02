@@ -9503,6 +9503,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   lifeTime: 0
   Timer: 0
+  type: 0
+  scaleTimer: 0
 --- !u!54 &4767996951134298775
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9548,8 +9550,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5710002357188198076}
-  - component: {fileID: 1291627800865432650}
-  - component: {fileID: 224188347892160860}
   m_Layer: 8
   m_Name: RingOfFire
   m_TagString: Untagged
@@ -9576,43 +9576,6 @@ Transform:
   m_Father: {fileID: 8441629099526259890}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 90}
---- !u!114 &1291627800865432650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5334979147241538854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b986ebeafa7e224e810d950d54baf03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioSource: {fileID: 0}
-  StartTime: 1
-  StopTime: 3
-  Duration: 1e+9
-  ForceAmount: 0
-  ForceRadius: 0
-  IsProjectile: 0
-  ManualParticleSystems: []
---- !u!114 &224188347892160860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5334979147241538854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b85cb039b6d149f46b051488d2465561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Seed: 100
-  IntensityModifier: 1
-  IntensityMaxRange:
-    Minimum: 0
-    Maximum: 8
 --- !u!1 &5492746863922614778
 GameObject:
   m_ObjectHideFlags: 0

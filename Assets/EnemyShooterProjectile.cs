@@ -10,6 +10,7 @@ public class EnemyShooterProjectile : MonoBehaviour
     public float timeCount;
     public bool lockOn = true;
     public bool dead = false;
+    public Animator anim;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class EnemyShooterProjectile : MonoBehaviour
         Destroy(gameObject, 3);
         speed = 600;
         lockOn = true;
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -37,5 +39,16 @@ public class EnemyShooterProjectile : MonoBehaviour
         {
             lockOn = false;
         }
+    }
+    public void Pop()
+    {
+        StartCoroutine(PopandDestroy());
+    }
+
+    public IEnumerator PopandDestroy()
+    {
+        anim.Play("Pop");
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 }
