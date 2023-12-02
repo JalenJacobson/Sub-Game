@@ -90,6 +90,8 @@ public class VesselMovement : MonoBehaviour
             if((Time.time - lastTapTimeSpace) <= tapSpeed)
             {
                 // StartCoroutine(forceJumpSpaceCoroutine());
+                print("start double tap");
+                // transform.rotation = Quaternion.LookRotation (-transform.rotation);;
                 print("double tap space");
             }
             lastTapTimeSpace = Time.time;
