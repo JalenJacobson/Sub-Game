@@ -15,6 +15,7 @@ public class FireBullet : MonoBehaviour
     public float reloadTime = 0;
     public bool canShoot = true;
     public GameObject Crosshairs;
+    public float changeReset = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -72,19 +73,26 @@ public class FireBullet : MonoBehaviour
         {
             if(Input.mouseScrollDelta.y >= 1)
             {
-                if(currentAmmo >0)
+                if(currentAmmo >0 && changeReset <= 0)
                 {
                     currentAmmo --;
+                    changeReset += .5f;
                 }
                 
             }
             if(Input.mouseScrollDelta.y <= -1)
             {
-                if(currentAmmo < 2)
+                if(currentAmmo < 2 && changeReset <= 0)
                 {
                     currentAmmo ++;
+                    changeReset += .5f;
                 }
             }
+        }
+
+        if(changeReset >= 0)
+        {
+            changeReset -= Time.deltaTime;
         }
 
         if(currentAmmo == 0)

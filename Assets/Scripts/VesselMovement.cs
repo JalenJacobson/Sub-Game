@@ -26,6 +26,8 @@ public class VesselMovement : MonoBehaviour
     public float damageInThisCountdown;
     public GameObject Shield;
     public bool lookForwardTime = false;
+    public bool lookingAtNextTrigger = false;
+    public float stopSpinCount;
 
     public CinemachineVirtualCamera virtualCamera;
     public bool canTakeDamage;
@@ -40,6 +42,7 @@ public class VesselMovement : MonoBehaviour
     public float lastTapTimeUp = 0;
     public float lastTapTimeRight = 0;
     public float lastTapTimeLeft = 0;
+    public float lastTapTimeSpace = 0;
     public bool pressedFirstTime = false;
     public bool forceJumpUp = false;
     public bool forceJumpDown = false;
@@ -61,10 +64,10 @@ public class VesselMovement : MonoBehaviour
         startGamePannel = GameObject.Find("StartPannel");
         Shield = GameObject.Find("Shield");
         Shield.SetActive(false);
-        // for(var i = 1; i<= riddleTriggers.Count - 1; i++)
-        // {
-        //     riddleTriggers[i].SetActive(false);
-        // }
+        for(var i = 1; i<= riddleTriggers.Count - 1; i++)
+        {
+            riddleTriggers[i].SetActive(false);
+        }
         currentCheckPoint = new Vector3(0, 0, 324);
         anim = GetComponent<Animator>();
     }
@@ -72,14 +75,7 @@ public class VesselMovement : MonoBehaviour
     void Update()
     {
         timer = timer + Time.deltaTime;
-        // if(Input.GetKeyDown("z"))
-        // {
-        //     virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, -15, 4.20999f);
-        // }
-        // else if(Input.GetKeyDown("x"))
-        // {
-            
-        // }
+        
         if(Input.GetKeyUp("c"))
         {
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, -15);
@@ -89,6 +85,16 @@ public class VesselMovement : MonoBehaviour
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 4.20999f, 15);
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if((Time.time - lastTapTimeSpace) <= tapSpeed)
+            {
+                // StartCoroutine(forceJumpSpaceCoroutine());
+                print("double tap space");
+            }
+            lastTapTimeSpace = Time.time;
+            
+        }
         if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown("s"))
         {
             if((Time.time - lastTapTimeDown) <= tapSpeed)
@@ -144,6 +150,16 @@ public class VesselMovement : MonoBehaviour
                 damageInThisCountdown = 0;
             }
         }
+
+        if(Input.GetKeyDown("b"))
+        {
+            stopSpinCount ++;
+        }
+        if(stopSpinCount >= 10)
+        {
+            StartCoroutine(stopSpin());
+            stopSpinCount = 0;
+        }
         
     }
 
@@ -186,6 +202,7 @@ public class VesselMovement : MonoBehaviour
             
             rb.AddForce(transform.forward * speed);
         }
+        
 
         if(forceJumpUp)
         {
@@ -241,6 +258,10 @@ public class VesselMovement : MonoBehaviour
         {
             lookAtNextTrigger();
         }
+        if(lookingAtNextTrigger == true)
+        {
+            lookAtNextTrigger();
+        }
 
         
     }
@@ -283,6 +304,7 @@ public class VesselMovement : MonoBehaviour
         Vector3 direction = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position - transform.position;
         Quaternion toRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 3f * Time.deltaTime);
+        
     }
 
     public void nextTrigger()
@@ -360,8 +382,10 @@ public class VesselMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(.01f);
         rb.isKinematic = true;
-        yield return new WaitForSeconds(.01f);
+        lookingAtNextTrigger = true;
+        yield return new WaitForSeconds(.5f);
         rb.isKinematic = false;
+        lookingAtNextTrigger = false;
     }
 
     public void startGame()

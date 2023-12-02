@@ -13,7 +13,7 @@ public class ShieldFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         gameObject.GetComponent<Transform>().position = vessel.GetComponent<Transform>().position;
     }
@@ -27,7 +27,7 @@ public class ShieldFollow : MonoBehaviour
         if(other.name.Contains("Projectile"))
         {
             if(!other.GetComponent<EnemyShooterProjectileCrash>()) return;
-            
+
             other.GetComponent<EnemyShooterProjectileCrash>().killProjectile();
         }
     }

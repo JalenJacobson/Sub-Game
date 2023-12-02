@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 3461317529066704197}
   - component: {fileID: 8828933931678051719}
   - component: {fileID: 8397487654625516129}
+  - component: {fileID: 4825967635832973380}
   m_Layer: 0
   m_Name: Sludge1
   m_TagString: Untagged
@@ -308,6 +309,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2914280806361163135, guid: ace6e6a9a7c394adf86db6848218c7b5, type: 3}
+--- !u!114 &4825967635832973380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4760639418373352929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0ec7537600340b58ba0ca8ca572695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7540061356026067871
 GameObject:
   m_ObjectHideFlags: 0
