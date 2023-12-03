@@ -48,7 +48,7 @@ public class EnemyShooterProjectile : MonoBehaviour
     public IEnumerator PopandDestroy()
     {
         anim.Play("Pop");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         Destroy(gameObject);
     }
 }

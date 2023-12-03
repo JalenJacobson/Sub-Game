@@ -48,6 +48,8 @@ public class VesselMovement : MonoBehaviour
     public bool forceJumpDown = false;
     public bool forceJumpRight = false;
     public bool forceJumpLeft = false;
+    public LifeBar LifeBar;
+
 
     // Start is called before the first frame update
     void Start()
@@ -162,6 +164,7 @@ public class VesselMovement : MonoBehaviour
             StartCoroutine(stopSpin());
             stopSpinCount = 0;
         }
+        LifeBar.setHealth(health);
         
     }
 
@@ -347,7 +350,7 @@ public class VesselMovement : MonoBehaviour
             if(!damageOverloadCountdownRunning)
             {
                 damageOverloadCountdownRunning = true;
-                damageOverloadCountdown = 5f;
+                damageOverloadCountdown = 2f;
             }
             
             health -= damageTaken;
@@ -367,8 +370,7 @@ public class VesselMovement : MonoBehaviour
     {
         DamageOverloadCoroutineStarted = true;
         Shield.SetActive(true);
-        yield return new WaitForSeconds(2);
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
         Shield.SetActive(false);
         DamageOverloadCoroutineStarted = false;
     }

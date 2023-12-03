@@ -949,6 +949,7 @@ MonoBehaviour:
   timeCount: 0
   lockOn: 1
   dead: 0
+  anim: {fileID: 0}
 --- !u!54 &923725870224166519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2113,7 +2114,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bfb96bb86f3f7c349a574d4cdb56f6c9, type: 2}
+  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3551,10 +3552,10 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     speedRange: {x: 0, y: 1}
-    tilesX: 8
-    tilesY: 4
+    tilesX: 1
+    tilesY: 1
     animationType: 0
-    rowIndex: 3
+    rowIndex: 0
     cycles: 4
     uvChannelMask: -1
     rowMode: 0

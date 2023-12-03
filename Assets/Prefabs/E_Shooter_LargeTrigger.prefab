@@ -825,6 +825,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19834194, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
+      propertyPath: UVModule.tilesY
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19834194, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 734
       objectReference: {fileID: 0}
@@ -842,7 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19834194, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 0.0001
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 19834194, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: InitialModule.startSpeed.minScalar
@@ -871,6 +875,14 @@ PrefabInstance:
     - target: {fileID: 19868290, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: lengthInSec
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19868290, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
+      propertyPath: UVModule.tilesX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19868290, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
+      propertyPath: UVModule.tilesY
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19868290, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: InitialModule.startSize.scalar
@@ -936,6 +948,10 @@ PrefabInstance:
       propertyPath: InitialModule.startRotationY.minMaxState
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 19979720, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
 --- !u!4 &5934486810075321883 stripped
