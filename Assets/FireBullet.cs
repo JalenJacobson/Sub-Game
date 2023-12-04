@@ -16,6 +16,7 @@ public class FireBullet : MonoBehaviour
     public bool canShoot = true;
     public GameObject Crosshairs;
     public float changeReset = 0;
+    public GameObject AmmoType;
 
     // Start is called before the first frame update
     void Start()
@@ -98,14 +99,17 @@ public class FireBullet : MonoBehaviour
         if(currentAmmo == 0)
         {
             Crosshairs.gameObject.SendMessage("standardAmmo");
+            AmmoType.gameObject.SendMessage("RapidFire");
         }
         else if(currentAmmo == 1)
         {
             Crosshairs.gameObject.SendMessage("shotGunAmmo");
+            AmmoType.gameObject.SendMessage("BurstFire");
         }
         else if(currentAmmo == 2)
         {
             Crosshairs.gameObject.SendMessage("sniperAmmo");
+            AmmoType.gameObject.SendMessage("LayMines");
         }
     }
 
