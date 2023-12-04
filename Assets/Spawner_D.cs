@@ -11,8 +11,9 @@ public class Spawner_D : MonoBehaviour
     public float zlimit = 1;
 
 
-    public void OnTriggerEnter()
+    public void OnTriggerEnter(Collider other)
     {
+        print(other.name);
         for(var i = 0; i <= spawnAmount; i++)
         {
             print(i);
