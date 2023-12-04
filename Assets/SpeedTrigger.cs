@@ -22,8 +22,11 @@ public class SpeedTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.name.Contains("Sub"))
+        {
+            VesselMovement_Script.speedMove();
+            Destroy(gameObject);
+        }
         
-        VesselMovement_Script.speedMove();
-        Destroy(gameObject);
     }
 }

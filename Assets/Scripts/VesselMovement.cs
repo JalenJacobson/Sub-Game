@@ -99,7 +99,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeSpace = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown("s"))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if((Time.time - lastTapTimeDown) <= tapSpeed)
             {
@@ -108,7 +108,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeDown = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown("w"))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if((Time.time - lastTapTimeUp) <= tapSpeed)
             {
@@ -119,7 +119,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeUp = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown("d"))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             if((Time.time - lastTapTimeRight) <= tapSpeed)
             {
@@ -128,7 +128,7 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeRight = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown("a"))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             if((Time.time - lastTapTimeLeft) <= tapSpeed)
             {
