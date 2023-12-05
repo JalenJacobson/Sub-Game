@@ -23,11 +23,11 @@ public class PanelManager : MonoBehaviour
         NewRiddleAvalable = GameObject.Find("NewIndicator");
         panelOpenButton = GameObject.Find("RiddleButton");
         //RiddleGuessInput = GameObject.Find("RiddleGuess");
-        RiddlePannel.SetActive(false); 
-        panelOpenButton.SetActive(false);
-        NewRiddleAvalable.SetActive(false); 
-        RiddleGuessPannel.SetActive(false); 
-        WinPannel.SetActive(false); 
+        // RiddlePannel.SetActive(false); 
+        // panelOpenButton.SetActive(false);
+        // NewRiddleAvalable.SetActive(false); 
+        // RiddleGuessPannel.SetActive(false); 
+        // WinPannel.SetActive(false); 
     }
 
     // Update is called once per frame

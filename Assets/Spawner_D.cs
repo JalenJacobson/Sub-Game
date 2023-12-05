@@ -14,12 +14,17 @@ public class Spawner_D : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         print(other.name);
-        for(var i = 0; i <= spawnAmount; i++)
+        if(other.name.Contains("weenie"))
         {
-            print(i);
-            var randomPosition = getRandomPosition();
-            Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
+            print("should work");
+           for(var i = 0; i <= spawnAmount; i++)
+            {
+                print(i);
+                var randomPosition = getRandomPosition();
+                Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
+            } 
         }
+        
     }
 
     public Vector3 getRandomPosition()

@@ -436,7 +436,7 @@ public class VesselMovement : MonoBehaviour
     {
         startGamePannel.SetActive(false);
         vesselDead = false;
-        MenuButton.SetActive(true);
+        // MenuButton.SetActive(true);
     }
 
     public void speedMove()
