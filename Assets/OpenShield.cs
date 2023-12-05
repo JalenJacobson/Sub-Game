@@ -22,7 +22,7 @@ public class OpenShield : MonoBehaviour
     void Awake()
     {
         RiddlePannel = GameObject.Find("RiddlePannel");
-        RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
+        // RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
         NewRiddleAvalable = GameObject.Find("NewIndicator");
         
     }
@@ -41,7 +41,7 @@ public class OpenShield : MonoBehaviour
         if(openSequenceStarted)
         {
               
-            //VesselMovement_Script.lookAtNextTrigger();
+            VesselMovement_Script.lookAtNextTrigger();
             
             
         }
@@ -51,7 +51,7 @@ public class OpenShield : MonoBehaviour
     {
        // RiddlePannel_Script.addRiddlePart();
        // NewRiddleAvalable.SetActive(true);
-        //VesselMovement_Script.nextTrigger();
+        VesselMovement_Script.nextTrigger();
         gameObject.GetComponent<Transform>().position = new Vector3(10000, 10000, 0);
         StartCoroutine("openShieldRoutine");
     }

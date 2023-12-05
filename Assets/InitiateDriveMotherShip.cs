@@ -81,6 +81,7 @@ public class InitiateDriveMotherShip : MonoBehaviour
         yield return new WaitForSeconds(2f);
         vessel.GetComponent<SphereCollider>().enabled = false;
         Mothership.GetComponent<SphereCollider>().enabled = true;
+        // VesselMovement_Script.lookingAtNextTrigger = true;
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 5f;
         yield return new WaitForSeconds(2f);
         zoomOut = true;
@@ -88,6 +89,7 @@ public class InitiateDriveMotherShip : MonoBehaviour
         VesselMovement_Script.speed = 2000;
         
         yield return new WaitForSeconds(8f);
+        // VesselMovement_Script.lookingAtNextTrigger = false;
         zoomOut = false;
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
         PurpleLight.SetActive(true);
