@@ -5857,7 +5857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &53596869
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -11024,7 +11024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &103936994
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -28444,7 +28444,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392271965}
-  m_LocalRotation: {x: -0.029918758, y: -0.000000017272475, z: -5.170024e-10, w: 0.99955237}
+  m_LocalRotation: {x: -0.029918762, y: -0.000000017212134, z: -5.1519644e-10, w: 0.99955237}
   m_LocalPosition: {x: 0, y: 4.209999, z: -528.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30167,7 +30167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &503539781
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -35404,7 +35404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &547749345
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -41096,7 +41096,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &654910498
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -58447,7 +58447,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.029918758, y: -0.000000017272475, z: -5.170024e-10, w: 0.99955237}
+  m_LocalRotation: {x: -0.029918762, y: -0.000000017212134, z: -5.1519644e-10, w: 0.99955237}
   m_LocalPosition: {x: 0, y: 4.209999, z: -528.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -60145,7 +60145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1085693255
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -77118,7 +77118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1699828632
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -82006,7 +82006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1702864114
 ParticleSystemRenderer:
   serializedVersion: 6
