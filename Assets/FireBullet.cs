@@ -17,6 +17,9 @@ public class FireBullet : MonoBehaviour
     public GameObject Crosshairs;
     public float changeReset = 0;
     public GameObject AmmoType;
+    public AudioSource audioSource;
+    public AudioClip RapidFire;
+    public AudioClip BurstFire;
 
     // Start is called before the first frame update
     void Start()
@@ -100,11 +103,22 @@ public class FireBullet : MonoBehaviour
         {
             Crosshairs.gameObject.SendMessage("standardAmmo");
             AmmoType.gameObject.SendMessage("RapidFire");
+            if(Input.GetMouseButtonDown(0))
+            {
+                audioSource.clip = RapidFire;
+                audioSource.Play();
+            }
+            
         }
         else if(currentAmmo == 1)
         {
             Crosshairs.gameObject.SendMessage("shotGunAmmo");
             AmmoType.gameObject.SendMessage("BurstFire");
+            if(Input.GetMouseButtonDown(0))
+            {
+                audioSource.clip = BurstFire;
+                audioSource.Play();
+            }
         }
         else if(currentAmmo == 2)
         {

@@ -49,6 +49,11 @@ public class VesselMovement : MonoBehaviour
     public bool forceJumpRight = false;
     public bool forceJumpLeft = false;
     public LifeBar LifeBar;
+    public AudioSource audioSource;
+    public AudioSource audioSourceIdle;
+    public AudioClip ThrusterStart;
+    public AudioClip ThrusterIdle;
+    public AudioClip ThrusterDown;
 
 
     // Start is called before the first frame update
@@ -76,6 +81,18 @@ public class VesselMovement : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            audioSourceIdle.clip = ThrusterIdle;
+            audioSourceIdle.Play();
+        }
+
+        if (Input.GetKeyUp("space"))
+        {
+            audioSourceIdle.Stop();
+            audioSource.clip = ThrusterDown;
+            audioSource.Play();
+        }
         timer = timer + Time.deltaTime;
         
         if(Input.GetKeyUp("c"))
@@ -206,7 +223,11 @@ public class VesselMovement : MonoBehaviour
         {
             
             rb.AddForce(transform.forward * speed);
+            audioSource.clip = ThrusterStart;
+            audioSource.Play();
         }
+
+        
         
 
         if(forceJumpUp)
@@ -269,6 +290,25 @@ public class VesselMovement : MonoBehaviour
         }
 
         
+    }
+    public IEnumerator Thruster()
+    {
+        audioSource.Stop();
+        audioSourceIdle.Stop();
+        yield return new WaitForSeconds(.1f);
+        audioSource.clip = ThrusterStart;
+        audioSource.Play();
+        yield return new WaitForSeconds(2f);
+        audioSourceIdle.clip = ThrusterIdle;
+        audioSourceIdle.Play();
+    }
+    public IEnumerator ThrusterStop()
+    {
+        audioSource.Stop();
+        audioSourceIdle.Stop();
+        yield return new WaitForSeconds(.1f);
+        audioSource.clip = ThrusterDown;
+        audioSource.Play();
     }
 
     public IEnumerator forceJumpUpCoroutine()

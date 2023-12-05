@@ -22,7 +22,7 @@ public class PanelManager : MonoBehaviour
     {
         NewRiddleAvalable = GameObject.Find("NewIndicator");
         panelOpenButton = GameObject.Find("RiddleButton");
-        // RiddleGuessInput = GameObject.Find("RiddleGuess");
+        //RiddleGuessInput = GameObject.Find("RiddleGuess");
         RiddlePannel.SetActive(false); 
         panelOpenButton.SetActive(false);
         NewRiddleAvalable.SetActive(false); 
