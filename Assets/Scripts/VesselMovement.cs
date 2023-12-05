@@ -90,8 +90,6 @@ public class VesselMovement : MonoBehaviour
         if (Input.GetKeyUp("space"))
         {
             audioSourceIdle.Stop();
-            audioSource.clip = ThrusterDown;
-            audioSource.Play();
         }
         timer = timer + Time.deltaTime;
         
@@ -223,8 +221,6 @@ public class VesselMovement : MonoBehaviour
         {
             
             rb.AddForce(transform.forward * speed);
-            audioSource.clip = ThrusterStart;
-            audioSource.Play();
         }
 
         
@@ -291,25 +287,7 @@ public class VesselMovement : MonoBehaviour
 
         
     }
-    public IEnumerator Thruster()
-    {
-        audioSource.Stop();
-        audioSourceIdle.Stop();
-        yield return new WaitForSeconds(.1f);
-        audioSource.clip = ThrusterStart;
-        audioSource.Play();
-        yield return new WaitForSeconds(2f);
-        audioSourceIdle.clip = ThrusterIdle;
-        audioSourceIdle.Play();
-    }
-    public IEnumerator ThrusterStop()
-    {
-        audioSource.Stop();
-        audioSourceIdle.Stop();
-        yield return new WaitForSeconds(.1f);
-        audioSource.clip = ThrusterDown;
-        audioSource.Play();
-    }
+  
 
     public IEnumerator forceJumpUpCoroutine()
     {
