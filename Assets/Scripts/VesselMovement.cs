@@ -116,40 +116,40 @@ public class VesselMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if((Time.time - lastTapTimeDown) <= tapSpeed)
-            {
+            // if((Time.time - lastTapTimeDown) <= tapSpeed)
+            // {
                 StartCoroutine(forceJumpDownCoroutine());
-            }
-            lastTapTimeDown = Time.time;
+            // }
+            // lastTapTimeDown = Time.time;
             
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if((Time.time - lastTapTimeUp) <= tapSpeed)
-            {
-                // print("double tap Up");
-                // rb.AddForce(Vector3.up * 1000);
+            // if((Time.time - lastTapTimeUp) <= tapSpeed)
+            // {
+            //     // print("double tap Up");
+            //     // rb.AddForce(Vector3.up * 1000);
                 StartCoroutine(forceJumpUpCoroutine());
-            }
-            lastTapTimeUp = Time.time;
+            // }
+            // lastTapTimeUp = Time.time;
             
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if((Time.time - lastTapTimeRight) <= tapSpeed)
-            {
+            // if((Time.time - lastTapTimeRight) <= tapSpeed)
+            // {
                 StartCoroutine(forceJumpRightCoroutine());
-            }
-            lastTapTimeRight = Time.time;
+            // }
+            // lastTapTimeRight = Time.time;
             
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if((Time.time - lastTapTimeLeft) <= tapSpeed)
-            {
+            // if((Time.time - lastTapTimeLeft) <= tapSpeed)
+            // {
                 StartCoroutine(forceJumpLeftCoroutine());
-            }
-            lastTapTimeLeft = Time.time;
+            // }
+            // lastTapTimeLeft = Time.time;
         }
 
         if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
@@ -196,7 +196,7 @@ public class VesselMovement : MonoBehaviour
 		    //     hasJoint = true;
             // }
             
-            StartCoroutine("loseCondition");
+            // StartCoroutine("loseCondition");
         }
     }
 
@@ -243,27 +243,27 @@ public class VesselMovement : MonoBehaviour
             rb.AddRelativeForce (3000, 0, 0);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey("s"))
+        if ( Input.GetKey("s"))
         {
             transform.Rotate(1, 0, 0, Space.Self);
             playerControlling = true;
             timer = 0f;
         }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey("w"))
+        if (Input.GetKey("w"))
         {
             
             transform.Rotate(-1, 0, 0, Space.Self);
             playerControlling = true;
             timer = 0f;
         }
-        if (Input.GetKey(KeyCode.LeftArrow)  || Input.GetKey("a"))
+        if (Input.GetKey("a"))
         {
             
             transform.Rotate(0, -1, 0, Space.Self);
             playerControlling = true;
             timer = 0f;
         }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey("d"))
+        if (Input.GetKey("d"))
         {
             
             transform.Rotate(0, 1, 0, Space.Self);
