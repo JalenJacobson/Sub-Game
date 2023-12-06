@@ -35,13 +35,13 @@ public class E_Shooter_TakeDamage : MonoBehaviour
 
     public IEnumerator Dmg_Indicator()
     {
-        gameObject.GetComponent<SkinnedMeshRenderer>().enabled=false;
-        yield return new WaitForSeconds(.3f);
         gameObject.GetComponent<SkinnedMeshRenderer>().enabled=true;
         yield return new WaitForSeconds(.3f);
         gameObject.GetComponent<SkinnedMeshRenderer>().enabled=false;
         yield return new WaitForSeconds(.3f);
-        gameObject.GetComponent<SkinnedMeshRenderer>().enabled=true;  
+        gameObject.GetComponent<SkinnedMeshRenderer>().enabled=true;
+        yield return new WaitForSeconds(.3f);
+        gameObject.GetComponent<SkinnedMeshRenderer>().enabled=false;  
     }
     public IEnumerator DeadShooter()
     {
