@@ -292,6 +292,8 @@ public class VesselMovement : MonoBehaviour
     public IEnumerator forceJumpUpCoroutine()
     {
         anim.Play("BarrelRoll_Up");
+                    audioSource.clip = ThrusterDown;
+            audioSource.Play();
         yield return new WaitForSeconds(.15f);
         forceJumpUp = true;
         yield return new WaitForSeconds(.3f);
@@ -300,6 +302,8 @@ public class VesselMovement : MonoBehaviour
     public IEnumerator forceJumpDownCoroutine()
     {
         anim.Play("BarrelRoll_Down");
+        audioSource.clip = ThrusterDown;
+        audioSource.Play();
         yield return new WaitForSeconds(.15f);
         forceJumpDown = true;
         yield return new WaitForSeconds(.3f);
@@ -308,6 +312,8 @@ public class VesselMovement : MonoBehaviour
     public IEnumerator forceJumpRightCoroutine()
     {
         anim.Play("BarrelRoll_Right");
+        audioSource.clip = ThrusterDown;
+        audioSource.Play();
         yield return new WaitForSeconds(.15f);
         forceJumpRight = true;
         yield return new WaitForSeconds(.3f);
@@ -316,6 +322,8 @@ public class VesselMovement : MonoBehaviour
     public IEnumerator forceJumpLeftCoroutine()
     {
         anim.Play("BarrelRoll_Left");
+        audioSource.clip = ThrusterDown;
+        audioSource.Play();
         yield return new WaitForSeconds(.15f);
         forceJumpLeft = true;
         yield return new WaitForSeconds(.3f);
