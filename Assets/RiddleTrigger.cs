@@ -36,7 +36,7 @@ public class RiddleTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.name.Contains("weenie"))
+        if(other.name.Contains("weenie") || other.name.Contains("Mother"))
         {
             VesselMovement_Script.nextTrigger();
             Destroy(gameObject);

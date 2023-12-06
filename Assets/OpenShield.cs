@@ -40,20 +40,21 @@ public class OpenShield : MonoBehaviour
     {
         if(openSequenceStarted)
         {
-              
             VesselMovement_Script.lookAtNextTrigger();
-            
-            
         }
     }
 
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
        // RiddlePannel_Script.addRiddlePart();
        // NewRiddleAvalable.SetActive(true);
-        VesselMovement_Script.nextTrigger();
-        gameObject.GetComponent<Transform>().position = new Vector3(10000, 10000, 0);
-        StartCoroutine("openShieldRoutine");
+        print(other.name);
+        if(other.name.Contains("weenie"))
+        {
+            VesselMovement_Script.nextTrigger();
+            gameObject.GetComponent<Transform>().position = new Vector3(10000, 10000, 0);
+            StartCoroutine("openShieldRoutine");
+        }
     }
 
     public IEnumerator openShieldRoutine()

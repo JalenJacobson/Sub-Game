@@ -81,6 +81,7 @@ public class VesselMovement : MonoBehaviour
 
     void Update()
     {
+        if(vesselDead) return;
         if (Input.GetKeyDown("space"))
         {
             audioSourceIdle.clip = ThrusterIdle;
