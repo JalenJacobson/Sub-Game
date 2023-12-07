@@ -8,6 +8,7 @@ public class EggDrive3D : MonoBehaviour
     public float y;
     public Rigidbody rb;
     public int speed;
+    public bool grounded = true;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,11 +27,28 @@ public class EggDrive3D : MonoBehaviour
         Move();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == ("ground"))
+        {
+            print("touching");
+            grounded = true;
+        }
+    }
+    void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag == ("ground"))
+        {
+            print("not touching");
+            grounded = false;
+        }
+    }
+
     public void processInputs()
     {
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && grounded)
         {
             jump();
         }
@@ -38,11 +56,13 @@ public class EggDrive3D : MonoBehaviour
 
     public void Move()
     {
-        rb.AddForce(new Vector3(x * speed, 0, y * speed));
+        rb.AddForce(new Vector3(x * speed, -100f, y * speed));
     }
 
     public void jump()
     {
-        rb.AddForce(Vector3.up * 5000);
+        rb.AddForce(Vector3.up * 2000);
     }
+
+    
 }
