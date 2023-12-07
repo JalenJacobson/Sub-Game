@@ -10810,6 +10810,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: E_Shooter_LargeTrigger (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4259620202998647739, guid: faf1265bff5818b47ad4e9f63054d080, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faf1265bff5818b47ad4e9f63054d080, type: 3}
 --- !u!4 &54300756 stripped
@@ -29463,7 +29467,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392271965}
-  m_LocalRotation: {x: -0.029918768, y: -0.000000017901382, z: -5.3582716e-10, w: 0.99955237}
+  m_LocalRotation: {x: -0.029918764, y: -0.000000017383732, z: -5.2033267e-10, w: 0.99955237}
   m_LocalPosition: {x: 0, y: 4.209999, z: -359}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -30424,6 +30428,10 @@ PrefabInstance:
     - target: {fileID: 4259620202998647739, guid: faf1265bff5818b47ad4e9f63054d080, type: 3}
       propertyPath: m_Name
       value: E_Shooter_LargeTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259620202998647739, guid: faf1265bff5818b47ad4e9f63054d080, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faf1265bff5818b47ad4e9f63054d080, type: 3}
@@ -60925,7 +60933,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.029918768, y: -0.000000017901382, z: -5.3582716e-10, w: 0.99955237}
+  m_LocalRotation: {x: -0.029918764, y: -0.000000017383732, z: -5.2033267e-10, w: 0.99955237}
   m_LocalPosition: {x: 0, y: 4.209999, z: -359}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
