@@ -15,7 +15,7 @@ public class VesselMovement : MonoBehaviour
     public float timer = 0;
     public bool vesselDead = false;
     public bool DamageOverloadCoroutineStarted = false;
-   // public GameObject RiddlePannel;
+    public GameObject RiddlePannel;
     public GameObject MenuButton;
     public GameObject ResumeButton;
     public GameObject startGamePannel;
@@ -65,7 +65,7 @@ public class VesselMovement : MonoBehaviour
         lastTapTimeLeft = 0;
         vesselDead = true;
         rb = GetComponent<Rigidbody>();
-        //RiddlePannel = GameObject.Find("RiddlePannel");
+        RiddlePannel = GameObject.Find("RiddlePannel");
         MenuButton = GameObject.Find("RiddleButton");
         ResumeButton = GameObject.Find("Close");
         startGamePannel = GameObject.Find("StartPannel");
@@ -152,6 +152,11 @@ public class VesselMovement : MonoBehaviour
             // lastTapTimeLeft = Time.time;
         }
 
+        if(health <= 0)
+        {
+            StartCoroutine(loseCondition());
+        }
+
         if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
         {
             StartCoroutine(DamageOverload());
@@ -204,7 +209,10 @@ public class VesselMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
         vesselDead = true;
-        //RiddlePannel.SetActive(true);
+        Shield.SetActive(false);
+        anim.Play("DeadWeenie");
+        yield return new WaitForSeconds(2f);
+        RiddlePannel.SetActive(true);
         // rb.useGravity = true;
         MenuButton.SetActive(false);
         ResumeButton.SetActive(false);
@@ -422,7 +430,8 @@ public class VesselMovement : MonoBehaviour
     {
         startGamePannel.SetActive(false);
         vesselDead = false;
-        // MenuButton.SetActive(true);
+        //MenuButton.SetActive(true);
+        RiddlePannel.SetActive(false);
     }
 
     public void speedMove()
