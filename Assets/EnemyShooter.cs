@@ -11,12 +11,16 @@ public class EnemyShooter : MonoBehaviour
     public GameObject target;
     public Animator anim;
     public bool timerStarted = false;
+    // public AudioSource audioSource;
+  //  public AudioClip Shootersong;
 
     // Start is called before the first frame update
     void Start()
     {
         target =  GameObject.FindGameObjectWithTag("Vessel");
         anim = GetComponent<Animator>();
+     //    audioSource.clip = Shootersong;
+     //   audioSource.Play();
     }
 
     // Update is called once per frame

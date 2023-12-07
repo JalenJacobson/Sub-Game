@@ -11,6 +11,8 @@ public class EnemyShooterProjectile : MonoBehaviour
     public bool lockOn = true;
     public bool dead = false;
     public Animator anim;
+      public AudioSource audioSource;
+    public AudioClip Projectile_woosh;
 
     void Start()
     {
@@ -20,6 +22,8 @@ public class EnemyShooterProjectile : MonoBehaviour
         speed = 600;
         lockOn = true;
         anim = GetComponent<Animator>();
+         audioSource.clip = Projectile_woosh;
+        audioSource.Play();
     }
 
     void FixedUpdate()

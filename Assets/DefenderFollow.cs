@@ -27,6 +27,10 @@ public class DefenderFollow : MonoBehaviour
     public float circleSpeed = 3;
     public float attackWaitTime = 3;
     public int attackPointNumber;
+    public AudioSource audioSource;
+    public AudioClip defender_ScreechAudio;
+    public AudioSource audiosource_flap;
+    public AudioClip flapper;
 
     void Start()
     {
@@ -37,6 +41,10 @@ public class DefenderFollow : MonoBehaviour
         targetPosition = target.transform;
         cubePosition = cube.transform;
         anim = GetComponent<Animator>();
+        audioSource.clip = defender_ScreechAudio;
+        audioSource.Play();
+        audiosource_flap.clip = flapper;
+        audiosource_flap.Play();
     }
 
     public void pickRandoms()
