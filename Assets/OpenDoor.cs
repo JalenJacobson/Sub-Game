@@ -5,6 +5,7 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     public Animator anim;
+    public WeenieArmy WeenieArmy;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +23,7 @@ public class OpenDoor : MonoBehaviour
         {
            anim.Play("OpenDoor");
         }
+        WeenieArmy.SendMessage("doorOpened");
+
     }
 }
