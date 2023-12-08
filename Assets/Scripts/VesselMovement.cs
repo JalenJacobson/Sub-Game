@@ -351,7 +351,17 @@ public class VesselMovement : MonoBehaviour
         currentCheckPoint = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position;
         currentRiddleTrigger++;
         riddleTriggers[currentRiddleTrigger].SetActive(true);
-        health += 50;
+        addHealth();
+    }
+
+    public void addHealth()
+    {
+        var newHealth = health + 15;
+        if(newHealth >= 100)
+        {
+            health = 100;
+        }
+        else health = newHealth;
     }
 
     // public void revertToCheckPoint()
