@@ -22,8 +22,9 @@ public class OpenDoor : MonoBehaviour
         if(other.name.Contains("Bullet"))
         {
            anim.Play("OpenDoor");
+           WeenieArmy.SendMessage("doorOpened");
         }
-        WeenieArmy.SendMessage("doorOpened");
+        
 
     }
 }

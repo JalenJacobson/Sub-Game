@@ -214,7 +214,7 @@ public class VesselMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
         RiddlePannel.SetActive(true);
         // rb.useGravity = true;
-        MenuButton.SetActive(false);
+        //MenuButton.SetActive(false);
         ResumeButton.SetActive(false);
 
     }
@@ -351,6 +351,7 @@ public class VesselMovement : MonoBehaviour
         currentCheckPoint = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position;
         currentRiddleTrigger++;
         riddleTriggers[currentRiddleTrigger].SetActive(true);
+        health += 50;
     }
 
     // public void revertToCheckPoint()
