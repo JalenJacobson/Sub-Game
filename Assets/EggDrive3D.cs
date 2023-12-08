@@ -29,7 +29,7 @@ public class EggDrive3D : MonoBehaviour
         Move();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.tag == ("ground"))
         {
