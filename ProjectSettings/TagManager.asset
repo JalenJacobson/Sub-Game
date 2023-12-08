@@ -14,6 +14,7 @@ TagManager:
   - AttackPointBack
   - Camera
   - ground
+  - bounce
   layers:
   - Default
   - TransparentFX

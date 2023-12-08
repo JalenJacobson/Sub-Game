@@ -9,6 +9,7 @@ public class EggDrive3D : MonoBehaviour
     public Rigidbody rb;
     public int speed;
     public int jumpForce;
+    public int bounceForce;
     public bool grounded = true;
 
     // Start is called before the first frame update
@@ -34,6 +35,10 @@ public class EggDrive3D : MonoBehaviour
         {
             print("touching");
             grounded = true;
+        }
+        if(collision.gameObject.tag == ("bounce"))
+        {
+            rb.AddForce(Vector3.up * bounceForce);
         }
     }
     void OnCollisionExit(Collision collision)
