@@ -8,6 +8,7 @@ public class EggDrive3D : MonoBehaviour
     public float y;
     public Rigidbody rb;
     public int speed;
+    public int jumpForce;
     public bool grounded = true;
 
     // Start is called before the first frame update
@@ -56,12 +57,12 @@ public class EggDrive3D : MonoBehaviour
 
     public void Move()
     {
-        rb.AddForce(new Vector3(x * speed, -100f, y * speed));
+        rb.AddForce(new Vector3(x * speed, 0, y * speed));
     }
 
     public void jump()
     {
-        rb.AddForce(Vector3.up * 2000);
+        rb.AddForce(Vector3.up * jumpForce);
     }
 
     
