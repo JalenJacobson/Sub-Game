@@ -40,10 +40,10 @@ public class Bullet : MonoBehaviour
             
         }
 
-        if(type == 1)
-        {
-            gameObject.transform.localScale += new Vector3(scaleTimer, scaleTimer, scaleTimer);
-        }
+        // if(type == 1)
+        // {
+        //     gameObject.transform.localScale += new Vector3(scaleTimer, scaleTimer, scaleTimer);
+        // }
         
     }
 
