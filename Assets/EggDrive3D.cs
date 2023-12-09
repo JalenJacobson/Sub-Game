@@ -54,10 +54,7 @@ public class EggDrive3D : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
-        if(Input.GetMouseButtonDown(0) && grounded)
-        {
-            jump();
-        }
+        
     }
 
     public void Move()
@@ -65,9 +62,10 @@ public class EggDrive3D : MonoBehaviour
         rb.AddForce(new Vector3(x * speed, 0, y * speed));
     }
 
-    public void jump()
+    public void jump(Vector3 direction)
     {
-        rb.AddForce(Vector3.up * jumpForce);
+        if(!grounded) return;
+        rb.AddForce(direction * jumpForce);
     }
 
     
