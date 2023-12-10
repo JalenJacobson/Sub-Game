@@ -18,7 +18,7 @@ public class EnemyShooterProjectile : MonoBehaviour
     {
         target =  GameObject.FindGameObjectWithTag("Vessel");
         rb = GetComponent<Rigidbody>();
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 8);
         speed = 600;
         lockOn = true;
         anim = GetComponent<Animator>();

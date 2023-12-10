@@ -6,6 +6,7 @@ public class OpenDoor : MonoBehaviour
 {
     public Animator anim;
     public WeenieArmy WeenieArmy;
+    public bool doorReady = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +20,20 @@ public class OpenDoor : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.name.Contains("Bullet"))
+        if(other.name.Contains("Bullet") && doorReady == true)
         {
            anim.Play("OpenDoor");
            WeenieArmy.SendMessage("doorOpened");
         }
-        
+    }
 
+    public void beginJourney()
+    {
+        if(doorReady == false)
+        {
+            doorReady = true;
+            anim.Play("Activated");
+
+        }
     }
 }
