@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Lesson2Hit2 : MonoBehaviour
 {
+    //public 
     public Lesson2Controller lessonController;
+    
     // Start is called before the first frame update
     void Start()
     {

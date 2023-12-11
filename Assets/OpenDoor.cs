@@ -6,7 +6,7 @@ public class OpenDoor : MonoBehaviour
 {
     public Animator anim;
     public WeenieArmy WeenieArmy;
-    public bool doorReady = false;
+    public bool doorReady = true;
     // Start is called before the first frame update
     void Start()
     {

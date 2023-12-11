@@ -7,6 +7,7 @@ public class Lesson2Controller : MonoBehaviour
     public SchoolLessons SchoolUI;
     public bool trigger1hit = false;
     public bool trigger2hit = false;
+    public GameObject ShooterHolla;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,7 @@ public class Lesson2Controller : MonoBehaviour
         {
             SchoolUI.SendMessage("P1Lesson3");
             Destroy(gameObject);
+            ShooterHolla.SetActive(true);
         }
     }
 

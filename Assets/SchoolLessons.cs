@@ -29,6 +29,10 @@ public class SchoolLessons : MonoBehaviour
     {
         anim.Play("P1Lesson3");
     }
+    public void P1Complete()
+    {
+        anim.Play("P1Completed");
+    }
 
 
 
