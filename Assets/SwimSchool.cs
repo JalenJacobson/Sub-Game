@@ -18,10 +18,7 @@ public class SwimSchool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(swimSchoolCompleted == true)
-        {
-            StartCoroutine("schoolsOut");
-        }
+        
     }
 
     void OnTriggerEnter(Collider other)
@@ -37,6 +34,7 @@ public class SwimSchool : MonoBehaviour
     public void schoolisDone()
     {
         swimSchoolCompleted = true;
+        StartCoroutine("schoolsOut");
     }
 
     public IEnumerator schoolsOut()

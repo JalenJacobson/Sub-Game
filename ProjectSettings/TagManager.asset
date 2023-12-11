@@ -15,6 +15,7 @@ TagManager:
   - Camera
   - ground
   - bounce
+  - SpawnerTrainer1
   layers:
   - Default
   - TransparentFX
