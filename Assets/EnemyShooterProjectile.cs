@@ -22,7 +22,7 @@ public class EnemyShooterProjectile : MonoBehaviour
         speed = 600;
         lockOn = true;
         anim = GetComponent<Animator>();
-         audioSource.clip = Projectile_woosh;
+        audioSource.clip = Projectile_woosh;
         audioSource.Play();
     }
 

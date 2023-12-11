@@ -23,8 +23,8 @@ public class Lesson1Trigger : MonoBehaviour
         if(other.name.Contains("weenie"))
         {
             SchoolUI.SendMessage("P1Lesson2");
-            Destroy(gameObject);
             Lesson2Hit1.SetActive(true);
+            Destroy(gameObject);
         }
     }
 }
