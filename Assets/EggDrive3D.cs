@@ -10,7 +10,8 @@ public class EggDrive3D : MonoBehaviour
     public int speed;
     public int jumpForce;
     public int bounceForce;
-    public bool grounded = true;
+    public bool grounded;
+    public bool doubleJump;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,8 +34,8 @@ public class EggDrive3D : MonoBehaviour
     {
         if(collision.gameObject.tag == ("ground"))
         {
-            print("touching");
             grounded = true;
+            doubleJump = true;
         }
         if(collision.gameObject.tag == ("bounce"))
         {
@@ -45,7 +46,6 @@ public class EggDrive3D : MonoBehaviour
     {
         if(collision.gameObject.tag == ("ground"))
         {
-            print("not touching");
             grounded = false;
         }
     }
@@ -59,13 +59,29 @@ public class EggDrive3D : MonoBehaviour
 
     public void Move()
     {
+        if(x > 0) x = 1;
+        else if(x < 0 ) x = -1;
+        if(y > 0) y = 1;
+        else if(y < 0 ) y = -1;
         rb.AddForce(new Vector3(x * speed, 0, y * speed));
     }
 
     public void jump(Vector3 direction)
     {
-        if(!grounded) return;
-        rb.AddForce(direction * jumpForce);
+        if(grounded)
+        {
+            rb.AddForce(direction * jumpForce);
+        }
+        if(!grounded)
+        {
+            if(!doubleJump) return;
+            if(doubleJump)
+            {
+                rb.AddForce(direction * jumpForce);
+                doubleJump = false;
+            }
+        }
+        
     }
 
     
