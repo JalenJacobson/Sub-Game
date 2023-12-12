@@ -7,6 +7,8 @@ public class HollaShooterMissed : MonoBehaviour
     public int misses = 3;
     public SchoolLessons SchoolUI;
     public GameObject ShooterHolla;
+    public GameObject Spawner_Training;
+    public bool P1Completed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +18,11 @@ public class HollaShooterMissed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(misses <= 0)
+        if(misses <= 0 && P1Completed == false)
         {
-            SchoolUI.SendMessage("P1Complete");
+            StartCoroutine("trainingP1Completed");
+            Spawner_Training.SetActive(true);
             ShooterHolla.SetActive(false);
-            Destroy(gameObject);
         }
         
     }
@@ -30,5 +32,12 @@ public class HollaShooterMissed : MonoBehaviour
         {
             misses -= 1;
         }
+    }
+    public IEnumerator trainingP1Completed()
+    {
+        P1Completed = true;
+        SchoolUI.SendMessage("P1Complete");
+        yield return new WaitForSeconds(5f);
+        SchoolUI.SendMessage("P2Lesson1");
     }
 }

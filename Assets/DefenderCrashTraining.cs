@@ -6,14 +6,13 @@ using Cinemachine;
 public class DefenderCrashTraining : MonoBehaviour
 {
     public GameObject DefenderParent;
-    public CinemachineVirtualCamera virtualCamera;
-    public GameObject SpawnerPref;
+    //public CinemachineVirtualCamera virtualCamera;
+    public GameObject Spawner;
     
-    //public Spawner_DTraining spawner;
 
     void Start()
     {
-        //SpawnerPref = GameObject.FindGameObjectsWithTag("SpawnerTraining1");
+        Spawner  = GameObject.FindGameObjectWithTag("SpawnerTrainer1");
     }
     
    
@@ -24,7 +23,7 @@ public class DefenderCrashTraining : MonoBehaviour
         if (other.name.Contains("Bullet"))
         {
             DefenderParent.GetComponent<DefenderFollow>().explodeSequence();
-            SpawnerPref.SendMessage("killedOne");
+            Spawner.SendMessage("killedOne");
         }
         else if (other.name.Contains("weenie"))
         {

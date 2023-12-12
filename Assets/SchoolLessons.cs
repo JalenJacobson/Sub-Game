@@ -38,11 +38,11 @@ public class SchoolLessons : MonoBehaviour
 
     public void P2Lesson1()
     {
-        anim.Play("P1StartSchool");
+        anim.Play("P2StartSchool");
     }
     public void P2Lesson2()
     {
-        anim.Play("P1StartSchool");
+        anim.Play("P2Lesson2");
     }
     public void P2Lesson3()
     {

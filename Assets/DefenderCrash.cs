@@ -6,7 +6,7 @@ using Cinemachine;
 public class DefenderCrash : MonoBehaviour
 {
     public GameObject DefenderParent;
-    public CinemachineVirtualCamera virtualCamera;
+    //public CinemachineVirtualCamera virtualCamera;
     
    
 
