@@ -12,6 +12,7 @@ public class EggDrive3D : MonoBehaviour
     public int bounceForce;
     public bool grounded;
     public bool doubleJump;
+    public bool braking = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,6 +24,7 @@ public class EggDrive3D : MonoBehaviour
     void Update()
     {
         processInputs();
+        brake();
     }
 
     void FixedUpdate()
@@ -57,8 +59,24 @@ public class EggDrive3D : MonoBehaviour
         
     }
 
+    public void brake()
+    {
+        if(!grounded) return;
+        if(Input.GetKeyDown("space"))
+        {
+            rb.drag = 5;
+            braking = true;
+        }
+        if(Input.GetKeyUp("space"))
+        {
+            rb.drag = 1;
+            braking = false;
+        }
+    }
+
     public void Move()
     {
+        if(braking) return;
         if(x > 0) x = 1;
         else if(x < 0 ) x = -1;
         if(y > 0) y = 1;
