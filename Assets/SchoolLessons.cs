@@ -46,6 +46,6 @@ public class SchoolLessons : MonoBehaviour
     }
     public void P2Lesson3()
     {
-        anim.Play("P1StartSchool");
+        anim.Play("P2Completed");
     }
 }

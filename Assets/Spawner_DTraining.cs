@@ -14,17 +14,19 @@ public class Spawner_DTraining : MonoBehaviour
     public SchoolLessons SchoolUI;
     public bool spawned = false;
     public bool lastSpawn = false;
+    public SwimSchool schoolManager;
 
     void Update()
     {
-        if(enemiesKilled == 5 && spawned == true)
+        if(enemiesKilled == 5 && lastSpawn == false)
         {
             SchoolUI.SendMessage("P2Lesson2");
-            //spawn2();
+            StartCoroutine("spawn2");
         }
-        if(enemiesKilled >= 25 && lastSpawn == false)
+        if(enemiesKilled >= 25)
         {
             SchoolUI.SendMessage("P2Lesson3");
+            schoolManager.SendMessage("schoolisDone");
             Destroy(gameObject, 1);
         }
     }
@@ -70,9 +72,10 @@ public class Spawner_DTraining : MonoBehaviour
         // }
     }
 
-    public void spawn2()
+    public IEnumerator spawn2()
     {
         lastSpawn = true;
+        yield return new WaitForSeconds(5f);
         for(var i = 0; i <= spawn2Amount; i++)
             {
                 print(i);
@@ -85,4 +88,5 @@ public class Spawner_DTraining : MonoBehaviour
     {
         enemiesKilled += 1;
     }
+
 }

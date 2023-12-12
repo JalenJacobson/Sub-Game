@@ -39,7 +39,7 @@ public class SwimSchool : MonoBehaviour
 
     public IEnumerator schoolsOut()
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(3f);
         Door.SendMessage("beginJourney");
         Destroy(gameObject);
     }
