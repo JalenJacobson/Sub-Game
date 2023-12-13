@@ -11,7 +11,8 @@ public class EggDrive3D : MonoBehaviour
     public int jumpForce;
     public int bounceForce;
     public bool grounded;
-    public bool doubleJump;
+    public int remainingJumps = 2;
+    public float coyoteTime = .5f;
     public bool braking = false;
 
     // Start is called before the first frame update
@@ -25,6 +26,10 @@ public class EggDrive3D : MonoBehaviour
     {
         processInputs();
         brake();
+        if(!grounded)
+        {
+            coyoteTime -= Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
@@ -32,23 +37,35 @@ public class EggDrive3D : MonoBehaviour
         Move();
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == ("bounce"))
+        {
+            rb.AddForce(Vector3.up * bounceForce);
+            
+        }
+        if(collision.gameObject.tag == ("ground"))
+        {
+            remainingJumps = 2;
+        }
+    }
+
     void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.tag == ("ground"))
         {
             grounded = true;
-            doubleJump = true;
+            coyoteTime = 0.5f;
+            
         }
-        if(collision.gameObject.tag == ("bounce"))
-        {
-            rb.AddForce(Vector3.up * bounceForce);
-        }
+        
     }
     void OnCollisionExit(Collision collision)
     {
         if(collision.gameObject.tag == ("ground"))
         {
             grounded = false;
+            
         }
     }
 
@@ -88,18 +105,21 @@ public class EggDrive3D : MonoBehaviour
     {
         if(grounded)
         {
+            
             rb.AddForce(direction * jumpForce);
-        }
-        if(!grounded)
+            remainingJumps --;       
+            
+        }  
+        else if(coyoteTime >=0)
         {
-            if(!doubleJump) return;
-            if(doubleJump)
-            {
-                rb.AddForce(direction * jumpForce);
-                doubleJump = false;
-            }
+            rb.AddForce(direction * jumpForce);
+            remainingJumps --;
         }
-        
+        else if(remainingJumps == 1)
+        {
+            rb.AddForce(direction * jumpForce);
+            remainingJumps --; 
+        }
     }
 
     
