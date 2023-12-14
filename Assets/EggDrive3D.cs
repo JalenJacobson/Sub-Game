@@ -11,7 +11,9 @@ public class EggDrive3D : MonoBehaviour
     public int jumpForce;
     public int bounceForce;
     public bool grounded;
+    public bool jumpBuffer = false;
     public int remainingJumps = 2;
+    public int jumpClicks = 2;
     public float coyoteTime = .5f;
     public bool braking = false;
 
@@ -30,6 +32,7 @@ public class EggDrive3D : MonoBehaviour
         {
             coyoteTime -= Time.deltaTime;
         }
+        
     }
 
     void FixedUpdate()
@@ -47,6 +50,12 @@ public class EggDrive3D : MonoBehaviour
         if(collision.gameObject.tag == ("ground"))
         {
             remainingJumps = 2;
+            jumpClicks = 2;
+            jumpForce = 2500;
+            if(braking)
+            {
+                rb.drag = 10;
+            }
         }
     }
 
@@ -64,9 +73,16 @@ public class EggDrive3D : MonoBehaviour
     {
         if(collision.gameObject.tag == ("ground"))
         {
+            rb.drag = 1;
             grounded = false;
-            
+            StartCoroutine(leaveGround(.2f));
         }
+    }
+
+    public IEnumerator leaveGround(float coyoteWaitTime)
+    {
+        yield return new WaitForSeconds(coyoteWaitTime);
+        remainingJumps --;
     }
 
     public void processInputs()
@@ -81,7 +97,7 @@ public class EggDrive3D : MonoBehaviour
         if(!grounded) return;
         if(Input.GetKeyDown("space"))
         {
-            rb.drag = 5;
+            rb.drag = 10;
             braking = true;
         }
         if(Input.GetKeyUp("space"))
@@ -103,22 +119,23 @@ public class EggDrive3D : MonoBehaviour
 
     public void jump(Vector3 direction)
     {
-        if(grounded)
+        if(!grounded)
         {
-            
-            rb.AddForce(direction * jumpForce);
-            remainingJumps --;       
-            
-        }  
-        else if(coyoteTime >=0)
-        {
-            rb.AddForce(direction * jumpForce);
-            remainingJumps --;
+            jumpBuffer = true;
         }
+        if(remainingJumps == 2)
+        {
+            
+            rb.AddForce(direction * jumpForce);
+            jumpClicks --;
+            // StartCoroutine(leaveGround(.001f));      
+        }  
         else if(remainingJumps == 1)
         {
+            if(jumpClicks == 0) return;
             rb.AddForce(direction * jumpForce);
             remainingJumps --; 
+            jumpClicks --;
         }
     }
 
