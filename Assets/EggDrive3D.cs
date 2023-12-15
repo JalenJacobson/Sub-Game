@@ -39,11 +39,7 @@ public class EggDrive3D : MonoBehaviour
         {
             jumpBuffer -= Time.deltaTime;
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);  
-            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2));  
-        }
+        
         
     }
 
@@ -103,8 +99,46 @@ public class EggDrive3D : MonoBehaviour
 
     public void processInputs()
     {
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            y = -1;  
+        }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            y=0;
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5);  
+            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5));  
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            y = 1;  
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {;
+            y=0;
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5);  
+            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5));  
+        }
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            x = -1;  
+        }
+        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            x=0;
+            rb.velocity = new Vector3(rb.velocity.x/5, rb.velocity.y, rb.velocity.z);  
+            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5));  
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            x = 1;  
+        }
+        if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            x=0;
+            rb.velocity = new Vector3(rb.velocity.x/5, rb.velocity.y, rb.velocity.z);  
+            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2));  
+        }
         
     }
 
@@ -126,13 +160,8 @@ public class EggDrive3D : MonoBehaviour
     public void Move()
     {
         if(braking) return;
-        if(x > 0) xUse = 1;
-        else if(x < 0 ) xUse = -1;
-        else xUse = 0;
-        if(y > 0) yUse = 1;
-        else if(y < 0 ) yUse = -1;
-        else yUse = 0;
-        rb.AddForce(new Vector3(xUse * speed, 0, yUse * speed));
+        
+        rb.AddForce(new Vector3(x * speed, 0, y * speed));
     }
 
     public void jump(Vector3 direction)

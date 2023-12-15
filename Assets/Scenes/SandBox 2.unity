@@ -15433,7 +15433,7 @@ MonoBehaviour:
   xUse: 0
   yUse: 0
   rb: {fileID: 0}
-  speed: 40
+  speed: 80
   jumpForce: 2500
   bounceForce: 5000
   grounded: 1
