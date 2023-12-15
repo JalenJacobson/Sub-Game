@@ -17,6 +17,7 @@ public class EggDrive3D : MonoBehaviour
     public int remainingJumps = 2;
     public int jumpClicks = 2;
     public float coyoteTime = .5f;
+    public int airTravelSpeed;
     public bool braking = false;
     private Vector3 jumpBufferDirection;
 
@@ -45,8 +46,9 @@ public class EggDrive3D : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(rb.velocity != Vector3.zero) print("Velocity " + rb.velocity);
         Move();
-        // if()
+        governSpeed();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -95,6 +97,27 @@ public class EggDrive3D : MonoBehaviour
     {
         yield return new WaitForSeconds(coyoteWaitTime);
         remainingJumps --;
+    }
+
+    public void governSpeed()
+    {
+        if(grounded) return;
+        if(rb.velocity.x > airTravelSpeed)
+        {
+            rb.velocity = new Vector3(airTravelSpeed, rb.velocity.y, rb.velocity.z);
+        }
+        if(rb.velocity.x < -airTravelSpeed)
+        {
+            rb.velocity = new Vector3(-airTravelSpeed, rb.velocity.y, rb.velocity.z);
+        }
+        if(rb.velocity.z > airTravelSpeed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, airTravelSpeed);
+        }
+        if(rb.velocity.z < -airTravelSpeed)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -airTravelSpeed);
+        }
     }
 
     public void processInputs()
