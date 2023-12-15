@@ -6,8 +6,18 @@ public class movingPlatform : MonoBehaviour
 {
     public Rigidbody rb;
     public bool directionOne;
-    public float timer;
+    public int pauseTime;
+    private float pauseTimeActual;
+    private bool pause;
+    private float timer;
     public float moveTime;
+
+    public bool xMove;
+    public bool yMove;
+    public bool zMove;
+
+    public int speed;
+    private float speedActual;
 
     // Start is called before the first frame update
     void Awake()
@@ -15,14 +25,28 @@ public class movingPlatform : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
+    void Start()
+    {
+        pauseTimeActual = moveTime + pauseTime;
+        speedActual = speed  * Time.deltaTime;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if(timer > moveTime)
+        if(timer > moveTime && timer < pauseTimeActual)
         {
             
+            // directionOne = !directionOne;
+            pause = true;
+            // timer = 0;
+        }
+        else if(timer > moveTime && timer > pauseTimeActual)
+        {
             directionOne = !directionOne;
+            pause = false;
             timer = 0;
+
         }
         timer += Time.deltaTime;
     }
@@ -34,13 +58,40 @@ public class movingPlatform : MonoBehaviour
 
     public void handleMove()
     {
-        if(directionOne)
+        if(pause) return;
+        if(xMove)
         {
-            rb.velocity = new Vector3(0, 5, 0);
+            if(directionOne)
+            {
+                transform.Translate(speedActual,0,0);
+            }
+            if(!directionOne)
+            {
+                transform.Translate(-speedActual,0,0);
+            }
         }
-        if(!directionOne)
+        if(yMove)
         {
-            rb.velocity = new Vector3(0, -5, 0);
+            if(directionOne)
+            {
+                transform.Translate(0,speedActual,0);
+            }
+            if(!directionOne)
+            {
+                transform.Translate(0,-speedActual,0);
+            }
         }
+        if(zMove)
+        {
+            if(directionOne)
+            {
+                transform.Translate(0,0,speedActual);
+            }
+            if(!directionOne)
+            {
+                transform.Translate(0,0,-speedActual);
+            }
+        }
+        
     }
 }

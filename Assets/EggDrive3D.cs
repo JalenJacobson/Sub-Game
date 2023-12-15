@@ -46,6 +46,7 @@ public class EggDrive3D : MonoBehaviour
     void FixedUpdate()
     {
         Move();
+        // if()
     }
 
     void OnCollisionEnter(Collision collision)
@@ -59,7 +60,6 @@ public class EggDrive3D : MonoBehaviour
         {
             remainingJumps = 2;
             jumpClicks = 2;
-            jumpForce = 2500;
             if(jumpBuffer > 0)
             {
                 jump(jumpBufferDirection);
@@ -148,7 +148,9 @@ public class EggDrive3D : MonoBehaviour
         if(Input.GetKeyDown("space"))
         {
             braking = true;
-            if(grounded) rb.drag = 10;
+            if(grounded) rb.drag = 20;
+             
+            // if(grounded) rb.velocity = new Vector3(0, rb.velocity.y, 0); 
         }
         if(Input.GetKeyUp("space"))
         {
@@ -177,7 +179,7 @@ public class EggDrive3D : MonoBehaviour
         }
         if(remainingJumps == 2)
         {
-            rb.AddForce(new Vector3(0, 1000, 0));
+            rb.AddForce(new Vector3(0, 800, 0));
             rb.AddForce(direction * jumpForce);
             jumpClicks --;
             // StartCoroutine(leaveGround(.001f));      
@@ -186,7 +188,7 @@ public class EggDrive3D : MonoBehaviour
         {
             if(jumpClicks == 0) return;
             rb.AddForce(direction * jumpForce);
-            rb.AddForce(new Vector3(0, 1000, 0));
+            rb.AddForce(new Vector3(0, 800, 0));
             remainingJumps --; 
             jumpClicks --;
         }
@@ -194,8 +196,11 @@ public class EggDrive3D : MonoBehaviour
 
     public void jumpKill()
     {
-        if(rb.velocity.y <= 0) return;
-        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y/2, rb.velocity.z);
+        if(rb.velocity.y > 0)
+        {
+            // rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y/2, rb.velocity.z);
+        }
+        
     }
     
 }
