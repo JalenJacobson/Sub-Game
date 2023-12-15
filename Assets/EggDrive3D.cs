@@ -39,6 +39,11 @@ public class EggDrive3D : MonoBehaviour
         {
             jumpBuffer -= Time.deltaTime;
         }
+        if (Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 0);  
+            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2));  
+        }
         
     }
 
@@ -161,7 +166,7 @@ public class EggDrive3D : MonoBehaviour
     public void jumpKill()
     {
         if(rb.velocity.y <= 0) return;
-        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y/3, rb.velocity.z);
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y/2, rb.velocity.z);
     }
     
 }
