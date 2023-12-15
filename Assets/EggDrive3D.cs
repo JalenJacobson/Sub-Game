@@ -6,16 +6,19 @@ public class EggDrive3D : MonoBehaviour
 {
     public float x;
     public float y;
+    public float xUse;
+    public float yUse;
     public Rigidbody rb;
     public int speed;
     public int jumpForce;
     public int bounceForce;
     public bool grounded;
-    public bool jumpBuffer = false;
+    public float jumpBuffer = .1f;
     public int remainingJumps = 2;
     public int jumpClicks = 2;
     public float coyoteTime = .5f;
     public bool braking = false;
+    private Vector3 jumpBufferDirection;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,6 +34,10 @@ public class EggDrive3D : MonoBehaviour
         if(!grounded)
         {
             coyoteTime -= Time.deltaTime;
+        }
+        if(jumpBuffer > 0)
+        {
+            jumpBuffer -= Time.deltaTime;
         }
         
     }
@@ -52,6 +59,10 @@ public class EggDrive3D : MonoBehaviour
             remainingJumps = 2;
             jumpClicks = 2;
             jumpForce = 2500;
+            if(jumpBuffer > 0)
+            {
+                jump(jumpBufferDirection);
+            }
             if(braking)
             {
                 rb.drag = 10;
@@ -63,9 +74,9 @@ public class EggDrive3D : MonoBehaviour
     {
         if(collision.gameObject.tag == ("ground"))
         {
+            remainingJumps = 2;
             grounded = true;
             coyoteTime = 0.5f;
-            
         }
         
     }
@@ -94,38 +105,45 @@ public class EggDrive3D : MonoBehaviour
 
     public void brake()
     {
-        if(!grounded) return;
+        
         if(Input.GetKeyDown("space"))
         {
-            rb.drag = 10;
             braking = true;
+            if(grounded) rb.drag = 10;
         }
         if(Input.GetKeyUp("space"))
         {
-            rb.drag = 1;
             braking = false;
+            if(grounded) rb.drag = 1;
         }
     }
 
     public void Move()
     {
         if(braking) return;
-        if(x > 0) x = 1;
-        else if(x < 0 ) x = -1;
-        if(y > 0) y = 1;
-        else if(y < 0 ) y = -1;
-        rb.AddForce(new Vector3(x * speed, 0, y * speed));
+        if(x > 0) xUse = 1;
+        else if(x < 0 ) xUse = -1;
+        else xUse = 0;
+        if(y > 0) yUse = 1;
+        else if(y < 0 ) yUse = -1;
+        else yUse = 0;
+        rb.AddForce(new Vector3(xUse * speed, 0, yUse * speed));
     }
 
     public void jump(Vector3 direction)
     {
-        if(!grounded)
+        if(!grounded && remainingJumps <= 0)
         {
-            jumpBuffer = true;
+            jumpBuffer = .1f;
+            jumpBufferDirection = direction;
+        }
+        else if(grounded)
+        {
+            jumpBuffer = 0;
         }
         if(remainingJumps == 2)
         {
-            
+            rb.AddForce(new Vector3(0, 1000, 0));
             rb.AddForce(direction * jumpForce);
             jumpClicks --;
             // StartCoroutine(leaveGround(.001f));      
@@ -134,10 +152,16 @@ public class EggDrive3D : MonoBehaviour
         {
             if(jumpClicks == 0) return;
             rb.AddForce(direction * jumpForce);
+            rb.AddForce(new Vector3(0, 1000, 0));
             remainingJumps --; 
             jumpClicks --;
         }
     }
 
+    public void jumpKill()
+    {
+        if(rb.velocity.y <= 0) return;
+        rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y/3, rb.velocity.z);
+    }
     
 }

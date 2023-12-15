@@ -22,5 +22,9 @@ public class JumpPointer : MonoBehaviour
         {
             Ship_Script.jump(transform.forward);
         }
+        if(Input.GetMouseButtonUp(0))
+        {
+            Ship_Script.jumpKill();
+        }
     }
 }
