@@ -76,7 +76,7 @@ public class FireBullet : MonoBehaviour
         if(Input.GetMouseButtonUp(0))
         {
             if(currentAmmo != 2) return;
-            grenade.release(grenadeReleasePower, bulletSpawnPoint.forward);
+            grenade.release(grenadeReleasePower, bulletSpawnPoint.forward, bulletSpawnPoint.forward * -1);
             holdingGrenade = false;
             grenadeReleasePower = 0;
         }
