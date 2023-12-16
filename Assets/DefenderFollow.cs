@@ -49,7 +49,7 @@ public class DefenderFollow : MonoBehaviour
 
     public void pickRandoms()
     {
-        radiusOffset = Random.Range(4, 30);
+        radiusOffset = Random.Range(4, 60);
         circleSpeed = Random.Range(1, 4); 
         clockwise = Random.value > 0.5;
         attackWaitTime = Random.Range(3, 12);
