@@ -109,7 +109,7 @@ public class Bullet : MonoBehaviour
         
     }
 
-    public virtual void release(float release, Vector3 aim)
+    public virtual void release(float release, Vector3 aim, Vector3 backward)
     {
         return;
     }

@@ -7,6 +7,8 @@ public class grenade : Bullet
     public bool released = false;
     public float releasePowerActual;
     public bool doneMoving = false;
+    public Vector3 backward;
+
     // Start is called before the first frame update
     public override void Start()
     {
@@ -22,9 +24,11 @@ public class grenade : Bullet
         }
         if(released)
         {
-            if(gameObject.GetComponent<Rigidbody>().velocity != aim)
+            if(gameObject.GetComponent<Rigidbody>().velocity.magnitude <= 5f)
             {
-                doneMoving = true;
+                gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                // doneMoving = true;
+                
             }
         }
         
@@ -32,14 +36,15 @@ public class grenade : Bullet
 
     void FixedUpdate()
     {
-        if(doneMoving) return;
-        gameObject.GetComponent<Rigidbody>().AddForce(-aim * 9.8f);
+        if(gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero) return;
+        gameObject.GetComponent<Rigidbody>().AddForce(backward * 9.8f);
     }
 
-    public override void release(float releasePower, Vector3 aimNew)
+    public override void release(float releasePower, Vector3 aimNew, Vector3 backwardNew)
     {
-        releasePowerActual = releasePower * 5000;
+        releasePowerActual = (releasePower) * 8000;
         aim = aimNew;
+        backward = backwardNew;
         released = true;
         gameObject.GetComponent<Rigidbody>().AddForce(aim * releasePowerActual) ;
         print("release" + releasePower);
