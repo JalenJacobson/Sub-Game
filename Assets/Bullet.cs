@@ -12,20 +12,21 @@ public class Bullet : MonoBehaviour
     public float Timer;
     public float type;
     public float scaleTimer;
+    public Transform followPoint;
 
     void Awake()
     {
         
     }
 
-    void Start()
+    public virtual void Start()
     {
         anim = GetComponent<Animator>();
         getBulletProperties();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         Timer += Time.deltaTime;
         scaleTimer = Timer * 10;
@@ -106,6 +107,11 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+
+    public virtual void release(float release, Vector3 aim)
+    {
+        return;
     }
     
 }
