@@ -13,11 +13,13 @@ public class grenade : Bullet
     public GameObject RedLight;
     public GameObject GreenLight;
     public GameObject armoredEnemy;
+    
 
     // Start is called before the first frame update
     public override void Start()
     {
         rb = gameObject.GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -25,8 +27,9 @@ public class grenade : Bullet
         if(other.name == "Nest.")
         {
             GreenLight.SetActive(false);
-            RedLight.SetActive(true);
+            //RedLight.SetActive(true);
             armoredEnemy = other.transform.parent.gameObject;
+            anim.Play("BlowUp");
         }
     }
 
