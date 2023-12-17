@@ -8,11 +8,13 @@ public class grenade : Bullet
     public float releasePowerActual;
     public bool doneMoving = false;
     public Vector3 backward;
+    public Rigidbody rb;
+    public float reverseForce;
 
     // Start is called before the first frame update
     public override void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -20,13 +22,14 @@ public class grenade : Bullet
     {
         if(!released)
         {
-        transform.position = followPoint.transform.TransformPoint(0,0,0);
+            transform.position = followPoint.transform.TransformPoint(0,0,0);
+            // transform.rotation = followPoint.transform.rotation;
         }
         if(released)
         {
-            if(gameObject.GetComponent<Rigidbody>().velocity.magnitude <= 5f)
+            if(rb.velocity.magnitude <= 5f)
             {
-                gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                rb.velocity = Vector3.zero;
                 // doneMoving = true;
                 
             }
@@ -36,17 +39,17 @@ public class grenade : Bullet
 
     void FixedUpdate()
     {
-        if(gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero) return;
-        gameObject.GetComponent<Rigidbody>().AddForce(backward * 9.8f);
+        if(rb.velocity == Vector3.zero) return;
+        rb.AddForce(backward * 20);
     }
 
     public override void release(float releasePower, Vector3 aimNew, Vector3 backwardNew)
     {
-        releasePowerActual = (releasePower) * 8000;
+        releasePowerActual = (releasePower + 1) * 5000;
         aim = aimNew;
         backward = backwardNew;
         released = true;
-        gameObject.GetComponent<Rigidbody>().AddForce(aim * releasePowerActual) ;
+        rb.AddForce(aim * releasePowerActual) ;
         print("release" + releasePower);
     }
 }

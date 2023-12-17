@@ -51,7 +51,7 @@ public class FireBullet : MonoBehaviour
                 var bullet = Instantiate(bulletPrefabs[currentAmmo], bulletSpawnPoint.position, bulletSpawnPoint.rotation);
                 grenade = bullet.GetComponent<Bullet>();
                 bullet.GetComponent<Bullet>().followPoint = bulletSpawnPoint;
-                bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
+                // bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
                 bullet.GetComponent<Bullet>().type = currentAmmo;
                 reloadTime += reloadTimes[currentAmmo];
                 holdingGrenade = true;
@@ -69,16 +69,17 @@ public class FireBullet : MonoBehaviour
         {
             if(grenadeReleasePower <= 1)
             {
-                grenadeReleasePower += Time.deltaTime;
+                grenadeReleasePower += Time.deltaTime * .5f;
             }
             
         } 
         if(Input.GetMouseButtonUp(0))
         {
-            if(currentAmmo != 2) return;
+            if(currentAmmo != 2 || grenade == null) return;
             grenade.release(grenadeReleasePower, bulletSpawnPoint.forward, bulletSpawnPoint.forward * -1);
             holdingGrenade = false;
             grenadeReleasePower = 0;
+            grenade = null;
         }
 
 
