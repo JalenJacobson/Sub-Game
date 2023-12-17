@@ -80,7 +80,7 @@ public class Bullet : MonoBehaviour
         else bulletSpeed =  1000f;
     }
 
-    public void detonate()
+    public virtual void detonate()
     {
         // StartCoroutine(detonateSequence());
         print("detonate");

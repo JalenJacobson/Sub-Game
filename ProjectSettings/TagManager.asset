@@ -16,6 +16,7 @@ TagManager:
   - ground
   - bounce
   - SpawnerTrainer1
+  - Armored
   layers:
   - Default
   - TransparentFX
