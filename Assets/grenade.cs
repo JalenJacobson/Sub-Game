@@ -39,7 +39,7 @@ public class grenade : Bullet
         if(!released)
         {
             transform.position = followPoint.transform.TransformPoint(0,0,0);
-            // transform.rotation = followPoint.transform.rotation;
+            transform.rotation = followPoint.transform.rotation;
         }
         if(released)
         {
@@ -55,18 +55,17 @@ public class grenade : Bullet
 
     void FixedUpdate()
     {
-        if(rb.velocity == Vector3.zero) return;
-        rb.AddForce(backward * 20);
+        
+        
     }
 
-    public override void release(float releasePower, Vector3 aimNew, Vector3 backwardNew)
+    public override void release(float releasePower, Vector3 aimNew)
     {
-        releasePowerActual = (releasePower + 1) * 5000;
+        releasePowerActual = 6000;
         aim = aimNew;
-        backward = backwardNew;
+        
         released = true;
         rb.AddForce(aim * releasePowerActual) ;
-        print("release" + releasePower);
     }
 
     public override void detonate()

@@ -182,6 +182,17 @@ public class EggDrive3D : MonoBehaviour
         }
     }
 
+    public void startGrapple()
+    {
+        remainingJumps = 2;
+        jumpClicks = 2;
+        // rb.drag = 0;
+    }
+    public void endGrapple()
+    {
+
+    }
+
     public void Move()
     {
         if(braking) return;
