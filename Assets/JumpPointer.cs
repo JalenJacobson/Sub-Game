@@ -67,10 +67,10 @@ public class JumpPointer : MonoBehaviour
 
     void startGrapple()
     {
-        eggDrive_Script.startGrapple();
         RaycastHit hit;
         if(Physics.Raycast(grappleShootPoint.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, canGrapple))
         {
+            eggDrive_Script.startGrapple();
             grapplePoint = hit.point;
             joint = MotherShip.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -83,7 +83,7 @@ public class JumpPointer : MonoBehaviour
             joint.minDistance = distanceFromPoint * 0.25f;
 
             //Adjust these values to fit your game.
-            joint.spring = 20f;
+            joint.spring = 50f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
 
@@ -93,6 +93,7 @@ public class JumpPointer : MonoBehaviour
     }
     void endGrapple()
     {
+        eggDrive_Script.endGrapple();
         lr.positionCount = 0;
         Destroy(joint);
     }

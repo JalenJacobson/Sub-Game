@@ -20,6 +20,7 @@ public class EggDrive3D : MonoBehaviour
     public int airTravelSpeed;
     public bool braking = false;
     private Vector3 jumpBufferDirection;
+    public bool grappling = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -46,7 +47,6 @@ public class EggDrive3D : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(rb.velocity != Vector3.zero) print("Velocity " + rb.velocity);
         Move();
         governSpeed();
     }
@@ -122,45 +122,56 @@ public class EggDrive3D : MonoBehaviour
 
     public void processInputs()
     {
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             y = -1;  
         }
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
             y=0;
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5);  
-            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5));  
+            if(!grappling)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             y = 1;  
         }
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {;
             y=0;
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5);  
-            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5));  
+            if(!grappling)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2); 
+            }
+             
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             x = -1;  
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
             x=0;
-            rb.velocity = new Vector3(rb.velocity.x/5, rb.velocity.y, rb.velocity.z);  
-            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/5));  
+            if(!grappling)
+            {
+                rb.velocity = new Vector3(rb.velocity.x/2, rb.velocity.y, rb.velocity.z); 
+            }
+              
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             x = 1;  
         }
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
             x=0;
-            rb.velocity = new Vector3(rb.velocity.x/5, rb.velocity.y, rb.velocity.z);  
-            // rb.AddForce(new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2));  
+            if(!grappling)
+            {
+                rb.velocity = new Vector3(rb.velocity.x/2, rb.velocity.y, rb.velocity.z); 
+            }
+              
         }
         
     }
@@ -184,13 +195,18 @@ public class EggDrive3D : MonoBehaviour
 
     public void startGrapple()
     {
+        grappling = true;
+        airTravelSpeed = 150;
         remainingJumps = 2;
         jumpClicks = 2;
+        speed = 20;
         // rb.drag = 0;
     }
     public void endGrapple()
     {
-
+        grappling = false;
+        airTravelSpeed = 25;
+        speed = 80;
     }
 
     public void Move()

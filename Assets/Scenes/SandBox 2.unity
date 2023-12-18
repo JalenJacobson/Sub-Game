@@ -3977,6 +3977,7 @@ MonoBehaviour:
   coyoteTime: 0.1
   airTravelSpeed: 25
   braking: 0
+  grappling: 0
 --- !u!54 &596185227
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4064,7 +4065,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596185225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -221, y: -431, z: -2381}
+  m_LocalPosition: {x: -65, y: 90.8, z: -209.3}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -10917,7 +10918,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e2b37c37a75eb464cb238e7888156da1, type: 2}
+  - {fileID: 2100000, guid: 5b92db886c8264244af888ea32b36577, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10955,8 +10956,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946265721}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 283, y: -423, z: -2216}
-  m_LocalScale: {x: 4.321605, y: 3.56861, z: 130.56673}
+  m_LocalPosition: {x: -4.5, y: 112.2, z: -199.3}
+  m_LocalScale: {x: 23.18733, y: 11.383896, z: 26.30678}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
