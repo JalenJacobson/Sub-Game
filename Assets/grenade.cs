@@ -30,6 +30,7 @@ public class grenade : Bullet
             //RedLight.SetActive(true);
             armoredEnemy = other.transform.parent.gameObject;
             anim.Play("BlowUp");
+            other.SendMessage("Explode");
         }
     }
 

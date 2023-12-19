@@ -9,6 +9,12 @@ public class Spawner_D : MonoBehaviour
     public float xlimit = 5;
     public float ylimit = 5;
     public float zlimit = 1;
+    public Animator anim;
+
+    public void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
 
 
     public void OnTriggerEnter(Collider other)
@@ -34,5 +40,10 @@ public class Spawner_D : MonoBehaviour
         var zpos = Random.Range((gameObject.transform.position.z - zlimit), (gameObject.transform.position.z + zlimit));
 
         return new Vector3(xpos, ypos, zpos);
+    }
+
+    public void Explode()
+    {
+        anim.Play("Nest_Dead");
     }
 }
