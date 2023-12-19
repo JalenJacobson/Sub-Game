@@ -67,12 +67,9 @@ public class FireBullet : MonoBehaviour
         }
         if(holdingGrenade)
         {
-            if(grenadeReleasePower <= 1)
-            {
-                grenadeReleasePower += Time.deltaTime * .5f;
-            }
-            
+            grenadeReleasePower += Time.deltaTime;
         } 
+
         if(Input.GetMouseButtonUp(0))
         {
             if(currentAmmo != 2 || grenade == null) return;
@@ -81,22 +78,7 @@ public class FireBullet : MonoBehaviour
             grenadeReleasePower = 0;
             grenade = null;
         }
-
-
-        if(Input.GetMouseButtonDown(1) && currentAmmo == 2)
-        {
-            // foreach(GameObject mine in activeMines)
-            // {
-            //     mine.GetComponent<Bullet>().detonate();
-            //     print("started");
-            // }
-            // activeMines.Clear();
-            // print("should remove");
-            grenade.detonate();
-        }
-
         
-
         if(Input.mouseScrollDelta.y != 0)
         {
             if(Input.mouseScrollDelta.y >= 1)

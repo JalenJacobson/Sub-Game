@@ -193,15 +193,10 @@ public class VesselMovement : MonoBehaviour
         if(drivingMS) return;
         if (collision.gameObject.name != "RiddleTrigger" || collision.gameObject.name != "TriggerCube" || !collision.gameObject.name.Contains("Defender") )
         {
-            //this if statement makes a joint between the sludge and the vessel. Could figure out a way to have the sludge drag you in.
-            // if(collision.gameObject.GetComponent<Rigidbody>() != null && collision.gameObject.name.Contains("Sludge"))
-            // {
-            //     gameObject.AddComponent<FixedJoint> ();  
-		    //     gameObject.GetComponent<FixedJoint>().connectedBody = collision.gameObject.GetComponent<Rigidbody>();
-		    //     hasJoint = true;
-            // }
-            
-            // StartCoroutine("loseCondition");
+            var collisionNormalDirection = collision.contacts[0].normal;
+            // Quaternion rot = Quaternion.FromToRotation(Vector3.up, collisionNormalDirection);
+            rb.AddForce(collisionNormalDirection * 50000);
+            StartCoroutine(stopSpin());
         }
     }
 
@@ -431,10 +426,10 @@ public class VesselMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(.01f);
         rb.isKinematic = true;
-        lookingAtNextTrigger = true;
+        // lookingAtNextTrigger = true;
         yield return new WaitForSeconds(.5f);
         rb.isKinematic = false;
-        lookingAtNextTrigger = false;
+        // lookingAtNextTrigger = false;
     }
 
     public void startGame()

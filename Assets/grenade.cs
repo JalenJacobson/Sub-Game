@@ -26,12 +26,23 @@ public class grenade : Bullet
     {
         if(other.name == "Nest.")
         {
-            GreenLight.SetActive(false);
-            //RedLight.SetActive(true);
             armoredEnemy = other.transform.parent.gameObject;
             anim.Play("BlowUp");
-            other.SendMessage("Explode");
+            other.transform.parent.gameObject.SendMessage("Explode");
         }
+    }
+
+    public float grenadeTimer;
+
+    IEnumerator endEarly()
+    {
+        
+        gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        yield return new WaitForSeconds(2);
+        anim.Play("BlowUp");
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+
     }
 
     // Update is called once per frame
@@ -44,38 +55,28 @@ public class grenade : Bullet
         }
         if(released)
         {
-            if(rb.velocity.magnitude <= 5f)
-            {
-                rb.velocity = Vector3.zero;
-                // doneMoving = true;
-                
-            }
+            grenadeTimer += Time.deltaTime;
+        }
+        if(grenadeTimer >= 3.5f)
+        {
+            StartCoroutine(endEarly());
+        }
+    }
+
+
+    public override void release(float releaseTime, Vector3 aimNew)
+    {
+        if(releaseTime >= 3)
+        {
+            releasePowerActual = 8000;
+            aim = aimNew;
+            released = true;
+            rb.AddForce(aim * releasePowerActual) ;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
         
     }
-
-    void FixedUpdate()
-    {
-        
-        
-    }
-
-    public override void release(float releasePower, Vector3 aimNew)
-    {
-        releasePowerActual = 6000;
-        aim = aimNew;
-        
-        released = true;
-        rb.AddForce(aim * releasePowerActual) ;
-    }
-
-    public override void detonate()
-    {
-        Destroy(armoredEnemy);
-        Destroy(gameObject);
-        //play grenade explostion animation here
-        //send message to armoredEnemy game object to play animation 
-        //eg. Both sludge and nest should have a function with the same name that tells them to destroy and play death animation. We call that here. 
-    }
-
 }

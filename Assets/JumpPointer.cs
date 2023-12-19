@@ -79,11 +79,11 @@ public class JumpPointer : MonoBehaviour
             float distanceFromPoint = Vector3.Distance(MotherShip.position, grapplePoint);
 
             //The distance grapple will try to keep from grapple point. 
-            joint.maxDistance = distanceFromPoint * 0.8f;
+            joint.maxDistance = distanceFromPoint * 0.7f;
             joint.minDistance = distanceFromPoint * 0.25f;
 
             //Adjust these values to fit your game.
-            joint.spring = 50f;
+            joint.spring = 10f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
 
