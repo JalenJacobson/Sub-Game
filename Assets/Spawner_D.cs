@@ -5,13 +5,11 @@ using UnityEngine;
 public class Spawner_D : MonoBehaviour
 {
     public GameObject defenderPrefab;
-    public int spawnAmountInitial = 5;
-    public int spawnAmountContinuous = 5;
+    public int spawnAmount = 5;
     public float xlimit = 5;
     public float ylimit = 5;
     public float zlimit = 1;
     public Animator anim;
-    public bool keepSpawning = false;
 
     public void Start()
     {
@@ -21,37 +19,18 @@ public class Spawner_D : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        print(other.name);
         if(other.name.Contains("weenie"))
         {
-            spawnSwarm(spawnAmountInitial);
-            keepSpawning = true;
+            print("should work");
+           for(var i = 0; i <= spawnAmount; i++)
+            {
+                print(i);
+                var randomPosition = getRandomPosition();
+                Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
+            } 
         }
         
-        
-    }
-
-    private float timer;
-
-    void Update()
-    {
-        if(keepSpawning)
-        {
-            timer += Time.deltaTime;
-        }
-        if(timer >= 2)
-        {
-            spawnSwarm(8);
-            timer = 0;
-        }
-    }
-
-    void spawnSwarm(int spawnNumber)
-    {
-        for(var i = 0; i <= spawnNumber; i++)
-        {
-            var randomPosition = getRandomPosition();
-            Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
-        } 
     }
 
     public Vector3 getRandomPosition()
@@ -65,7 +44,6 @@ public class Spawner_D : MonoBehaviour
 
     public void Explode()
     {
-        keepSpawning = false;
         anim.Play("Nest_Dead");
     }
 }
