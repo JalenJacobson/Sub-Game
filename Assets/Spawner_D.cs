@@ -6,10 +6,14 @@ public class Spawner_D : MonoBehaviour
 {
     public GameObject defenderPrefab;
     public int spawnAmount = 5;
+    public int spawnAmountInitial = 5;
+    public int spawnAmountContinuous = 5;
     public float xlimit = 5;
     public float ylimit = 5;
     public float zlimit = 1;
     public Animator anim;
+    public bool keepSpawning = false;
+    public bool alreadyEntered = false;
 
     public void Start()
     {
@@ -19,20 +23,32 @@ public class Spawner_D : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         if(other.name.Contains("weenie"))
         {
-            print("should work");
-           for(var i = 0; i <= spawnAmount; i++)
+            if(!alreadyEntered)
             {
-                print(i);
-                var randomPosition = getRandomPosition();
-                Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
-            } 
+                spawnSwarm(spawnAmountInitial);
+                keepSpawning = true;
+                alreadyEntered = true;
+            }
         }
-        
     }
 
+    private float timer;
+
+    void Update()
+    {
+        if(keepSpawning)
+        {
+            timer += Time.deltaTime;
+        }
+        if(timer >= 2)
+        {
+            spawnSwarm(8);
+            timer = 0;
+        }
+    }
+    
     public Vector3 getRandomPosition()
     {
         var xpos = Random.Range((gameObject.transform.position.x - xlimit), (gameObject.transform.position.x + xlimit));
@@ -42,8 +58,18 @@ public class Spawner_D : MonoBehaviour
         return new Vector3(xpos, ypos, zpos);
     }
 
+    void spawnSwarm(int spawnNumber)
+    {
+        for(var i = 0; i <= spawnNumber; i++)
+        {
+            var randomPosition = getRandomPosition();
+            Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
+        } 
+    }
+
     public void Explode()
     {
         anim.Play("Nest_Dead");
+        keepSpawning = false;
     }
 }

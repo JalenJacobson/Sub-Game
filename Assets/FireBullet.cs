@@ -24,13 +24,6 @@ public class FireBullet : MonoBehaviour
     public float grenadeReleasePower;
     public bool holdingGrenade = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    
-    }
-
-    // Update is called once per frame
     void Update()
     {
         transform.LookAt(target);
@@ -51,11 +44,9 @@ public class FireBullet : MonoBehaviour
                 var bullet = Instantiate(bulletPrefabs[currentAmmo], bulletSpawnPoint.position, bulletSpawnPoint.rotation);
                 grenade = bullet.GetComponent<Bullet>();
                 bullet.GetComponent<Bullet>().followPoint = bulletSpawnPoint;
-                // bullet.GetComponent<Bullet>().aim = bulletSpawnPoint.forward;
                 bullet.GetComponent<Bullet>().type = currentAmmo;
                 reloadTime += reloadTimes[currentAmmo];
                 holdingGrenade = true;
-                // activeMines.Add(bullet);
             }
             else
             {
@@ -67,10 +58,7 @@ public class FireBullet : MonoBehaviour
         }
         if(holdingGrenade)
         {
-            if(grenadeReleasePower <= 1)
-            {
-                grenadeReleasePower += Time.deltaTime * .5f;
-            }
+                grenadeReleasePower += Time.deltaTime;
             
         } 
         if(Input.GetMouseButtonUp(0))
@@ -81,22 +69,7 @@ public class FireBullet : MonoBehaviour
             grenadeReleasePower = 0;
             grenade = null;
         }
-
-
-        if(Input.GetMouseButtonDown(1) && currentAmmo == 2)
-        {
-            // foreach(GameObject mine in activeMines)
-            // {
-            //     mine.GetComponent<Bullet>().detonate();
-            //     print("started");
-            // }
-            // activeMines.Clear();
-            // print("should remove");
-            grenade.detonate();
-        }
-
         
-
         if(Input.mouseScrollDelta.y != 0)
         {
             if(Input.mouseScrollDelta.y >= 1)
@@ -150,17 +123,4 @@ public class FireBullet : MonoBehaviour
             AmmoType.gameObject.SendMessage("LayMines");
         }
     }
-
-    // public IEnumerator detonateSequence()
-    // {
-    //     foreach(GameObject mine in activeMines)
-    //     {
-    //         mine.GetComponent<Bullet>().detonate();
-    //         print("started");
-    //     }
-    //     yield return new WaitForSeconds(3f);
-        
-
-    // }
-
 }

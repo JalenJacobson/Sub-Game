@@ -86,7 +86,7 @@ public class DefenderFollow : MonoBehaviour
 
     void attack()
     {
-        transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 1);
+        transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 2);
         transform.LookAt(vessel.transform.position);
     }
 

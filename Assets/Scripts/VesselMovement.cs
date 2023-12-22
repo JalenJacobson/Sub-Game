@@ -37,6 +37,8 @@ public class VesselMovement : MonoBehaviour
     public int health = 100;
     public GameObject lookForwardObject;
 
+    public GameObject testCube;
+
     // double tap variables
     public float tapSpeed = 0.05f;
     public float lastTapTimeDown = 0;
@@ -197,8 +199,9 @@ public class VesselMovement : MonoBehaviour
         if(drivingMS) return;
         if (collision.gameObject.name != "RiddleTrigger" || collision.gameObject.name != "TriggerCube" || !collision.gameObject.name.Contains("Defender") )
         {
-            
-            print(normalDirection);
+            health -= 5;
+            var contact = collision.contacts[0];
+            normalDirection = contact.normal;
             StartCoroutine(stopSpin());
         }
     }
@@ -210,7 +213,7 @@ public class VesselMovement : MonoBehaviour
         Shield.SetActive(false);
         anim.Play("DeadWeenie");
         yield return new WaitForSeconds(2f);
-        RiddlePannel.SetActive(true);
+        // RiddlePannel.SetActive(true);
         // rb.useGravity = true;
         //MenuButton.SetActive(false);
         ResumeButton.SetActive(false);
@@ -434,13 +437,13 @@ public class VesselMovement : MonoBehaviour
     public IEnumerator stopSpin()
     {
         // yield return new WaitForSeconds(.25f);
+        
         collisionWallBounce = true;
-        rb.isKinematic = true;
-        // lookingAtNextTrigger = true;
-        yield return new WaitForSeconds(5f);
-        rb.isKinematic = false;
-        // lookingAtNextTrigger = false;
+        yield return new WaitForSeconds(.25f);
         collisionWallBounce = false;
+        rb.isKinematic = true;
+        yield return new WaitForSeconds(.05f);
+        rb.isKinematic = false;
     }
 
     public void startGame()
