@@ -28,6 +28,7 @@ public class VesselMovement : MonoBehaviour
     public bool lookForwardTime = false;
     public bool lookingAtNextTrigger = false;
     public float stopSpinCount;
+    
 
     public CinemachineVirtualCamera virtualCamera;
     public bool canTakeDamage;
@@ -188,20 +189,17 @@ public class VesselMovement : MonoBehaviour
         
     }
 
+    private Vector3 normalDirection;
+    private bool collisionWallBounce = false;
+
     void OnCollisionEnter(Collision collision)
     {
         if(drivingMS) return;
         if (collision.gameObject.name != "RiddleTrigger" || collision.gameObject.name != "TriggerCube" || !collision.gameObject.name.Contains("Defender") )
         {
-            //this if statement makes a joint between the sludge and the vessel. Could figure out a way to have the sludge drag you in.
-            // if(collision.gameObject.GetComponent<Rigidbody>() != null && collision.gameObject.name.Contains("Sludge"))
-            // {
-            //     gameObject.AddComponent<FixedJoint> ();  
-		    //     gameObject.GetComponent<FixedJoint>().connectedBody = collision.gameObject.GetComponent<Rigidbody>();
-		    //     hasJoint = true;
-            // }
             
-            // StartCoroutine("loseCondition");
+            print(normalDirection);
+            StartCoroutine(stopSpin());
         }
     }
 
@@ -249,6 +247,12 @@ public class VesselMovement : MonoBehaviour
         if(forceJumpRight)
         {
             rb.AddRelativeForce (3000, 0, 0);
+        }
+
+        if(collisionWallBounce)
+        {
+            rb.AddForce(normalDirection * 5000);
+            print("should be bouncing" + normalDirection);
         }
 
         if ( Input.GetKey("s"))
@@ -429,12 +433,14 @@ public class VesselMovement : MonoBehaviour
 
     public IEnumerator stopSpin()
     {
-        yield return new WaitForSeconds(.01f);
+        // yield return new WaitForSeconds(.25f);
+        collisionWallBounce = true;
         rb.isKinematic = true;
-        lookingAtNextTrigger = true;
-        yield return new WaitForSeconds(.5f);
+        // lookingAtNextTrigger = true;
+        yield return new WaitForSeconds(5f);
         rb.isKinematic = false;
-        lookingAtNextTrigger = false;
+        // lookingAtNextTrigger = false;
+        collisionWallBounce = false;
     }
 
     public void startGame()
