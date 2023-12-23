@@ -95,7 +95,7 @@ public class DefenderFollow : MonoBehaviour
         speed = 50;
         if(other.name.Contains("weenie") && firstAttack)
         {
-            // anim.Play("DefenderAttack");
+            anim.Play("DefenderAttack");
             StartCoroutine("initiateAttack");
             firstAttack = false;
             // transform.position = Vector3.MoveTowards(transform.position, cubePosition.position, speed * Time.deltaTime);
