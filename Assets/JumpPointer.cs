@@ -68,7 +68,7 @@ public class JumpPointer : MonoBehaviour
     void startGrapple()
     {
         RaycastHit hit;
-        if(Physics.Raycast(grappleShootPoint.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, canGrapple))
+        if(Physics.Raycast(grappleShootPoint.position, transform.TransformDirection(Vector3.forward), out hit, 60, canGrapple))
         {
             eggDrive_Script.startGrapple();
             grapplePoint = hit.point;

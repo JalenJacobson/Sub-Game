@@ -16,6 +16,7 @@ public class VesselMovement : MonoBehaviour
     public bool vesselDead = false;
     public bool DamageOverloadCoroutineStarted = false;
     public GameObject RiddlePannel;
+    public GameObject NextLevelPannel;
     public GameObject MenuButton;
     public GameObject ResumeButton;
     public GameObject startGamePannel;
@@ -57,6 +58,7 @@ public class VesselMovement : MonoBehaviour
     public AudioClip ThrusterStart;
     public AudioClip ThrusterIdle;
     public AudioClip ThrusterDown;
+    public RiddleTriggerFollowPoint RiddleTriggerFollowPoint_Script;
 
 
     // Start is called before the first frame update
@@ -68,6 +70,8 @@ public class VesselMovement : MonoBehaviour
         lastTapTimeLeft = 0;
         vesselDead = true;
         rb = GetComponent<Rigidbody>();
+        NextLevelPannel = GameObject.Find("NextLevelPanel");
+        NextLevelPannel.SetActive(false);
         RiddlePannel = GameObject.Find("RiddlePannel");
         MenuButton = GameObject.Find("RiddleButton");
         ResumeButton = GameObject.Find("Close");
@@ -78,9 +82,11 @@ public class VesselMovement : MonoBehaviour
         {
             riddleTriggers[i].SetActive(false);
         }
-        currentCheckPoint = new Vector3(0, 0, 324);
+        currentCheckPoint = gameObject.GetComponent<Transform>().position;
         anim = GetComponent<Animator>();
     }
+
+    private bool firstTimeDeath = true;
 
     void Update()
     {
@@ -155,8 +161,11 @@ public class VesselMovement : MonoBehaviour
             // lastTapTimeLeft = Time.time;
         }
 
+        
+
         if(health <= 0)
         {
+            if(!firstTimeDeath) return;
             StartCoroutine(loseCondition());
         }
 
@@ -208,16 +217,22 @@ public class VesselMovement : MonoBehaviour
 
     public IEnumerator loseCondition()
     {
+        firstTimeDeath = false;
         yield return new WaitForSeconds(.1f);
         vesselDead = true;
         Shield.SetActive(false);
         anim.Play("DeadWeenie");
+        rb.isKinematic = true;
         yield return new WaitForSeconds(2f);
-        // RiddlePannel.SetActive(true);
-        // rb.useGravity = true;
-        //MenuButton.SetActive(false);
-        ResumeButton.SetActive(false);
-
+        gameObject.GetComponent<Transform>().position = currentCheckPoint;
+        Shield.SetActive(true);
+        health = 100;
+        yield return new WaitForSeconds(2);
+        rb.isKinematic = false;
+        vesselDead = false;
+        firstTimeDeath = true;
+        yield return new WaitForSeconds(4);
+        Shield.SetActive(false);
     }
 
 
@@ -358,6 +373,7 @@ public class VesselMovement : MonoBehaviour
         currentCheckPoint = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position;
         currentRiddleTrigger++;
         riddleTriggers[currentRiddleTrigger].SetActive(true);
+        RiddleTriggerFollowPoint_Script.nextTrigger(riddleTriggers[currentRiddleTrigger]);
         addHealth();
     }
 
@@ -449,6 +465,7 @@ public class VesselMovement : MonoBehaviour
     public void startGame()
     {
         startGamePannel.SetActive(false);
+        
         vesselDead = false;
         //MenuButton.SetActive(true);
         RiddlePannel.SetActive(false);

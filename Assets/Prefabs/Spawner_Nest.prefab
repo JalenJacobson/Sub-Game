@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3236357787823968832}
   m_Layer: 0
   m_Name: Spawner_Nest
-  m_TagString: Armored
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,9 +221,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defenderPrefab: {fileID: 6283894910427883956, guid: 1f16abbddf9054efe949941b08c5064b, type: 3}
   spawnAmount: 40
+  spawnAmountInitial: 5
+  spawnAmountContinuous: 5
   xlimit: 50
   ylimit: 50
   zlimit: 50
+  anim: {fileID: 0}
+  keepSpawning: 0
+  alreadyEntered: 0
 --- !u!135 &6509178717739432658
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -287,7 +292,7 @@ GameObject:
   - component: {fileID: 6509178719373127876}
   m_Layer: 0
   m_Name: Nest.
-  m_TagString: Untagged
+  m_TagString: Armored
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

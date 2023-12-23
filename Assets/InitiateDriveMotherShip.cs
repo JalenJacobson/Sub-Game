@@ -20,6 +20,8 @@ public class InitiateDriveMotherShip : MonoBehaviour
 
     public GameObject[] Slugs;
     public GameObject[] Speeders;
+
+    public GameObject NextLevelPannel;
     // Start is called before the first frame update
 
 
@@ -94,8 +96,9 @@ public class InitiateDriveMotherShip : MonoBehaviour
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
         PurpleLight.SetActive(true);
         RedLight.SetActive(false);
-        VesselMovement_Script.vesselDead = false;
-        // Destroy(gameObject);
+        yield return new WaitForSeconds(2f);
+        NextLevelPannel.SetActive(true);
+        
     }
 
     public void deactivateSlugs()

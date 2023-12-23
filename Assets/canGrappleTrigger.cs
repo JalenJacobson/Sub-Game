@@ -6,15 +6,15 @@ public class canGrappleTrigger : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if(other.name.Contains("grapple"))
+        if(other.tag == "Grapple")
         {
             other.SendMessage("canGrapple");
-            
+            print(other.name);
         }
     }
     void OnTriggerExit(Collider other)
     {
-        if(other.name.Contains("grapple"))
+        if(other.tag == "Grapple")
         {
             other.SendMessage("cantGrapple");
 
