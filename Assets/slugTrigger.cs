@@ -14,12 +14,19 @@ public class slugTrigger : MonoBehaviour
         anim = Sludge.GetComponent<Animator>();
     }
     
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        anim.Play("SludgeOpen");
+        if(other.name.Contains("weenie"))
+        {
+            anim.Play("SludgeOpen");   
+        }
+        
     }
-    void OnTriggerExit()
+    void OnTriggerExit(Collider other)
     {
-        anim.Play("Idle");
+        if(other.name.Contains("weenie"))
+        {
+            anim.Play("Idle");
+        }
     }
 }

@@ -31,6 +31,11 @@ public class LifeBar : MonoBehaviour
         {
             StartCoroutine(lowLifeWarning());
         }
+        if(Healthbar > 30)
+        {
+            anim.Play("NormalLife");
+        }
+
     }
     public IEnumerator lowLifeWarning()
     {

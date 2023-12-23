@@ -75,4 +75,11 @@ public class EnemyShooter : MonoBehaviour
     {
         timerStarted = false;
     }
+
+    public void die()
+    {
+        print("ShouldDie1");
+        Destroy(gameObject);
+        print("ShouldDie2");
+    }
 }

@@ -23,14 +23,17 @@ public class Spawner_D : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        if(other.name.Contains("weenie") && isDead == false)
+        {
+            spawnSwarm(spawnAmountInitial);
+            keepSpawning = true;
+        }
+    }
+    public void OnTriggerExit(Collider other)
+    {
         if(other.name.Contains("weenie"))
         {
-            if(!alreadyEntered)
-            {
-                spawnSwarm(spawnAmountInitial);
-                keepSpawning = true;
-                alreadyEntered = true;
-            }
+            keepSpawning = false;
         }
     }
 
@@ -67,9 +70,12 @@ public class Spawner_D : MonoBehaviour
         } 
     }
 
+    private bool isDead = false;
+
     public void Explode()
     {
         anim.Play("Nest_Dead");
         keepSpawning = false;
+        isDead = true;
     }
 }

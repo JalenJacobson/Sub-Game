@@ -196,7 +196,7 @@ public class VesselMovement : MonoBehaviour
             StartCoroutine(stopSpin());
             stopSpinCount = 0;
         }
-        LifeBar.setHealth(health);
+        
         
     }
 
@@ -227,6 +227,7 @@ public class VesselMovement : MonoBehaviour
         gameObject.GetComponent<Transform>().position = currentCheckPoint;
         Shield.SetActive(true);
         health = 100;
+        LifeBar.setHealth(health);
         yield return new WaitForSeconds(2);
         rb.isKinematic = false;
         vesselDead = false;
@@ -423,7 +424,7 @@ public class VesselMovement : MonoBehaviour
             
             health -= damageTaken;
             damageInThisCountdown += damageTaken;
-            print(health);
+            LifeBar.setHealth(health);
     }
 
     public IEnumerator CameraShake(int damageTaken)

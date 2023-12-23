@@ -48,7 +48,8 @@ public class E_Shooter_TakeDamage : MonoBehaviour
         parentShooter.SendMessage("StopShooting");
         anim.Play("DeadShooter");
         yield return new WaitForSeconds(3f);
-        Destroy(parentShooter);
+        parentShooter.SendMessage("die");
+        //Destroy(parentShooter);
         
     }
 }
