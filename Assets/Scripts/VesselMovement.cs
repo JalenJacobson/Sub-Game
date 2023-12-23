@@ -87,6 +87,7 @@ public class VesselMovement : MonoBehaviour
     }
 
     private bool firstTimeDeath = true;
+    public bool thrusting = false;
 
     void Update()
     {
@@ -94,11 +95,13 @@ public class VesselMovement : MonoBehaviour
         {
             audioSourceIdle.clip = ThrusterIdle;
             audioSourceIdle.Play();
+            thrusting = true;
         }
 
         if (Input.GetKeyUp("space"))
         {
             audioSourceIdle.Stop();
+            thrusting = false;
         }
         timer = timer + Time.deltaTime;
         
@@ -274,33 +277,61 @@ public class VesselMovement : MonoBehaviour
             print("should be bouncing" + normalDirection);
         }
 
-        if ( Input.GetKey("s"))
+        if (thrusting == true)
         {
-            transform.Rotate(1, 0, 0, Space.Self);
-            playerControlling = true;
-            timer = 0f;
+            if ( Input.GetKey("s"))
+                {
+                    transform.Rotate(1, 0, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                }
+            if (Input.GetKey("w"))
+                {
+                    transform.Rotate(-1, 0, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                }
+            if (Input.GetKey("a"))
+                {
+                    transform.Rotate(0, -1, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                }
+            if (Input.GetKey("d"))
+                {
+                    transform.Rotate(0, 1, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                }
         }
-        if (Input.GetKey("w"))
+        else if (thrusting == false)
         {
-            
-            transform.Rotate(-1, 0, 0, Space.Self);
-            playerControlling = true;
-            timer = 0f;
+            if ( Input.GetKey("s"))
+                {
+                    transform.Rotate(3, 0, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                }
+            if (Input.GetKey("w"))
+                {
+                    transform.Rotate(-3, 0, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                }
+            if (Input.GetKey("a"))
+                {
+                    transform.Rotate(0, -3, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                }
+            if (Input.GetKey("d"))
+                {
+                    transform.Rotate(0, 3, 0, Space.Self);
+                    playerControlling = true;
+                    timer = 0f;
+                } 
         }
-        if (Input.GetKey("a"))
-        {
-            
-            transform.Rotate(0, -1, 0, Space.Self);
-            playerControlling = true;
-            timer = 0f;
-        }
-        if (Input.GetKey("d"))
-        {
-            
-            transform.Rotate(0, 1, 0, Space.Self);
-            playerControlling = true;
-            timer = 0f;
-        }
+        
 
         // if(lookForwardTime)
         // {
