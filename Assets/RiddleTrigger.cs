@@ -11,21 +11,22 @@ public class RiddleTrigger : MonoBehaviour
 
     public GameObject Vessel;
     public VesselMovement VesselMovement_Script;
+
+    public bool isTrainingTrigger;
     // Start is called before the first frame update
 
     void Awake()
     {
-        // RiddlePannel = GameObject.Find("RiddlePannel");
-        // RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
-        // NewRiddleAvalable = GameObject.Find("NewIndicator");
+        RiddlePannel = GameObject.Find("RiddlePannel");
+        RiddlePannel_Script = RiddlePannel.GetComponent<RiddlePannel>();
+        NewRiddleAvalable = GameObject.Find("NewIndicator");
+        Vessel = GameObject.FindGameObjectWithTag("Vessel");
+        VesselMovement_Script = Vessel.GetComponent<VesselMovement>(); 
     }
 
     void Start()
     {
         
-        
-        Vessel = GameObject.FindGameObjectWithTag("Vessel");
-        VesselMovement_Script = Vessel.GetComponent<VesselMovement>();
     }
 
     // Update is called once per frame
@@ -39,10 +40,14 @@ public class RiddleTrigger : MonoBehaviour
         if(other.name.Contains("weenie"))
         {
             VesselMovement_Script.nextTrigger();
+            if(!isTrainingTrigger)
+            {
+                RiddlePannel_Script.addRiddlePart();
+                NewRiddleAvalable.SetActive(true);
+            }
             Destroy(gameObject);
         }
-        //RiddlePannel_Script.addRiddlePart();
-        //NewRiddleAvalable.SetActive(true);
+        
         
     }
 }

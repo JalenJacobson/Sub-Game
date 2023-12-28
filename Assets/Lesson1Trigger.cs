@@ -18,6 +18,7 @@ public class Lesson1Trigger : MonoBehaviour
     {
         
     }
+    
     void OnTriggerEnter(Collider other)
     {
         if(other.name.Contains("weenie"))
