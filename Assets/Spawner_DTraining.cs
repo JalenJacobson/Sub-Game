@@ -23,12 +23,7 @@ public class Spawner_DTraining : MonoBehaviour
             SchoolUI.SendMessage("P2Lesson2");
             StartCoroutine("spawn2");
         }
-        if(enemiesKilled >= 25)
-        {
-            SchoolUI.SendMessage("P2Lesson3");
-            schoolManager.SendMessage("schoolisDone");
-            Destroy(gameObject, 1);
-        }
+        
     }
 
 
@@ -87,6 +82,12 @@ public class Spawner_DTraining : MonoBehaviour
     public void killedOne()
     {
         enemiesKilled += 1;
+        if(enemiesKilled >= 25)
+        {
+            SchoolUI.SendMessage("P2Lesson3");
+            schoolManager.SendMessage("schoolisDone");
+            //Destroy(gameObject, 1);
+        }
     }
 
 }

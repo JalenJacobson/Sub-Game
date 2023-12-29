@@ -7,6 +7,7 @@ public class OpenDoor : MonoBehaviour
     public Animator anim;
     public WeenieArmy WeenieArmy;
     public bool doorReady = true;
+    public SwimSchool SwimSchool;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +34,7 @@ public class OpenDoor : MonoBehaviour
         {
             doorReady = true;
             anim.Play("Activated");
+            SwimSchool.SendMessage("destroySchool");
 
         }
     }

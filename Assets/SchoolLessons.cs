@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SchoolLessons : MonoBehaviour
 {
-    public Animator anim;
+    public GameObject ResumerCanvas, StartSchoolCanvas;
+    public GameObject P1Lesson1_ui, P1Lesson2_ui, P1Lesson3_ui, P1Completed_ui;
+    public GameObject P2Lesson1_ui, P2Lesson2_ui, P2Completed_ui;
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        ResumerCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,33 +21,62 @@ public class SchoolLessons : MonoBehaviour
 
     public void P1Lesson1()
     {
-        anim.Play("P1StartSchool");
+        StartSchoolCanvas.SetActive(false);
+        ResumerCanvas.SetActive(true);
+        P1Lesson1_ui.SetActive(true);
+        Time.timeScale = 0f;
     }
     public void P1Lesson2()
     {
-        anim.Play("P1Lesson2");
+        ResumerCanvas.SetActive(true);
+        P1Lesson2_ui.SetActive(true);
+        Time.timeScale = 0f;
     }
     public void P1Lesson3()
     {
-        anim.Play("P1Lesson3");
+        ResumerCanvas.SetActive(true);
+        P1Lesson3_ui.SetActive(true);
+        Time.timeScale = 0f;
     }
     public void P1Complete()
     {
-        anim.Play("P1Completed");
+        ResumerCanvas.SetActive(true);
+        P1Completed_ui.SetActive(true);
+        Time.timeScale = 0f;
     }
 
 
 
     public void P2Lesson1()
     {
-        anim.Play("P2StartSchool");
+        ResumerCanvas.SetActive(true);
+        P2Lesson1_ui.SetActive(true);
+        Time.timeScale = 0f;
     }
     public void P2Lesson2()
     {
-        anim.Play("P2Lesson2");
+        ResumerCanvas.SetActive(true);
+        P2Lesson2_ui.SetActive(true);
+        Time.timeScale = 0f;
     }
+
     public void P2Lesson3()
     {
-        anim.Play("P2Completed");
+        ResumerCanvas.SetActive(true);
+        P2Completed_ui.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void Begin()
+    {
+        P1Lesson1_ui.SetActive(false);
+        P1Lesson2_ui.SetActive(false);
+        P1Lesson3_ui.SetActive(false);
+        P1Completed_ui.SetActive(false);
+        P2Lesson1_ui.SetActive(false);
+        P2Lesson2_ui.SetActive(false);
+        P2Completed_ui.SetActive(false);
+        ResumerCanvas.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

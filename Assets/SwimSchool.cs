@@ -41,6 +41,11 @@ public class SwimSchool : MonoBehaviour
     {
         yield return new WaitForSeconds(3f);
         Door.SendMessage("beginJourney");
+        
+    }
+    public void destroySchool()
+    {
         Destroy(gameObject);
     }
+
 }
