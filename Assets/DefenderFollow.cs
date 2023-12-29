@@ -45,6 +45,7 @@ public class DefenderFollow : MonoBehaviour
         audioSource.Play();
         audiosource_flap.clip = flapper;
         audiosource_flap.Play();
+        Destroy(gameObject, 15);
     }
 
     public void pickRandoms()

@@ -15,6 +15,7 @@ public class Spawner_DTraining : MonoBehaviour
     public bool spawned = false;
     public bool lastSpawn = false;
     public SwimSchool schoolManager;
+    public bool lessonComplete = false;
 
     void Update()
     {
@@ -22,6 +23,7 @@ public class Spawner_DTraining : MonoBehaviour
         {
             SchoolUI.SendMessage("P2Lesson2");
             StartCoroutine("spawn2");
+            lastSpawn = true;
         }
         
     }
@@ -69,7 +71,6 @@ public class Spawner_DTraining : MonoBehaviour
 
     public IEnumerator spawn2()
     {
-        lastSpawn = true;
         yield return new WaitForSeconds(5f);
         for(var i = 0; i <= spawn2Amount; i++)
             {
@@ -82,10 +83,11 @@ public class Spawner_DTraining : MonoBehaviour
     public void killedOne()
     {
         enemiesKilled += 1;
-        if(enemiesKilled >= 25)
+        if(enemiesKilled >= 25 && lessonComplete == false)
         {
             SchoolUI.SendMessage("P2Lesson3");
             schoolManager.SendMessage("schoolisDone");
+            lessonComplete = true;
             //Destroy(gameObject, 1);
         }
     }
