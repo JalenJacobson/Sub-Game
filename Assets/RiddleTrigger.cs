@@ -11,6 +11,7 @@ public class RiddleTrigger : MonoBehaviour
 
     public GameObject Vessel;
     public VesselMovement VesselMovement_Script;
+    public GameObject ScreenRiddle;
 
     public bool isTrainingTrigger;
     // Start is called before the first frame update
@@ -44,6 +45,7 @@ public class RiddleTrigger : MonoBehaviour
             {
                 RiddlePannel_Script.addRiddlePart();
                 NewRiddleAvalable.SetActive(true);
+                ScreenRiddle.SetActive(true);
             }
             Destroy(gameObject);
         }

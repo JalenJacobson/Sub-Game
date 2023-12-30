@@ -9,6 +9,7 @@ public class SwimSchool : MonoBehaviour
     public OpenDoor Door;
     public GameObject shooterTraining;
     public SchoolLessons SchoolUI;
+    public SkipTraining Skip;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class SwimSchool : MonoBehaviour
         {
             SchoolUI.SendMessage("P1Lesson1");
             schoolStarted = true;
+            Skip.SendMessage("NotSkipped");
             //swimSchoolCompleted = true;
         }
     }
@@ -35,6 +37,11 @@ public class SwimSchool : MonoBehaviour
     {
         swimSchoolCompleted = true;
         StartCoroutine("schoolsOut");
+    }
+    public void schoolisSkipped()
+    {
+        swimSchoolCompleted = true;
+        Door.SendMessage("beginJourney");
     }
 
     public IEnumerator schoolsOut()
