@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3379457365713024706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1000}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3379457365713024706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -111,7 +111,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4293984000
-  m_Size: 10
+  m_Size: 14.84
 --- !u!114 &3379457365713024719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +129,8 @@ MonoBehaviour:
   NewRiddleAvalable: {fileID: 0}
   Vessel: {fileID: 0}
   VesselMovement_Script: {fileID: 0}
+  ScreenRiddle: {fileID: 0}
+  isTrainingTrigger: 0
 --- !u!123 &2099895859934521030
 LensFlare:
   m_ObjectHideFlags: 0

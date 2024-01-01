@@ -35604,7 +35604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 131164, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 408734, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: m_LocalScale.x
@@ -35688,7 +35688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11444152, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11444152, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: ForceAmount
