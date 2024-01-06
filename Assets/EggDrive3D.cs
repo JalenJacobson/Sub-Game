@@ -21,6 +21,8 @@ public class EggDrive3D : MonoBehaviour
     public bool braking = false;
     private Vector3 jumpBufferDirection;
     public bool grappling = false;
+    public GameObject jumpFX;
+    public GameObject landFX;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,7 +43,10 @@ public class EggDrive3D : MonoBehaviour
         {
             jumpBuffer -= Time.deltaTime;
         }
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(jumpingFx());
+        }
         
     }
 
@@ -122,11 +127,11 @@ public class EggDrive3D : MonoBehaviour
 
     public void processInputs()
     {
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey("s"))
         {
             y = -1;  
         }
-        if (Input.GetKeyUp(KeyCode.DownArrow))
+        if (Input.GetKeyUp("s"))
         {
             y=0;
             if(!grappling)
@@ -134,11 +139,11 @@ public class EggDrive3D : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2);
             }
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey("w"))
         {
             y = 1;  
         }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
+        if (Input.GetKeyUp("w"))
         {;
             y=0;
             if(!grappling)
@@ -147,11 +152,11 @@ public class EggDrive3D : MonoBehaviour
             }
              
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey("a"))
         {
             x = -1;  
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (Input.GetKeyUp("a"))
         {
             x=0;
             if(!grappling)
@@ -160,11 +165,11 @@ public class EggDrive3D : MonoBehaviour
             }
               
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey("d"))
         {
             x = 1;  
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp("d"))
         {
             x=0;
             if(!grappling)
@@ -232,6 +237,7 @@ public class EggDrive3D : MonoBehaviour
             rb.AddForce(new Vector3(0, 800, 0));
             rb.AddForce(direction * jumpForce);
             jumpClicks --;
+            
             // StartCoroutine(leaveGround(.001f));      
         }  
         else if(remainingJumps == 1)
@@ -251,6 +257,13 @@ public class EggDrive3D : MonoBehaviour
             // rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y/2, rb.velocity.z);
         }
         
+    }
+
+    IEnumerator jumpingFx()
+    {
+        jumpFX.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+        jumpFX.gameObject.SetActive(false);
     }
     
 }
