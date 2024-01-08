@@ -16,6 +16,10 @@ public class msFollowObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       transform.position = MS.GetComponent<Transform>().position + new Vector3(0, yOffset, 0);  
+        if(transform.position.y >= 65)
+        {
+            transform.position = MS.GetComponent<Transform>().position + new Vector3(0, yOffset, 0);  
+        }
+       
     }
 }
