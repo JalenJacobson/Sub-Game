@@ -14,6 +14,7 @@ public class RiddleTrigger : MonoBehaviour
     public GameObject ScreenRiddle;
 
     public bool isTrainingTrigger;
+    public bool shouldAddRiddlePart = false;
     // Start is called before the first frame update
 
     void Awake()
@@ -41,7 +42,7 @@ public class RiddleTrigger : MonoBehaviour
         if(other.name.Contains("weenie"))
         {
             VesselMovement_Script.nextTrigger();
-            if(!isTrainingTrigger)
+            if(!isTrainingTrigger && shouldAddRiddlePart)
             {
                 RiddlePannel_Script.addRiddlePart();
                 NewRiddleAvalable.SetActive(true);
@@ -49,6 +50,7 @@ public class RiddleTrigger : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        
         
         
     }

@@ -23,11 +23,21 @@ public class EggDrive3D : MonoBehaviour
     public bool grappling = false;
     public GameObject jumpFX;
     public GameObject landFX;
+    public LivesRemainingPanel LivesRemainingPanel_Script;
+    public Vector3 respawnPoint;
+    public int livesRemaining = 3;
+    
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    void Start()
+    {
+        respawnPoint = transform.position;
+        LivesRemainingPanel_Script = GameObject.Find("LivesRemainingImages").GetComponent<LivesRemainingPanel>();
     }
 
     // Update is called once per frame
@@ -65,6 +75,7 @@ public class EggDrive3D : MonoBehaviour
         }
         if(collision.gameObject.tag == ("ground"))
         {
+            print("touching ground");
             remainingJumps = 2;
             jumpClicks = 2;
             if(jumpBuffer > 0)
@@ -204,7 +215,7 @@ public class EggDrive3D : MonoBehaviour
         airTravelSpeed = 150;
         remainingJumps = 2;
         jumpClicks = 2;
-        speed = 20;
+        speed = 60;
         // rb.drag = 0;
     }
     public void endGrapple()
@@ -264,6 +275,19 @@ public class EggDrive3D : MonoBehaviour
         jumpFX.gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
         jumpFX.gameObject.SetActive(false);
+    }
+
+    public void deathByFall()
+    {
+        StartCoroutine("fall");
+    }
+
+    public IEnumerator fall()
+    {
+        LivesRemainingPanel_Script.loseALife();
+        yield return new WaitForSeconds(1.5f);
+        rb.velocity = new Vector3(0,0,0);
+        transform.position = respawnPoint;
     }
     
 }

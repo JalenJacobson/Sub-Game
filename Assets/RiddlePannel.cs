@@ -19,7 +19,10 @@ public class RiddlePannel : MonoBehaviour
     }
     void Start()
     {
-        
+        for(var i = 0; i <= riddlePartsUnlocked; i++)
+        {
+            riddleParts[i].SetActive(true);
+        }
     }
 
     // Update is called once per frame

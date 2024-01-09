@@ -18,6 +18,7 @@ TagManager:
   - SpawnerTrainer1
   - Armored
   - Grapple
+  - egg
   layers:
   - Default
   - TransparentFX
