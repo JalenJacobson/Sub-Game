@@ -15,6 +15,7 @@ public class JumpPointer : MonoBehaviour
     public LayerMask canGrapple;
     private SpringJoint joint;
     private Vector3 currentGrapplePosition;
+    public bool inRangeGrapple = false;
 
     void Awake()
     {
@@ -67,7 +68,7 @@ public class JumpPointer : MonoBehaviour
 
     void startGrapple()
     {
-        
+        if(!inRangeGrapple) return;
         RaycastHit hit;
         if(Physics.Raycast(grappleShootPoint.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, canGrapple))
         {
