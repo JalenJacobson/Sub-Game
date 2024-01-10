@@ -7,29 +7,24 @@ public class MSLanding : MonoBehaviour
 {
 
     public GameObject Mothership;
-    public Animator MSanim;
+    // public Animator MSanim;
     public CinemachineVirtualCamera virtualCamera;
     public bool zoomOut = false;
     public GameObject RiddleGuessPannel;
     public bool startLanding = false;
-    public bool moveCamera = false;
+    public bool zoomIn = false;
+    public GameObject LZ;
 
     public GameObject panelOpenButton;
 
-    public GameObject vessel;
-    public VesselMovement VesselMovement_Script;
-
     public Renderer rend;
     public bool alreadyTriggered = false;
-    public bool landingSequenceStarted = false;
-    // Start is called before the first frame update
     
     void Awake()
     {
-        Mothership = GameObject.Find("MotherShip_Textured");
-        MSanim = Mothership.GetComponent<Animator>();
-        vessel = GameObject.FindGameObjectWithTag("Vessel");
-        VesselMovement_Script = vessel.GetComponent<VesselMovement>();
+        Mothership = GameObject.FindGameObjectWithTag("egg");
+        // MSanim = Mothership.GetComponent<Animator>();
+        
         rend = GetComponent<Renderer>();
         
     }
@@ -43,18 +38,10 @@ public class MSLanding : MonoBehaviour
 
     void FixedUpdate()
     {
-        // old mother ship location 1891, -1314, 18328
-        //new location
-        // if(Input.GetKeyDown("q"))
-        // {
-        //     StartCoroutine("landingSequence");
-        //     // startLanding = true;
-        // }
-
         if(startLanding)
         {
             var fromPosition = Mothership.GetComponent<Transform>().position;
-            var toPosition = new Vector3(-39, -92, 7303);
+            var toPosition = LZ.GetComponent<Transform>().position + new Vector3(0, 4, 0);
             Mothership.GetComponent<Transform>().position = Vector3.Lerp(fromPosition, toPosition, .05f);
 
             var fromRotation = Mothership.GetComponent<Transform>().rotation;
@@ -62,29 +49,18 @@ public class MSLanding : MonoBehaviour
             Mothership.GetComponent<Transform>().rotation = Quaternion.Lerp(fromRotation, toRotation, .05f);
             
         }
-        if(landingSequenceStarted)
+        if(zoomIn)
         {
-            var vesselToPosition = new Vector3(-39, 150, 7303);
-            if(vessel.GetComponent<Transform>().position != vesselToPosition)
-            {
-                vessel.GetComponent<Transform>().position = vesselToPosition;
-            }
-
-            var vesselToRotation = Quaternion.Euler(new Vector3(0,0,0));
-            if(vessel.GetComponent<Transform>().rotation != vesselToRotation)
-            {
-                vessel.GetComponent<Transform>().rotation = vesselToRotation;
-            }
+            var endZoomIn = new Vector3(0, -10, -6);
+            virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = Vector3.Lerp(virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset, endZoomIn, Time.deltaTime * 1f);
         }
-
-       
     }
 
 
     void OnTriggerEnter(Collider other)
     {
         if(alreadyTriggered) return;
-        if(other.name.Contains("wennie") || other.name.Contains("Mother"))
+        if(other.tag == "egg")
         {
             rend.enabled = false;
             StartCoroutine("landingSequence");
@@ -96,39 +72,22 @@ public class MSLanding : MonoBehaviour
 
     public IEnumerator landingSequence()
     {
-        Mothership.transform.parent = null;
         Mothership.GetComponent<SphereCollider>().enabled = false;
+        Mothership.GetComponent<Rigidbody>().isKinematic = true;
+        GameObject.Find("Player2").SetActive(false);
+        GameObject.Find("LivesRemainingImages").SetActive(false);
         alreadyTriggered = true;
-        landingSequenceStarted = true;
-        // vessel.transform.parent = Mothership.transform;
-        
-        yield return new WaitForSeconds(.25f);
-        // moveVessel();
-        // vessel.GetComponent<Rigidbody>().isKinematic = true;
-        // moveVessel();
-        yield return new WaitForSeconds(.25f);
-        virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = new Vector3(0, 0, -700);
+        virtualCamera.m_LookAt = Mothership.GetComponent<Transform>();
+        // virtualCamera.m_Follow = Mothership.GetComponent<Transform>();
+        zoomIn = true;
         yield return new WaitForSeconds(6);
         startLanding = true;
         yield return new WaitForSeconds(5);
-        MSanim.Play("Landing");
+        // play foot animation here
         yield return new WaitForSeconds(5);
-        panelOpenButton.SetActive(false);
+        // panelOpenButton.SetActive(false);
         RiddleGuessPannel.SetActive(true);
 
 
     }
-
-    public void moveVessel()
-    {
-        
-            var vesselToPosition = new Vector3(-39, 150, 7303);
-            vessel.GetComponent<Transform>().position = vesselToPosition;
-
-            
-            var vesselToRotation = Quaternion.Euler(new Vector3(0,0,0));
-            vessel.GetComponent<Transform>().rotation = vesselToRotation;
-    }
-
-    
 }

@@ -5,11 +5,16 @@ using UnityEngine;
 public class PanelManagerScene2 : MonoBehaviour
 {
     public GameObject RiddlePannel;
+    public GameObject SolveRiddlePannel;
+    public GameObject WinPannel;
+
    
     // Start is called before the first frame update
     void Start()
     {
         RiddlePannel.SetActive(false);
+        SolveRiddlePannel.SetActive(false);
+        WinPannel.SetActive(false);
         
     }
 
