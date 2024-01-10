@@ -72,6 +72,11 @@ public class JumpPointer : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(grappleShootPoint.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, canGrapple))
         {
+            if(!hit.transform.gameObject.GetComponent<GrapplePoint>().grappleable)
+            {
+                print("didn't work");
+                return;
+            } 
             print("should grapple");
             eggDrive_Script.startGrapple();
             grapplePoint = hit.transform.position;

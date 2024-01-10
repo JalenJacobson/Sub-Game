@@ -15,16 +15,16 @@ public class canGrappleTrigger : MonoBehaviour
     {
         if(other.tag == "Grapple")
         {
-            // need some indication here that it is now grappleable
             JumpPointer_Script.inRangeGrapple = true;
+            other.SendMessage("canGrapple");
         }
     }
     void OnTriggerExit(Collider other)
     {
         if(other.tag == "Grapple")
         {
-            // need some indication here that it is now grappleable
             JumpPointer_Script.inRangeGrapple = false;
+            other.SendMessage("cantGrapple");
         }
     }
 }

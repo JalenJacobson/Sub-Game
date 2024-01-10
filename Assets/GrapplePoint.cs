@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class GrapplePoint : MonoBehaviour
 {
-    public Light lt;
-    Color color0 = Color.red;
-    Color color1 = Color.blue;
+    // public Light lt;
+    // Color color0 = Color.red;
+    // Color color1 = Color.blue;
+    public bool grappleable = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        lt = GetComponent<Light>();
+        // lt = GetComponent<Light>();
     }
 
     // Update is called once per frame
@@ -20,10 +22,13 @@ public class GrapplePoint : MonoBehaviour
 
     public void canGrapple()
     {
-        lt.color = color1;
+        // lt.color = color1;
+        grappleable = true;
+
     }
     public void cantGrapple()
     {
-        lt.color = color0;
+        // lt.color = color0;
+        grappleable = false;
     }
 }
