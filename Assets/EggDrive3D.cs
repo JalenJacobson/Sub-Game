@@ -54,11 +54,6 @@ public class EggDrive3D : MonoBehaviour
         {
             jumpBuffer -= Time.deltaTime;
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(jumpingFx());
-        }
-        
     }
 
     void FixedUpdate()
@@ -215,7 +210,7 @@ public class EggDrive3D : MonoBehaviour
         grappling = true;
         airTravelSpeed = 150;
         remainingJumps = 2;
-        jumpClicks = 2;
+        
         speed = 60;
         // rb.drag = 0;
     }
@@ -224,6 +219,7 @@ public class EggDrive3D : MonoBehaviour
         grappling = false;
         airTravelSpeed = 25;
         speed = 80;
+        jumpClicks = 2;
     }
 
     public void Move()
@@ -244,19 +240,22 @@ public class EggDrive3D : MonoBehaviour
         {
             jumpBuffer = 0;
         }
+        if(jumpClicks <= 0 || grappling) return;
         if(remainingJumps == 2)
         {
-            rb.AddForce(new Vector3(0, 800, 0));
+            rb.AddForce(new Vector3(0, 1100, 0));
             rb.AddForce(direction * jumpForce);
+            StartCoroutine(jumpingFx());
             jumpClicks --;
             
             // StartCoroutine(leaveGround(.001f));      
         }  
         else if(remainingJumps == 1)
         {
-            if(jumpClicks == 0) return;
+            if(jumpClicks <= 0) return;
             rb.AddForce(direction * jumpForce);
-            rb.AddForce(new Vector3(0, 800, 0));
+            rb.AddForce(new Vector3(0, 1100, 0));
+            StartCoroutine(jumpingFx());
             remainingJumps --; 
             jumpClicks --;
         }
@@ -274,7 +273,7 @@ public class EggDrive3D : MonoBehaviour
     IEnumerator jumpingFx()
     {
         jumpFX.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.25f);
         jumpFX.gameObject.SetActive(false);
     }
 
