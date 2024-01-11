@@ -11,7 +11,7 @@ public class LivesRemainingPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        livesRemaining = 3;
+        livesRemaining = 10;
         LoseScreen = GameObject.Find("LoseScreen");
         LoseScreen.SetActive(false);
         anim = GetComponent<Animator>();

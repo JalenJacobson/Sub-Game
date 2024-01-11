@@ -13,6 +13,7 @@ public class EggDrive3D : MonoBehaviour
     public int jumpForce;
     public int bounceForce;
     public bool grounded;
+    public bool airBoostUsed;
     public float jumpBuffer = .1f;
     public int remainingJumps = 2;
     public int jumpClicks = 2;
@@ -72,8 +73,8 @@ public class EggDrive3D : MonoBehaviour
         if(collision.gameObject.tag == ("ground"))
         {
             print("touching ground");
-            remainingJumps = 2;
-            jumpClicks = 2;
+           
+            airBoostUsed = false;
             if(jumpBuffer > 0)
             {
                 jump(jumpBufferDirection);
@@ -90,6 +91,7 @@ public class EggDrive3D : MonoBehaviour
         if(collision.gameObject.tag == ("ground"))
         {
             remainingJumps = 2;
+            jumpClicks = 2;
             grounded = true;
             coyoteTime = 0.5f;
         }
@@ -134,6 +136,7 @@ public class EggDrive3D : MonoBehaviour
 
     public void processInputs()
     {
+        
         if (Input.GetKey("s"))
         {
             y = -1;  
@@ -185,6 +188,10 @@ public class EggDrive3D : MonoBehaviour
             }
               
         }
+        if(Input.GetKeyDown("j") || Input.GetKeyDown("r") || Input.GetKeyDown("q"))
+        {
+            boost();
+        }
         
     }
 
@@ -229,6 +236,24 @@ public class EggDrive3D : MonoBehaviour
         rb.AddForce(new Vector3(x * speed, 0, y * speed));
     }
 
+    public void boost()
+    {
+        if(grappling || airBoostUsed) return;
+        if(!grounded)
+        {
+            airBoostUsed = true;
+            StartCoroutine(airBoost());
+        }
+        rb.AddForce(x * 2500, 0 , y * 2500);
+    }
+
+    public IEnumerator airBoost()
+    {
+        airTravelSpeed = 150;
+        yield return new WaitForSeconds(.5f);
+        airTravelSpeed = 25;
+    }
+
     public void jump(Vector3 direction)
     {
         if(!grounded && remainingJumps <= 0)
@@ -243,7 +268,7 @@ public class EggDrive3D : MonoBehaviour
         if(jumpClicks <= 0 || grappling) return;
         if(remainingJumps == 2)
         {
-            rb.AddForce(new Vector3(0, 1100, 0));
+            rb.AddForce(new Vector3(0, 1500, 0));
             rb.AddForce(direction * jumpForce);
             StartCoroutine(jumpingFx());
             jumpClicks --;
@@ -254,7 +279,7 @@ public class EggDrive3D : MonoBehaviour
         {
             if(jumpClicks <= 0) return;
             rb.AddForce(direction * jumpForce);
-            rb.AddForce(new Vector3(0, 1100, 0));
+            rb.AddForce(new Vector3(0, 1500, 0));
             StartCoroutine(jumpingFx());
             remainingJumps --; 
             jumpClicks --;
