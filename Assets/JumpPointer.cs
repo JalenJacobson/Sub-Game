@@ -13,9 +13,10 @@ public class JumpPointer : MonoBehaviour
     public Transform grappleShootPoint, MotherShip;
     public EggDrive3D eggDrive_Script;
     public LayerMask canGrapple;
-    private SpringJoint joint;
+    public SpringJoint joint;
     private Vector3 currentGrapplePosition;
     public bool inRangeGrapple = false;
+    public bool grappling = false;
 
     void Awake()
     {
@@ -49,6 +50,10 @@ public class JumpPointer : MonoBehaviour
         {
             endGrapple();
         }
+        if(!grappling && joint != null)
+        {
+            Destroy(joint);
+        }
     }
 
     void LateUpdate()
@@ -69,6 +74,7 @@ public class JumpPointer : MonoBehaviour
     void startGrapple()
     {
         if(!inRangeGrapple) return;
+        grappling = true;
         RaycastHit hit;
         if(Physics.Raycast(grappleShootPoint.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, canGrapple))
         {
@@ -101,6 +107,7 @@ public class JumpPointer : MonoBehaviour
     }
     void endGrapple()
     {
+        grappling = false;
         eggDrive_Script.endGrapple();
         lr.positionCount = 0;
         Destroy(joint);

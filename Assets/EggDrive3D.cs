@@ -27,6 +27,7 @@ public class EggDrive3D : MonoBehaviour
     public LivesRemainingPanel LivesRemainingPanel_Script;
     public Vector3 respawnPoint;
     public int livesRemaining = 3;
+    public bool downwardSlide = false;
     
     
 
@@ -61,6 +62,10 @@ public class EggDrive3D : MonoBehaviour
     {
         Move();
         governSpeed();
+        if(downwardSlide)
+        {
+            rb.AddForce(80, -80, 0);
+        }
     }
 
     void OnCollisionEnter(Collision collision)
