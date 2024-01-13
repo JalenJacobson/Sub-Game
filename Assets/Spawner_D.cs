@@ -14,6 +14,7 @@ public class Spawner_D : MonoBehaviour
     public Animator anim;
     public bool keepSpawning = false;
     public bool alreadyEntered = false;
+    public GameObject Camp;
 
     public void Start()
     {
@@ -75,6 +76,10 @@ public class Spawner_D : MonoBehaviour
     public void Explode()
     {
         anim.Play("Nest_Dead");
+        if(Camp != null)
+        {
+            Camp.GetComponent<Animator>().Play("CampBeat");
+        }
         keepSpawning = false;
         isDead = true;
     }

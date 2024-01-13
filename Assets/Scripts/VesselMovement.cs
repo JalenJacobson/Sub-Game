@@ -243,6 +243,10 @@ public class VesselMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(lookingAtNextTrigger == true)
+        {
+            lookAtNextTrigger();
+        }
         if(vesselDead) return;
         // playerControlling = false;
         if (Keyboard.current[Key.Space].isPressed)
@@ -342,10 +346,7 @@ public class VesselMovement : MonoBehaviour
         {
             lookAtNextTrigger();
         }
-        if(lookingAtNextTrigger == true)
-        {
-            lookAtNextTrigger();
-        }
+        
 
         
     }
@@ -406,7 +407,17 @@ public class VesselMovement : MonoBehaviour
         currentRiddleTrigger++;
         riddleTriggers[currentRiddleTrigger].SetActive(true);
         RiddleTriggerFollowPoint_Script.nextTrigger(riddleTriggers[currentRiddleTrigger]);
+        StartCoroutine("getTriggerLookAtNext");
         addHealth();
+    }
+
+    public IEnumerator getTriggerLookAtNext()
+    {
+       lookingAtNextTrigger = true;
+       vesselDead = true;
+       yield return new WaitForSeconds(1.5f);
+       lookingAtNextTrigger = false;
+       vesselDead = false; 
     }
 
     public void addHealth()
