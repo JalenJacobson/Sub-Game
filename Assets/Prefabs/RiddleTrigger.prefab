@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3379457365713024706}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -131,6 +131,7 @@ MonoBehaviour:
   VesselMovement_Script: {fileID: 0}
   ScreenRiddle: {fileID: 0}
   isTrainingTrigger: 0
+  shouldAddRiddlePart: 0
 --- !u!123 &2099895859934521030
 LensFlare:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class SkipTraining : MonoBehaviour
         Hit1.moveAtVessel();
         yield return new WaitForSeconds(.2f);
         Hit2.moveAtVessel();
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
         schoolManager.SendMessage("schoolisSkipped");
     }
 

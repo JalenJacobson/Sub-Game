@@ -31,6 +31,10 @@ public class RiddleTriggerTracker : MonoBehaviour
             print("isoffscreen");
         }
         else if(!isOffScreen) gameObject.GetComponent<Image>().enabled = true;
+        if(point.z >= 1000)
+        {
+            point.z = 1000;
+        }
         
         
         transform.position = point;
