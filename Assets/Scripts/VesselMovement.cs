@@ -403,12 +403,12 @@ public class VesselMovement : MonoBehaviour
 
     public void nextTrigger()
     {
+        addHealth();
         currentCheckPoint = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position;
         currentRiddleTrigger++;
         riddleTriggers[currentRiddleTrigger].SetActive(true);
         RiddleTriggerFollowPoint_Script.nextTrigger(riddleTriggers[currentRiddleTrigger]);
         StartCoroutine("getTriggerLookAtNext");
-        addHealth();
     }
 
     public IEnumerator getTriggerLookAtNext()
@@ -428,6 +428,7 @@ public class VesselMovement : MonoBehaviour
             health = 100;
         }
         else health = newHealth;
+        LifeBar.setHealth(health);
     }
 
     // public void revertToCheckPoint()
@@ -516,13 +517,14 @@ public class VesselMovement : MonoBehaviour
 
     public void speedMove()
     {
+        StopAllCoroutines();
         StartCoroutine("SpeedMoveRoutine");
     }
 
     public IEnumerator SpeedMoveRoutine()
     {
         speed = 2000;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         speed = 600;
     }
 }
