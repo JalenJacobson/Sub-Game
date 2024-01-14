@@ -69,7 +69,7 @@ public class grenade : Bullet
 
     public override void release(float releaseTime, Vector3 aimNew)
     {
-        if(releaseTime < 3)
+        if(releaseTime < 1)
         {
             Destroy(gameObject);
         }
