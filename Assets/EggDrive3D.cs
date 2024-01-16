@@ -106,6 +106,7 @@ public class EggDrive3D : MonoBehaviour
     {
         if(collision.gameObject.tag == ("ground"))
         {
+            groundJump = false;
             rb.drag = 1;
             grounded = false;
             StartCoroutine(leaveGround(.2f));
@@ -259,8 +260,11 @@ public class EggDrive3D : MonoBehaviour
         airTravelSpeed = 25;
     }
 
+    public bool groundJump;
+
     public void jump(Vector3 direction)
     {
+        // if(grounded && groundJump) return;
         if(!grounded && remainingJumps <= 0)
         {
             jumpBuffer = .1f;
@@ -273,12 +277,11 @@ public class EggDrive3D : MonoBehaviour
         if(jumpClicks <= 0 || grappling) return;
         if(remainingJumps == 2)
         {
+            groundJump = true;
             rb.AddForce(new Vector3(0, 1500, 0));
             rb.AddForce(direction * jumpForce);
             StartCoroutine(jumpingFx());
-            jumpClicks --;
-            
-            // StartCoroutine(leaveGround(.001f));      
+            jumpClicks --;     
         }  
         else if(remainingJumps == 1)
         {
