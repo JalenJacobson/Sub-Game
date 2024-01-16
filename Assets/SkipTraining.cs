@@ -10,6 +10,7 @@ public class SkipTraining : MonoBehaviour
     public GameObject Lesson22;
     public Lesson2Hit1 Hit1;
     public Lesson2Hit2 Hit2;
+    public VesselMovement Weenie;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class SkipTraining : MonoBehaviour
         {
             schoolSkipped = true;
             StartCoroutine("getFirstRiddle");
+            Weenie.SendMessage("startGame");
         }
     }
 

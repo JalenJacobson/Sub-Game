@@ -10,6 +10,7 @@ public class SwimSchool : MonoBehaviour
     public GameObject shooterTraining;
     public SchoolLessons SchoolUI;
     public SkipTraining Skip;
+    public VesselMovement Weenie;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class SwimSchool : MonoBehaviour
             SchoolUI.SendMessage("P1Lesson1");
             schoolStarted = true;
             Skip.SendMessage("NotSkipped");
+            Weenie.SendMessage("startGame");
             //swimSchoolCompleted = true;
         }
     }

@@ -7,6 +7,7 @@ public class Lesson1Trigger : MonoBehaviour
     public SchoolLessons SchoolUI;
     public Lesson2Hit1 Lesson2;
     public GameObject Lesson2Hit1;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -7,6 +7,7 @@ public class E_Shooter_TakeDamage : MonoBehaviour
     public GameObject parentShooter;
     public float health;
     public Animator anim;
+    public ShooterSlider healthbar;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class E_Shooter_TakeDamage : MonoBehaviour
         {
             health -= 1;
             StartCoroutine(Dmg_Indicator());
+            healthbar.setHealth(health);
             //should play take damage animation
         }
     }

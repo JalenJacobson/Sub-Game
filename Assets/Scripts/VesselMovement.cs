@@ -59,6 +59,7 @@ public class VesselMovement : MonoBehaviour
     public AudioClip ThrusterIdle;
     public AudioClip ThrusterDown;
     public RiddleTriggerFollowPoint RiddleTriggerFollowPoint_Script;
+    
 
 
     // Start is called before the first frame update
@@ -508,10 +509,13 @@ public class VesselMovement : MonoBehaviour
 
     public void startGame()
     {
-        startGamePannel.SetActive(false);
         
         vesselDead = false;
-        //MenuButton.SetActive(true);
+        //MenuButton.SetActive(true);  
+    }
+    public void closeMenustart()
+    {
+        startGamePannel.SetActive(false);
         RiddlePannel.SetActive(false);
     }
 
