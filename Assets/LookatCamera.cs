@@ -15,5 +15,7 @@ public class LookatCamera : MonoBehaviour
     void Update()
     {
         transform.LookAt(cam.GetComponent<Transform>());
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z);
+
     }
 }

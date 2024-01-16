@@ -19,6 +19,7 @@ TagManager:
   - Armored
   - Grapple
   - egg
+  - offsetTarget
   layers:
   - Default
   - TransparentFX
