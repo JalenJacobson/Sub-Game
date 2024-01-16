@@ -38146,6 +38146,7 @@ MonoBehaviour:
   respawnPoint: {x: 0, y: 0, z: 0}
   livesRemaining: 3
   downwardSlide: 0
+  groundJump: 0
 --- !u!54 &596185227
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38931,6 +38932,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: a73b6e6e8c3729943a86eb03d5efd9ef, type: 3}
       propertyPath: m_Name
       value: Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a73b6e6e8c3729943a86eb03d5efd9ef, type: 3}
+      propertyPath: m_TagString
+      value: ground
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a73b6e6e8c3729943a86eb03d5efd9ef, type: 3}
