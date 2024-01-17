@@ -15,7 +15,7 @@ public class EnemyShooterProjectile : MonoBehaviour
     public Animator anim;
       public AudioSource audioSource;
     public AudioClip Projectile_woosh;
-    public bool offset = true;
+    public bool offset = false;
 
     void Start()
     {
@@ -23,22 +23,23 @@ public class EnemyShooterProjectile : MonoBehaviour
         offsetTarget = GameObject.FindGameObjectWithTag("offsetTarget");
         rb = GetComponent<Rigidbody>();
         Destroy(gameObject, 8);
-        speed = 800;
+        speed = 1000;
         lockOn = true;
         anim = GetComponent<Animator>();
         audioSource.clip = Projectile_woosh;
         audioSource.Play();
-        StartCoroutine(lockOnWait());
+        offset = false;
+        //StartCoroutine(lockOnWait());
     }
 
     void FixedUpdate()
     {
         if(dead) return;
-        if(lockOn && offset == true)
-        {
-            gameObject.GetComponent<Rigidbody>().velocity = transform.up * speed;
-        }
-        else if(lockOn && offset == false)
+        // if(lockOn && offset == true)
+        // {
+        //     gameObject.GetComponent<Rigidbody>().velocity = transform.up * speed;
+        // }
+        if (lockOn && offset == false)
         {
             gameObject.GetComponent<Rigidbody>().velocity = transform.forward * speed;
             transform.LookAt(target.GetComponent<Transform>());
