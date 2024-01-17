@@ -6,6 +6,7 @@ public class JumpPointer : MonoBehaviour
 {
 
     public Transform target;
+    public Transform rockets;
     public GameObject Ship;
     public EggDrive3D Ship_Script;
     private LineRenderer lr;
@@ -17,6 +18,8 @@ public class JumpPointer : MonoBehaviour
     private Vector3 currentGrapplePosition;
     public bool inRangeGrapple = false;
     public bool grappling = false;
+    public Camera cam;
+   
 
     void Awake()
     {
@@ -28,6 +31,7 @@ public class JumpPointer : MonoBehaviour
     void Start()
     {
         Ship_Script = Ship.GetComponent<EggDrive3D>();
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -36,12 +40,18 @@ public class JumpPointer : MonoBehaviour
         transform.LookAt(target);
         if(Input.GetMouseButtonDown(0))
         {
-            Ship_Script.jump(transform.forward);
+            Ship_Script.jump(rockets.transform.forward);
         }
         if(Input.GetMouseButtonUp(0))
         {
             Ship_Script.jumpKill();
         }
+
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 1000f;
+        mousePos = cam.ScreenToWorldPoint(mousePos);
+        Debug.DrawRay(cam.transform.position, mousePos - cam.transform.position, Color.blue);
+
         if(Input.GetMouseButtonDown(1))
         {
             startGrapple();
@@ -52,7 +62,7 @@ public class JumpPointer : MonoBehaviour
         }
         if(!grappling && joint != null)
         {
-            Destroy(joint);
+            endGrapple();
         }
     }
 
@@ -75,15 +85,18 @@ public class JumpPointer : MonoBehaviour
     {
         if(!inRangeGrapple) return;
         grappling = true;
+
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if(Physics.Raycast(grappleShootPoint.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, canGrapple))
+
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity, canGrapple))
         {
             if(!hit.transform.gameObject.GetComponent<GrapplePoint>().grappleable)
             {
                 print("didn't work");
                 return;
             } 
-            print("should grapple");
+            print("should grapple" + hit.transform.name);
             eggDrive_Script.startGrapple();
             grapplePoint = hit.transform.position;
             joint = MotherShip.gameObject.AddComponent<SpringJoint>();
@@ -107,6 +120,7 @@ public class JumpPointer : MonoBehaviour
     }
     void endGrapple()
     {
+        
         grappling = false;
         eggDrive_Script.endGrapple();
         lr.positionCount = 0;
