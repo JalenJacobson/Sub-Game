@@ -82,12 +82,12 @@ public class InitiateDriveMotherShip : MonoBehaviour
         // virtualCamera.m_Lens.FieldOfView = 0;
         yield return new WaitForSeconds(2f);
         vessel.GetComponent<SphereCollider>().enabled = false;
-        Mothership.GetComponent<SphereCollider>().enabled = true;
+        //Mothership.GetComponent<SphereCollider>().enabled = true;
         // VesselMovement_Script.lookingAtNextTrigger = true;
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 5f;
         yield return new WaitForSeconds(2f);
         zoomOut = true;
-        Mothership.transform.parent = vessel.transform;
+        //Mothership.transform.parent = vessel.transform;
         VesselMovement_Script.speed = 2000;
         
         yield return new WaitForSeconds(8f);
