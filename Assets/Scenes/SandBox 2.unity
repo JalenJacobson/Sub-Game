@@ -38129,11 +38129,11 @@ MonoBehaviour:
   yUse: 0
   rb: {fileID: 0}
   speed: 80
-  jumpForce: 2000
+  jumpForce: 3000
   bounceForce: 5000
   grounded: 1
   airBoostUsed: 0
-  jumpBuffer: 3
+  jumpBuffer: 0.1
   remainingJumps: 2
   jumpClicks: 2
   coyoteTime: 0.1

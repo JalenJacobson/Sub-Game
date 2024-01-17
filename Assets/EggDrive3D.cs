@@ -76,18 +76,23 @@ public class EggDrive3D : MonoBehaviour
             
         }
         if(collision.gameObject.tag == ("ground"))
-        {
-            print("touching ground");
-           
+        {  
             airBoostUsed = false;
             if(jumpBuffer > 0)
             {
-                jump(jumpBufferDirection);
+                remainingJumps = 2;
+                jumpClicks = 2;
+                groundJump = true;
+                // rb.AddForce(new Vector3(0, 1500, 0));
+                rb.AddForce(jumpBufferDirection * jumpForce);
+                StartCoroutine(jumpingFx());
+                jumpClicks --;   
             }
             if(braking)
             {
                 rb.drag = 10;
             }
+            grounded = true;
         }
     }
 
@@ -95,6 +100,7 @@ public class EggDrive3D : MonoBehaviour
     {
         if(collision.gameObject.tag == ("ground"))
         {
+            if(groundJump) return;
             remainingJumps = 2;
             jumpClicks = 2;
             grounded = true;
@@ -248,15 +254,15 @@ public class EggDrive3D : MonoBehaviour
         if(!grounded)
         {
             airBoostUsed = true;
-            StartCoroutine(airBoost());
+            StartCoroutine(airBoost(.5f));
         }
         rb.AddForce(x * 2500, 0 , y * 2500);
     }
 
-    public IEnumerator airBoost()
+    public IEnumerator airBoost(float boostTime)
     {
         airTravelSpeed = 150;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(boostTime);
         airTravelSpeed = 25;
     }
 
@@ -267,7 +273,7 @@ public class EggDrive3D : MonoBehaviour
         // if(grounded && groundJump) return;
         if(!grounded && remainingJumps <= 0)
         {
-            jumpBuffer = .1f;
+            jumpBuffer = .25f;
             jumpBufferDirection = direction;
         }
         else if(grounded)
@@ -275,11 +281,12 @@ public class EggDrive3D : MonoBehaviour
             jumpBuffer = 0;
         }
         if(jumpClicks <= 0 || grappling) return;
-        if(remainingJumps == 2)
+        if(remainingJumps == 2 && grounded)
         {
             groundJump = true;
-            rb.AddForce(new Vector3(0, 1500, 0));
+            // rb.AddForce(new Vector3(0, 1500, 0));
             rb.AddForce(direction * jumpForce);
+            StartCoroutine(airBoost(.25f));
             StartCoroutine(jumpingFx());
             jumpClicks --;     
         }  
@@ -287,7 +294,8 @@ public class EggDrive3D : MonoBehaviour
         {
             if(jumpClicks <= 0) return;
             rb.AddForce(direction * jumpForce);
-            rb.AddForce(new Vector3(0, 1500, 0));
+            StartCoroutine(airBoost(.25f));
+            // rb.AddForce(new Vector3(0, 1500, 0));
             StartCoroutine(jumpingFx());
             remainingJumps --; 
             jumpClicks --;
