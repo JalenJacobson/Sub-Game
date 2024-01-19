@@ -343,7 +343,7 @@ public class EggDrive3D : MonoBehaviour
     IEnumerator jumpingFx()
     {
         jumpFX.gameObject.SetActive(true);
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSeconds(1f);
         jumpFX.gameObject.SetActive(false);
     }
 
