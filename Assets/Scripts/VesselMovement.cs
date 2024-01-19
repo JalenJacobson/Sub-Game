@@ -189,19 +189,7 @@ public class VesselMovement : MonoBehaviour
                 damageOverloadCountdownRunning = false;
                 damageInThisCountdown = 0;
             }
-        }
-
-        if(Input.GetKeyDown("b"))
-        {
-            stopSpinCount ++;
-        }
-        if(stopSpinCount >= 10)
-        {
-            StartCoroutine(stopSpin());
-            stopSpinCount = 0;
-        }
-        
-        
+        }        
     }
 
     private Vector3 normalDirection;
@@ -284,72 +272,72 @@ public class VesselMovement : MonoBehaviour
 
         if (thrusting == true)
         {
-            if ( Input.GetKey("s"))
-                {
-                    transform.Rotate(1, 0, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                }
-            if (Input.GetKey("w"))
-                {
-                    transform.Rotate(-1, 0, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                }
-            if (Input.GetKey("a"))
-                {
-                    transform.Rotate(0, -1, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                }
-            if (Input.GetKey("d"))
-                {
-                    transform.Rotate(0, 1, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                }
+            steerThrusting();
         }
         else if (thrusting == false)
         {
-            if ( Input.GetKey("s"))
-                {
-                    transform.Rotate(3, 0, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                }
-            if (Input.GetKey("w"))
-                {
-                    transform.Rotate(-3, 0, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                }
-            if (Input.GetKey("a"))
-                {
-                    transform.Rotate(0, -3, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                }
-            if (Input.GetKey("d"))
-                {
-                    transform.Rotate(0, 3, 0, Space.Self);
-                    playerControlling = true;
-                    timer = 0f;
-                } 
+            steerIdle();
         }
-        
-
-        // if(lookForwardTime)
-        // {
-        //     lookForward();
-        // }
-
         if(Input.GetKey("f"))
         {
             lookAtNextTrigger();
         }
-        
+    }
 
-        
+    public void steerThrusting()
+    {
+        if ( Input.GetKey("s"))
+        {
+            transform.Rotate(1, 0, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+        }
+        if (Input.GetKey("w"))
+        {
+            transform.Rotate(-1, 0, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+            }
+        if (Input.GetKey("a"))
+        {
+            transform.Rotate(0, -1, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+        }
+        if (Input.GetKey("d"))
+        {
+            transform.Rotate(0, 1, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+        }
+    }
+
+    public void steerIdle()
+    {
+        if ( Input.GetKey("s"))
+        {
+            transform.Rotate(3, 0, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+        }
+        if (Input.GetKey("w"))
+        {
+            transform.Rotate(-3, 0, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+        }
+        if (Input.GetKey("a"))
+        {
+            transform.Rotate(0, -3, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+        }
+        if (Input.GetKey("d"))
+        {
+            transform.Rotate(0, 3, 0, Space.Self);
+            playerControlling = true;
+            timer = 0f;
+        } 
     }
   
 
