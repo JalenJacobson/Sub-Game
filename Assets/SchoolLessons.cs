@@ -22,49 +22,55 @@ public class SchoolLessons : MonoBehaviour
     public void P1Lesson1()
     {
         StartSchoolCanvas.SetActive(false);
-        ResumerCanvas.SetActive(true);
+       // ResumerCanvas.SetActive(true);
         P1Lesson1_ui.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
     public void P1Lesson2()
     {
-        ResumerCanvas.SetActive(true);
+        //ResumerCanvas.SetActive(true);
+        P1Lesson1_ui.SetActive(false);
         P1Lesson2_ui.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
     public void P1Lesson3()
     {
-        ResumerCanvas.SetActive(true);
+        //ResumerCanvas.SetActive(true);
+        P1Lesson2_ui.SetActive(false);
         P1Lesson3_ui.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
     public void P1Complete()
     {
-        ResumerCanvas.SetActive(true);
+       // ResumerCanvas.SetActive(true);
+        P1Lesson3_ui.SetActive(false);
         P1Completed_ui.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
 
 
     public void P2Lesson1()
     {
-        ResumerCanvas.SetActive(true);
+       // ResumerCanvas.SetActive(true);
+        P1Completed_ui.SetActive(false);
         P2Lesson1_ui.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
     public void P2Lesson2()
     {
-        ResumerCanvas.SetActive(true);
+        //ResumerCanvas.SetActive(true);
+        P2Lesson1_ui.SetActive(false);
         P2Lesson2_ui.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     public void P2Lesson3()
     {
-        ResumerCanvas.SetActive(true);
+        //ResumerCanvas.SetActive(true);
+        P2Lesson2_ui.SetActive(false);
         P2Completed_ui.SetActive(true);
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
     }
 
     public void Begin()
