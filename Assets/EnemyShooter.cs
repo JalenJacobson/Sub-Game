@@ -11,6 +11,7 @@ public class EnemyShooter : MonoBehaviour
     public GameObject target;
     public Animator anim;
     public bool timerStarted = false;
+    public VesselMovement vesselMove_Script;
     // public AudioSource audioSource;
   //  public AudioClip Shootersong;
 
@@ -19,6 +20,7 @@ public class EnemyShooter : MonoBehaviour
     {
         target =  GameObject.FindGameObjectWithTag("Vessel");
         anim = GetComponent<Animator>();
+        vesselMove_Script = GameObject.FindGameObjectWithTag("Vessel").GetComponent<VesselMovement>();
      //    audioSource.clip = Shootersong;
      //   audioSource.Play();
     }
@@ -78,8 +80,11 @@ public class EnemyShooter : MonoBehaviour
 
     public void die()
     {
-        print("ShouldDie1");
+        vesselMove_Script.removeTracker();
         Destroy(gameObject);
-        print("ShouldDie2");
+    }
+    public void lockOn()
+    {
+
     }
 }

@@ -229,6 +229,8 @@ MonoBehaviour:
   anim: {fileID: 0}
   keepSpawning: 0
   alreadyEntered: 0
+  Camp: {fileID: 0}
+  vesselMove_Script: {fileID: 0}
 --- !u!135 &6509178717739432658
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -290,7 +292,8 @@ GameObject:
   - component: {fileID: 6509178719373127879}
   - component: {fileID: 6509178719373127878}
   - component: {fileID: 6509178719373127876}
-  m_Layer: 0
+  - component: {fileID: 3215894396090547428}
+  m_Layer: 6
   m_Name: Nest.
   m_TagString: Armored
   m_Icon: {fileID: 0}
@@ -375,6 +378,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0.0000009536743, y: 0, z: -0.0000019073486}
+--- !u!114 &3215894396090547428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509178719373127872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f997a425e9c2649816ad21845d8594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8506121339539905812
 GameObject:
   m_ObjectHideFlags: 0

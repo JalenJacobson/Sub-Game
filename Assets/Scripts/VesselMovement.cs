@@ -280,7 +280,15 @@ public class VesselMovement : MonoBehaviour
         }
         if(Input.GetKey("f"))
         {
-            lookAtNextTrigger();
+            if(lockOnEnemy == null)
+            {
+                lookAtNextTrigger();
+            }
+            else
+            {
+                lookAtlockOnEnemy();
+            }
+            
         }
     }
 
@@ -388,6 +396,28 @@ public class VesselMovement : MonoBehaviour
         Quaternion toRotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 3f * Time.deltaTime);
         
+    }
+
+    public Transform lockOnEnemy;
+    public void lookAtlockOnEnemy()
+    {
+        Vector3 direction = lockOnEnemy.position - transform.position;
+        Quaternion toRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 3f * Time.deltaTime);
+        
+    }
+    public void placeTracker(GameObject Enemy)
+    {
+        if(Enemy.name.Contains("test"))
+        {
+            Enemy.SendMessage("lockOn");
+        }
+        lockOnEnemy = Enemy.GetComponent<Transform>();
+        Enemy.SendMessage("lockOn");
+    }
+    public void removeTracker()
+    {
+        lockOnEnemy = null;
     }
 
     public void nextTrigger()
@@ -499,6 +529,12 @@ public class VesselMovement : MonoBehaviour
     {
         
         vesselDead = false;
+        //MenuButton.SetActive(true);  
+    }
+    public void pauseGame()
+    {
+        
+        vesselDead = true;
         //MenuButton.SetActive(true);  
     }
     public void closeMenustart()

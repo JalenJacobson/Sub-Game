@@ -54,4 +54,8 @@ public class E_Shooter_TakeDamage : MonoBehaviour
         //Destroy(parentShooter);
         
     }
+    public void lockOn()
+        {
+            parentShooter.SendMessage("lockOn");
+        }
 }

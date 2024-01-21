@@ -77,7 +77,12 @@ public class Spawner_DTraining : MonoBehaviour
                 print(i);
                 var randomPosition = getRandomPosition();
                 Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
-            } 
+            }
+        yield return new WaitForSeconds(5f); 
+        if(enemiesKilled <= 25)
+            {
+                StartCoroutine("spawn2");
+            }
     }
 
     public void killedOne()

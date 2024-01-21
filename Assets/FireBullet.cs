@@ -23,7 +23,15 @@ public class FireBullet : MonoBehaviour
     public Bullet grenade;
     public float grenadeReleasePower;
     public bool holdingGrenade = false;
+    public Camera cam;
+    public LayerMask trackable;
+    public VesselMovement vesselMove_Script;
 
+    void Start()
+    {
+        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        vesselMove_Script = GameObject.FindGameObjectWithTag("Vessel").GetComponent<VesselMovement>();
+    }
     void Update()
     {
         transform.LookAt(target);
@@ -122,5 +130,21 @@ public class FireBullet : MonoBehaviour
             Crosshairs.gameObject.SendMessage("sniperAmmo");
             AmmoType.gameObject.SendMessage("LayMines");
         }
+        if(Input.GetMouseButtonDown(1))
+        {
+            placeTracker();
+        }
+    }
+
+    public void placeTracker()
+    {
+        //print("shouldplacetracker");
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity, trackable))
+        {
+           vesselMove_Script.placeTracker(hit.transform.gameObject);
+        }
+        else vesselMove_Script.removeTracker();
     }
 }

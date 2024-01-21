@@ -22,7 +22,7 @@ public class HollaShooterMissed : MonoBehaviour
         {
             StartCoroutine("trainingP1Completed");
             Spawner_Training.SetActive(true);
-            ShooterHolla.SetActive(false);
+            ShooterHolla.SendMessage("die");
         }
         
     }

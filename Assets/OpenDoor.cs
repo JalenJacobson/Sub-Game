@@ -5,9 +5,9 @@ using UnityEngine;
 public class OpenDoor : MonoBehaviour
 {
     public Animator anim;
-    public WeenieArmy WeenieArmy;
     public bool doorReady = true;
     public SwimSchool SwimSchool;
+    public GameObject P2Completed_ui;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +21,10 @@ public class OpenDoor : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.name.Contains("Bullet") && doorReady == true)
+        if(other.name.Contains("Grenade") && doorReady == true)
         {
            anim.Play("OpenDoor");
-           WeenieArmy.SendMessage("doorOpened");
+           P2Completed_ui.SetActive(false);
         }
     }
 

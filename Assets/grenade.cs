@@ -30,9 +30,9 @@ public class grenade : Bullet
             anim.Play("BlowUp");
             other.transform.parent.gameObject.SendMessage("Explode");
         }
-        if(other.name.Contains("Sludge"))
+        if(other.name.Contains("Door"))
         {
-            
+            anim.Play("BlowUp");
         }
     }
 

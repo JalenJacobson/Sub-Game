@@ -15,10 +15,12 @@ public class Spawner_D : MonoBehaviour
     public bool keepSpawning = false;
     public bool alreadyEntered = false;
     public GameObject Camp;
+    public VesselMovement vesselMove_Script;
 
     public void Start()
     {
         anim = GetComponent<Animator>();
+        vesselMove_Script = GameObject.FindGameObjectWithTag("Vessel").GetComponent<VesselMovement>();
     }
 
 
@@ -75,6 +77,7 @@ public class Spawner_D : MonoBehaviour
 
     public void Explode()
     {
+        vesselMove_Script.removeTracker();
         anim.Play("Nest_Dead");
         if(Camp != null)
         {
@@ -82,5 +85,9 @@ public class Spawner_D : MonoBehaviour
         }
         keepSpawning = false;
         isDead = true;
+    }
+     public void lockOn()
+    {
+
     }
 }

@@ -1013,7 +1013,7 @@ GameObject:
   - component: {fileID: 8493276696477951423}
   - component: {fileID: 3022696384760929943}
   - component: {fileID: 7246954531209462238}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: E_Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
