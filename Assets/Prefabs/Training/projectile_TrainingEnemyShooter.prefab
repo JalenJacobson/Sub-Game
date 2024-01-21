@@ -945,7 +945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  offsetTarget: {fileID: 0}
   speed: 8
+  speed2: 0
   rb: {fileID: 0}
   timeCount: 0
   lockOn: 1
@@ -953,6 +955,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   audioSource: {fileID: 588465067736020694}
   Projectile_woosh: {fileID: 8300000, guid: 81c71ffc1a94077468be968b4d2ae4b1, type: 3}
+  offset: 0
 --- !u!54 &923725870224166519
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7105,7 +7108,7 @@ AudioSource:
   m_GameObject: {fileID: 8867032939571803235}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4698864470779532253, guid: 5cafdd0702022c142ab69dc71ec9759c, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.469

@@ -41,7 +41,7 @@ AudioSource:
   m_GameObject: {fileID: 5990851135776977047}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4698864470779532253, guid: 5cafdd0702022c142ab69dc71ec9759c, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.153
@@ -325,7 +325,7 @@ AudioSource:
   m_GameObject: {fileID: 8661287895630441971}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4698864470779532253, guid: 5cafdd0702022c142ab69dc71ec9759c, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.153
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DefenderParent: {fileID: 6395195862847730201}
-  virtualCamera: {fileID: 0}
+  Spawner: {fileID: 0}
 --- !u!1001 &9078485814686897457
 PrefabInstance:
   m_ObjectHideFlags: 0

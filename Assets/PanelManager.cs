@@ -13,6 +13,8 @@ public class PanelManager : MonoBehaviour
     public GameObject RiddleGuessInput;
     public GameObject RiddleGuessPannel;
     public GameObject WinPannel;
+    public GameObject SettingsPanel;
+    public GameObject StartPanel;
     
     public string inputGuess;
     public bool riddlePannelIsOpen = false;
@@ -70,7 +72,16 @@ public class PanelManager : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
+    public void SettingsPannelOpen()
+    {
+        StartPanel.SetActive(false);
+        SettingsPanel.SetActive(true);
+    }
+    public void SettingsPannelClose()
+    {
+        StartPanel.SetActive(true);
+        SettingsPanel.SetActive(false);
+    }
     
 
     

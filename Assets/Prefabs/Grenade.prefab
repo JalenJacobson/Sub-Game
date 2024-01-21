@@ -35686,6 +35686,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: -0.10162887
       objectReference: {fileID: 0}
+    - target: {fileID: 8229636, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -4698864470779532253, guid: 5cafdd0702022c142ab69dc71ec9759c, type: 2}
     - target: {fileID: 11444152, guid: 3c5f4e32698bdb04eaed647f60310510, type: 3}
       propertyPath: m_Enabled
       value: 1
