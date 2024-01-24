@@ -19,6 +19,8 @@ public class movingPlatform : MonoBehaviour
     public int speed;
     private float speedActual;
 
+    public bool touchToStart = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -50,7 +52,28 @@ public class movingPlatform : MonoBehaviour
             timer = 0;
 
         }
-        timer += Time.deltaTime;
+        if(!touchToStart)
+        {
+            timer += Time.deltaTime;
+        }
+        else if(touchToStart)
+        {
+            if(hasBeenTouched)
+            {
+                timer += Time.deltaTime;
+            }
+        }
+        
+    }
+
+    public bool hasBeenTouched = false;
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == ("egg"))
+        {
+            hasBeenTouched = true;
+        }
     }
 
     void FixedUpdate()
