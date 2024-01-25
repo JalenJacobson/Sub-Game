@@ -52,16 +52,9 @@ public class movingPlatform : MonoBehaviour
             timer = 0;
 
         }
-        if(!touchToStart)
+        if(!touchToStart || touchToStart && hasBeenTouched)
         {
             timer += Time.deltaTime;
-        }
-        else if(touchToStart)
-        {
-            if(hasBeenTouched)
-            {
-                timer += Time.deltaTime;
-            }
         }
         
     }
@@ -78,8 +71,10 @@ public class movingPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        handleMove();
+        if(!touchToStart || touchToStart && hasBeenTouched)
+        {
+            handleMove();
+        }
     }
 
     public void handleMove()
