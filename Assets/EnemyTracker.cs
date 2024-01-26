@@ -30,7 +30,6 @@ public class EnemyTracker : MonoBehaviour
         if(isOffScreen || VesselMovement_Script.lockOnEnemy == null)
         {
             GetComponent<Image>().enabled = false;
-            print("isoffscreen");
         }
         else if(!isOffScreen || VesselMovement_Script != null) gameObject.GetComponent<Image>().enabled = true;
         if(point.z >= 1000)
