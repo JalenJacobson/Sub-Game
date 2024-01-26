@@ -296,14 +296,14 @@ public class EggDrive3D : MonoBehaviour
             {
                 groundJump = true;
                 rb.AddForce(direction * jumpForce);
-                StartCoroutine(airBoost(.25f));
+                // StartCoroutine(airBoost(.25f));
                 StartCoroutine(jumpingFx());
                 jumpClicks --; 
             }
             else if(recentGrapple || recentBounce)
             {
                 rb.AddForce(direction * jumpForce);
-                StartCoroutine(airBoost(.25f));
+                // StartCoroutine(airBoost(.25f));
                 StartCoroutine(jumpingFx());
                 jumpClicks --; 
             }
@@ -313,7 +313,7 @@ public class EggDrive3D : MonoBehaviour
         {
             if(jumpClicks <= 0) return;
             rb.AddForce(direction * jumpForce);
-            StartCoroutine(airBoost(.25f));
+            // StartCoroutine(airBoost(.25f));
             StartCoroutine(jumpingFx());
             remainingJumps --; 
             jumpClicks --;
