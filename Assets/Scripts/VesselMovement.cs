@@ -232,7 +232,7 @@ public class VesselMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(lookingAtNextTrigger == true)
+        if(lookingAtNextTrigger == true || drivingMS == true)
         {
             lookAtNextTrigger();
         }
@@ -420,14 +420,18 @@ public class VesselMovement : MonoBehaviour
         lockOnEnemy = null;
     }
 
-    public void nextTrigger()
+    public void nextTrigger(bool normalTrigger)
     {
         addHealth();
         currentCheckPoint = riddleTriggers[currentRiddleTrigger].GetComponent<Transform>().position;
         currentRiddleTrigger++;
         riddleTriggers[currentRiddleTrigger].SetActive(true);
         RiddleTriggerFollowPoint_Script.nextTrigger(riddleTriggers[currentRiddleTrigger]);
-        StartCoroutine("getTriggerLookAtNext");
+        if(normalTrigger)
+        {
+            StartCoroutine("getTriggerLookAtNext");
+        }
+        
     }
 
     public IEnumerator getTriggerLookAtNext()

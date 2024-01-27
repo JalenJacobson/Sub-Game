@@ -28,7 +28,6 @@ public class RiddleTriggerTracker : MonoBehaviour
         if(isOffScreen)
         {
             GetComponent<Image>().enabled = false;
-            print("isoffscreen");
         }
         else if(!isOffScreen) gameObject.GetComponent<Image>().enabled = true;
         if(point.z >= 1000)

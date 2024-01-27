@@ -24,9 +24,7 @@ public class EggDrive3D : MonoBehaviour
     public bool grappling = false;
     public GameObject jumpFX;
     public GameObject landFX;
-    public LivesRemainingPanel LivesRemainingPanel_Script;
     public Vector3 respawnPoint;
-    public int livesRemaining = 3;
     public bool downwardSlide = false;
     
     
@@ -40,7 +38,6 @@ public class EggDrive3D : MonoBehaviour
     void Start()
     {
         respawnPoint = transform.position;
-        LivesRemainingPanel_Script = GameObject.Find("LivesRemainingImages").GetComponent<LivesRemainingPanel>();
     }
 
     // Update is called once per frame
@@ -218,14 +215,6 @@ public class EggDrive3D : MonoBehaviour
 
     public void brake()
     {
-        if(Input.GetKey("space"))
-        {
-            if(grappling)
-            {
-                rb.AddForce(new Vector3(0,-500,0));
-            }
-             
-        }
         if(Input.GetKeyDown("space"))
         {
             braking = true;
@@ -254,7 +243,7 @@ public class EggDrive3D : MonoBehaviour
     public void endGrapple()
     {
         grappling = false;
-        airTravelSpeed = 25;
+        airTravelSpeed = 35;
         speed = 80;
         recentGrapple = true;
         jumpClicks = 2;
@@ -271,7 +260,7 @@ public class EggDrive3D : MonoBehaviour
     public void boost()
     {
         if(grappling || airBoostUsed) return;
-        if(!grounded)
+        if(!grounded && jumpClicks <=0)
         {
             airBoostUsed = true;
             StartCoroutine(airBoost(.5f));
@@ -283,7 +272,7 @@ public class EggDrive3D : MonoBehaviour
     {
         airTravelSpeed = 150;
         yield return new WaitForSeconds(boostTime);
-        airTravelSpeed = 25;
+        airTravelSpeed = 35;
     }
 
     public bool groundJump = false;
@@ -307,14 +296,14 @@ public class EggDrive3D : MonoBehaviour
             {
                 groundJump = true;
                 rb.AddForce(direction * jumpForce);
-                StartCoroutine(airBoost(.25f));
+                // StartCoroutine(airBoost(.25f));
                 StartCoroutine(jumpingFx());
                 jumpClicks --; 
             }
             else if(recentGrapple || recentBounce)
             {
                 rb.AddForce(direction * jumpForce);
-                StartCoroutine(airBoost(.25f));
+                // StartCoroutine(airBoost(.25f));
                 StartCoroutine(jumpingFx());
                 jumpClicks --; 
             }
@@ -324,7 +313,7 @@ public class EggDrive3D : MonoBehaviour
         {
             if(jumpClicks <= 0) return;
             rb.AddForce(direction * jumpForce);
-            StartCoroutine(airBoost(.25f));
+            // StartCoroutine(airBoost(.25f));
             StartCoroutine(jumpingFx());
             remainingJumps --; 
             jumpClicks --;
@@ -354,7 +343,6 @@ public class EggDrive3D : MonoBehaviour
 
     public IEnumerator fall()
     {
-        LivesRemainingPanel_Script.loseALife();
         yield return new WaitForSeconds(1.5f);
         rb.velocity = new Vector3(0,0,0);
         transform.position = respawnPoint;

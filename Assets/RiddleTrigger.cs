@@ -41,7 +41,7 @@ public class RiddleTrigger : MonoBehaviour
     {
         if(other.name.Contains("weenie"))
         {
-            VesselMovement_Script.nextTrigger();
+            VesselMovement_Script.nextTrigger(true);
             if(!isTrainingTrigger && shouldAddRiddlePart)
             {
                 RiddlePannel_Script.addRiddlePart();

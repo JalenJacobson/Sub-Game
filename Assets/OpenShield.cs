@@ -53,7 +53,7 @@ public class OpenShield : MonoBehaviour
        // NewRiddleAvalable.SetActive(true);
        if(other.name.Contains("weenie"))
         {
-            VesselMovement_Script.nextTrigger();
+            VesselMovement_Script.nextTrigger(false);
             gameObject.GetComponent<Transform>().position = new Vector3(10000, 10000, 0);
             StartCoroutine("openShieldRoutine");
         }
