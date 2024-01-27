@@ -17,7 +17,7 @@ public class movingPlatform : MonoBehaviour
     public bool zMove;
 
     public int speed;
-    private float speedActual;
+    public float speedActual;
 
     public bool touchToStart = false;
 
@@ -30,7 +30,7 @@ public class movingPlatform : MonoBehaviour
     void Start()
     {
         pauseTimeActual = moveTime + pauseTime;
-        speedActual = speed  * Time.deltaTime;
+        speedActual = speed *Time.deltaTime;
     }
 
     // Update is called once per frame

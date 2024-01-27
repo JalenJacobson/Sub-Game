@@ -15,7 +15,7 @@ public class MSLanding : MonoBehaviour
     public bool zoomIn = false;
     public GameObject LZ;
 
-    public GameObject panelOpenButton;
+    //public GameObject panelOpenButton;
 
     public Renderer rend;
     public bool alreadyTriggered = false;
@@ -41,7 +41,7 @@ public class MSLanding : MonoBehaviour
         if(startLanding)
         {
             var fromPosition = Mothership.GetComponent<Transform>().position;
-            var toPosition = LZ.GetComponent<Transform>().position + new Vector3(0, 4, 0);
+            var toPosition = LZ.GetComponent<Transform>().position + new Vector3(0, 3, 0);
             Mothership.GetComponent<Transform>().position = Vector3.Lerp(fromPosition, toPosition, .05f);
 
             var fromRotation = Mothership.GetComponent<Transform>().rotation;
@@ -51,7 +51,7 @@ public class MSLanding : MonoBehaviour
         }
         if(zoomIn)
         {
-            var endZoomIn = new Vector3(0, -10, -6);
+            var endZoomIn = new Vector3(4.26f, .19f, -3.2f);
             virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset = Vector3.Lerp(virtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset, endZoomIn, Time.deltaTime * 1f);
         }
     }
@@ -74,17 +74,17 @@ public class MSLanding : MonoBehaviour
     {
         Mothership.GetComponent<SphereCollider>().enabled = false;
         Mothership.GetComponent<Rigidbody>().isKinematic = true;
-        GameObject.Find("Player2").SetActive(false);
-        GameObject.Find("LivesRemainingImages").SetActive(false);
+        //GameObject.Find("Player2").SetActive(false);
+        //GameObject.Find("LivesRemainingImages").SetActive(false);
         alreadyTriggered = true;
-        virtualCamera.m_LookAt = Mothership.GetComponent<Transform>();
+        //virtualCamera.m_LookAt = Mothership.GetComponent<Transform>();
         // virtualCamera.m_Follow = Mothership.GetComponent<Transform>();
         zoomIn = true;
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(2);
         startLanding = true;
-        yield return new WaitForSeconds(5);
-        // play foot animation here
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
+        Mothership.GetComponent<Animator>().Play("Landing");
+        yield return new WaitForSeconds(2);
         // panelOpenButton.SetActive(false);
         RiddleGuessPannel.SetActive(true);
 

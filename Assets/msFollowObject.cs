@@ -9,11 +9,16 @@ public class msFollowObject : MonoBehaviour
     public float yOffset;
     public bool shouldFollow = false;
     public GameObject ObjectivePannel;
+    public bool Level2;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("begin");
+        if(Level2)
+        {
+            StartCoroutine("begin");
+        }
+        
     }
 
     // Update is called once per frame
