@@ -30,7 +30,7 @@ public class movingPlatform : MonoBehaviour
     void Start()
     {
         pauseTimeActual = moveTime + pauseTime;
-        speedActual = speed *Time.deltaTime;
+        
     }
 
     // Update is called once per frame
@@ -81,37 +81,70 @@ public class movingPlatform : MonoBehaviour
     public void handleMove()
     {
         if(pause) return;
+        // if(xMove)
+        // {
+        //     if(directionOne)
+        //     {
+        //         transform.position = transform.position + new Vector3(speedActual,0,0);
+        //     }
+        //     if(!directionOne)
+        //     {
+        //         transform.position = transform.position + new Vector3(-speedActual,0,0);
+        //     }
+        // }
+        // if(yMove)
+        // {
+        //     if(directionOne)
+        //     {
+        //         transform.position = transform.position + new Vector3(0,speedActual,0);
+        //     }
+        //     if(!directionOne)
+        //     {
+        //         transform.position = transform.position + new Vector3(0,-speedActual,0);
+        //     }
+        // }
+        // if(zMove)
+        // {
+        //     if(directionOne)
+        //     {
+        //         transform.position = transform.position + new Vector3(0,0,speedActual);
+        //     }
+        //     if(!directionOne)
+        //     {
+        //         transform.position = transform.position + new Vector3(0,0,-speedActual);
+        //     }
+        // }
         if(xMove)
         {
             if(directionOne)
             {
-                transform.Translate(speedActual,0,0);
+                transform.Translate(speed * Time.deltaTime,0,0);
             }
             if(!directionOne)
             {
-                transform.Translate(-speedActual,0,0);
+                transform.Translate(-speed * Time.deltaTime,0,0);
             }
         }
         if(yMove)
         {
             if(directionOne)
             {
-                transform.Translate(0,speedActual,0);
+                transform.Translate(0,speed * Time.deltaTime,0);
             }
             if(!directionOne)
             {
-                transform.Translate(0,-speedActual,0);
+                transform.Translate(0,-speed * Time.deltaTime,0);
             }
         }
         if(zMove)
         {
             if(directionOne)
             {
-                transform.Translate(0,0,speedActual);
+                transform.Translate(0,0,speed * Time.deltaTime);
             }
             if(!directionOne)
             {
-                transform.Translate(0,0,-speedActual);
+                transform.Translate(0,0,-speed * Time.deltaTime);
             }
         }
         
