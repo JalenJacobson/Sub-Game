@@ -62,6 +62,11 @@ public class ObjectivePanel : MonoBehaviour
         Music.SetActive(true);
         vessel.SendMessage("startGame");
     }
+    public void platformInstructionsClose()
+    {
+        ObjectivePannel.SetActive(false);
+        Music.SetActive(true);
+    }
 
     void OnTriggerEnter(Collider other)
     {

@@ -8,9 +8,11 @@ public class ButterflySwarm : MonoBehaviour
     public GameObject nestCirclePoint;
     public int spawnNumber;
     public List<GameObject> butterflys;
+    public Animator anim;
 
     public void Start()
     {
+        anim = GetComponent<Animator>();
         spawnNumber = 3;
 
         for(var i = 0; i< spawnNumber; i++)
@@ -40,6 +42,9 @@ public class ButterflySwarm : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        
+        if(collision.gameObject.tag == ("egg"))
+        {
+            anim.Play("FlowerBumped");
+        }
     }
 }
