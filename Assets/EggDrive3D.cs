@@ -26,6 +26,7 @@ public class EggDrive3D : MonoBehaviour
     public GameObject landFX;
     public Vector3 respawnPoint;
     public bool downwardSlide = false;
+    public Animator anim;
     
     
 
@@ -38,6 +39,7 @@ public class EggDrive3D : MonoBehaviour
     void Start()
     {
         respawnPoint = transform.position;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -69,6 +71,10 @@ public class EggDrive3D : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        if(collision.gameObject.tag == ("spikes"))
+        {
+            StartCoroutine("fall");
+        }
         if(collision.gameObject.tag == ("bounce"))
         {
             rb.AddForce(Vector3.up * bounceForce);
@@ -343,9 +349,11 @@ public class EggDrive3D : MonoBehaviour
 
     public IEnumerator fall()
     {
+        anim.Play("MS_Dead");
         yield return new WaitForSeconds(1.5f);
         rb.velocity = new Vector3(0,0,0);
         transform.position = respawnPoint;
+        anim.Play("Ms_Alive");
     }
     
 }

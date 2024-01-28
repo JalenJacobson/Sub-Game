@@ -20,6 +20,7 @@ TagManager:
   - Grapple
   - egg
   - offsetTarget
+  - spikes
   layers:
   - Default
   - TransparentFX
