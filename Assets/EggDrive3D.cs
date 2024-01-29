@@ -27,6 +27,16 @@ public class EggDrive3D : MonoBehaviour
     public Vector3 respawnPoint;
     public bool downwardSlide = false;
     public Animator anim;
+    public AudioSource audioSource;
+    public AudioClip JumpAudio;
+    public AudioClip DoubleJumpAudio;
+    public AudioClip LandAudio;
+    public AudioClip GrappleAudio;
+    public AudioClip BoostAudio;
+    public AudioClip BounceAudio;
+    public AudioClip ExplodeAudio;
+    public AudioSource movingAudioSource;
+    public AudioClip MoveAudio;
     
     
 
@@ -83,6 +93,8 @@ public class EggDrive3D : MonoBehaviour
             recentGrapple = false;
             remainingJumps = 2;
             jumpClicks = 2;
+            audioSource.clip = BounceAudio;
+            audioSource.Play();
             
         }
         if(collision.gameObject.tag == ("ground"))
@@ -98,16 +110,24 @@ public class EggDrive3D : MonoBehaviour
                 // rb.AddForce(new Vector3(0, 1500, 0));
                 rb.AddForce(jumpBufferDirection * jumpForce);
                 StartCoroutine(jumpingFx());
-                jumpClicks --;   
+                jumpClicks --; 
+                 
             }
             if(braking)
             {
                 rb.drag = 10;
             }
             grounded = true;
+            if(remainingJumps <= 1)
+            {
+                audioSource.clip = LandAudio;
+                audioSource.Play(); 
+            }
+            
         }
     }
 
+    
     void OnCollisionStay(Collision collision)
     {
         if(collision.gameObject.tag == ("ground"))
@@ -164,10 +184,13 @@ public class EggDrive3D : MonoBehaviour
         if (Input.GetKey("s"))
         {
             y = -1;  
+            movingAudioSource.clip = MoveAudio;
+            movingAudioSource.Play();  
         }
         if (Input.GetKeyUp("s"))
         {
             y=0;
+            movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2);
@@ -175,11 +198,14 @@ public class EggDrive3D : MonoBehaviour
         }
         if (Input.GetKey("w"))
         {
-            y = 1;  
+            y = 1;
+            movingAudioSource.clip = MoveAudio;
+            movingAudioSource.Play();  
         }
         if (Input.GetKeyUp("w"))
         {;
             y=0;
+            movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2); 
@@ -189,10 +215,13 @@ public class EggDrive3D : MonoBehaviour
         if (Input.GetKey("a"))
         {
             x = -1;  
+            movingAudioSource.clip = MoveAudio;
+            movingAudioSource.Play();  
         }
         if (Input.GetKeyUp("a"))
         {
             x=0;
+            movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x/2, rb.velocity.y, rb.velocity.z); 
@@ -202,10 +231,13 @@ public class EggDrive3D : MonoBehaviour
         if (Input.GetKey("d"))
         {
             x = 1;  
+            movingAudioSource.clip = MoveAudio;
+            movingAudioSource.Play();  
         }
         if (Input.GetKeyUp("d"))
         {
             x=0;
+           movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x/2, rb.velocity.y, rb.velocity.z); 
@@ -244,6 +276,8 @@ public class EggDrive3D : MonoBehaviour
         recentBounce = false;
         
         speed = 60;
+        audioSource.clip = GrappleAudio;
+        audioSource.Play();
         // rb.drag = 0;
     }
     public void endGrapple()
@@ -272,6 +306,8 @@ public class EggDrive3D : MonoBehaviour
             StartCoroutine(airBoost(.5f));
         }
         rb.AddForce(x * 2500, 0 , y * 2500);
+        audioSource.clip = BoostAudio;
+        audioSource.Play();
     }
 
     public IEnumerator airBoost(float boostTime)
@@ -304,7 +340,9 @@ public class EggDrive3D : MonoBehaviour
                 rb.AddForce(direction * jumpForce);
                 // StartCoroutine(airBoost(.25f));
                 StartCoroutine(jumpingFx());
-                jumpClicks --; 
+                jumpClicks --;
+                audioSource.clip = JumpAudio;
+                audioSource.Play(); 
             }
             else if(recentGrapple || recentBounce)
             {
@@ -312,6 +350,8 @@ public class EggDrive3D : MonoBehaviour
                 // StartCoroutine(airBoost(.25f));
                 StartCoroutine(jumpingFx());
                 jumpClicks --; 
+                audioSource.clip = JumpAudio;
+                audioSource.Play(); 
             }
                 
         }  
@@ -323,6 +363,8 @@ public class EggDrive3D : MonoBehaviour
             StartCoroutine(jumpingFx());
             remainingJumps --; 
             jumpClicks --;
+            audioSource.clip = DoubleJumpAudio;
+            audioSource.Play(); 
         }
     }
 
@@ -350,6 +392,8 @@ public class EggDrive3D : MonoBehaviour
     public IEnumerator fall()
     {
         anim.Play("MS_Dead");
+        audioSource.clip = ExplodeAudio;
+        audioSource.Play();
         yield return new WaitForSeconds(1.5f);
         rb.velocity = new Vector3(0,0,0);
         transform.position = respawnPoint;
