@@ -94,6 +94,35 @@ public class VesselMovement : MonoBehaviour
 
     void Update()
     {
+        if(health <= 0)
+        {
+            if(!firstTimeDeath) return;
+            StartCoroutine(loseCondition());
+        }
+
+        // if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
+        // {
+        //     StartCoroutine(DamageOverload());
+        // }
+        
+        if(Shield_Script.shieldHealth <= 0)
+        {
+            Shield.SetActive(false);
+            
+            if(shieldRegenCountUp >= 3)
+            {
+                Shield.SetActive(true);
+                Shield_Script.shieldVisible.enabled = false;
+                Shield_Script.shieldHealth = 20;
+                shieldRegenCountUp = 0;
+            }
+        }
+        if(shieldRegenCountUpRunning)
+        {
+            shieldRegenCountUp += Time.deltaTime;
+        }
+
+        if(vesselDead) return;
         if (Input.GetKeyDown("space"))
         {
             audioSourceIdle.clip = ThrusterIdle;
@@ -166,36 +195,6 @@ public class VesselMovement : MonoBehaviour
             // }
             // lastTapTimeLeft = Time.time;
         }
-
-        
-
-        if(health <= 0)
-        {
-            if(!firstTimeDeath) return;
-            StartCoroutine(loseCondition());
-        }
-
-        // if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
-        // {
-        //     StartCoroutine(DamageOverload());
-        // }
-        
-        if(Shield_Script.shieldHealth <= 0)
-        {
-            Shield.SetActive(false);
-            
-            if(shieldRegenCountUp >= 5)
-            {
-                Shield.SetActive(true);
-                Shield_Script.shieldVisible.enabled = false;
-                Shield_Script.shieldHealth = 20;
-                shieldRegenCountUp = 0;
-            }
-        }
-        if(shieldRegenCountUpRunning)
-        {
-            shieldRegenCountUp += Time.deltaTime;
-        }
              
     }
 
@@ -222,18 +221,23 @@ public class VesselMovement : MonoBehaviour
         Shield.SetActive(false);
         anim.Play("DeadWeenie");
         rb.isKinematic = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         gameObject.GetComponent<Transform>().position = currentCheckPoint;
+        Shield_Script.shieldHealth = 20;
+        LifeBar.setShield(Shield_Script.shieldHealth);
+        shieldRegenCountUpRunning = false;
         Shield.SetActive(true);
-        
+        Shield_Script.shieldVisible.enabled = true;
         health = 100;
         LifeBar.setHealth(health);
         yield return new WaitForSeconds(2);
         rb.isKinematic = false;
         vesselDead = false;
         firstTimeDeath = true;
-        yield return new WaitForSeconds(4);
-        Shield.SetActive(false);
+        yield return new WaitForSeconds(2);
+        Shield_Script.shieldVisible.enabled = false;
+        LifeBar.stopFlashing();
+        LifeBar.died();
     }
 
 

@@ -6,7 +6,9 @@ public class ShieldFollow : MonoBehaviour
 {
     public GameObject vessel;
     public MeshRenderer shieldVisible;
-    public int shieldHealth = 20;
+    public float shieldHealth = 20;
+    public GameObject LifeBar;
+    public LifeBar lifebar_script;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,7 @@ public class ShieldFollow : MonoBehaviour
         {
             StartCoroutine(seeShield());
             other.transform.parent.gameObject.SendMessage("explodeSequence");
-            shieldHealth -= 2;
+            shieldHealth -= 1;
             vessel.GetComponent<VesselMovement>().shieldRegenReset();
         }
         if(other.name.Contains("Projectile"))
@@ -36,9 +38,10 @@ public class ShieldFollow : MonoBehaviour
             if(!other.GetComponent<EnemyShooterProjectileCrash>()) return;
             StartCoroutine(seeShield());
             other.GetComponent<EnemyShooterProjectileCrash>().killProjectile();
-            shieldHealth -= 10;
+            shieldHealth -= 5;
             vessel.GetComponent<VesselMovement>().shieldRegenReset();
         }
+        lifebar_script.setShield(shieldHealth);
     }
 
     IEnumerator seeShield()

@@ -11,6 +11,8 @@ public class LifeBar : MonoBehaviour
     public Animator anim;
     public float Healthbar = 100;
     public bool warningInitiated = false;
+    public Slider shieldSlider;
+    public float shield = 20;
 
     void Start()
     {
@@ -37,12 +39,26 @@ public class LifeBar : MonoBehaviour
         }
 
     }
+
+    public void setShield(float shieldHealth)
+    {
+        shieldSlider.value = shieldHealth;
+        shield = shieldHealth;
+    }
     public IEnumerator lowLifeWarning()
     {
         anim.Play("LowLife");
         warningInitiated = true;
         yield return new WaitForSeconds(5f);
         anim.Play("RedBar");
+    }
+    public void stopFlashing()
+    {
+        anim.Play("NormalLife");
+    }
+    public void died()
+    {
+        warningInitiated = false;
     }
 
 
