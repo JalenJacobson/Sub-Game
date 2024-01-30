@@ -14,7 +14,7 @@ public class VesselMovement : MonoBehaviour
     public bool playerControlling;
     public float timer = 0;
     public bool vesselDead = false;
-    public bool DamageOverloadCoroutineStarted = false;
+    // public bool DamageOverloadCoroutineStarted = false;
     public GameObject RiddlePannel;
     public GameObject NextLevelPannel;
     public GameObject MenuButton;
@@ -22,10 +22,11 @@ public class VesselMovement : MonoBehaviour
     public GameObject startGamePannel;
     public Vector3 currentCheckPoint;
     public int speed = 600;
-    public float damageOverloadCountdown;
-    public bool damageOverloadCountdownRunning;
+    public float shieldRegenCountUp;
+    public bool shieldRegenCountUpRunning;
     public float damageInThisCountdown;
     public GameObject Shield;
+    public ShieldFollow Shield_Script;
     public bool lookForwardTime = false;
     public bool lookingAtNextTrigger = false;
     public float stopSpinCount;
@@ -78,7 +79,8 @@ public class VesselMovement : MonoBehaviour
         ResumeButton = GameObject.Find("Close");
         startGamePannel = GameObject.Find("StartPannel");
         Shield = GameObject.Find("Shield");
-        Shield.SetActive(false);
+        Shield_Script = Shield.GetComponent<ShieldFollow>();
+        // Shield.SetActive(false);
         for(var i = 1; i<= riddleTriggers.Count - 1; i++)
         {
             riddleTriggers[i].SetActive(false);
@@ -173,23 +175,28 @@ public class VesselMovement : MonoBehaviour
             StartCoroutine(loseCondition());
         }
 
-        if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
-        {
-            StartCoroutine(DamageOverload());
-        }
+        // if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
+        // {
+        //     StartCoroutine(DamageOverload());
+        // }
         
-        if(damageOverloadCountdownRunning)
+        if(Shield_Script.shieldHealth <= 0)
         {
-            if(damageOverloadCountdown > 0)
+            Shield.SetActive(false);
+            
+            if(shieldRegenCountUp >= 5)
             {
-                damageOverloadCountdown -= Time.deltaTime;
+                Shield.SetActive(true);
+                Shield_Script.shieldVisible.enabled = false;
+                Shield_Script.shieldHealth = 20;
+                shieldRegenCountUp = 0;
             }
-            else if(damageOverloadCountdown <= 0)
-            {
-                damageOverloadCountdownRunning = false;
-                damageInThisCountdown = 0;
-            }
-        }        
+        }
+        if(shieldRegenCountUpRunning)
+        {
+            shieldRegenCountUp += Time.deltaTime;
+        }
+             
     }
 
     private Vector3 normalDirection;
@@ -218,6 +225,7 @@ public class VesselMovement : MonoBehaviour
         yield return new WaitForSeconds(2f);
         gameObject.GetComponent<Transform>().position = currentCheckPoint;
         Shield.SetActive(true);
+        
         health = 100;
         LifeBar.setHealth(health);
         yield return new WaitForSeconds(2);
@@ -479,18 +487,21 @@ public class VesselMovement : MonoBehaviour
         // transform.rotation
     }
 
+
     public void takeDamage(int damageTaken)
     {
             StartCoroutine(CameraShake(damageTaken)); 
-            if(!damageOverloadCountdownRunning)
-            {
-                damageOverloadCountdownRunning = true;
-                damageOverloadCountdown = 2f;
-            }
-            
             health -= damageTaken;
             damageInThisCountdown += damageTaken;
             LifeBar.setHealth(health);
+            shieldRegenReset();
+    }
+
+    public void shieldRegenReset()
+    {
+        shieldRegenCountUp = 0;
+        shieldRegenCountUpRunning = true;
+    
     }
 
     public IEnumerator CameraShake(int damageTaken)
@@ -501,14 +512,14 @@ public class VesselMovement : MonoBehaviour
         virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain = 0f;
     }
 
-    public IEnumerator DamageOverload()
-    {
-        DamageOverloadCoroutineStarted = true;
-        Shield.SetActive(true);
-        yield return new WaitForSeconds(3f);
-        Shield.SetActive(false);
-        DamageOverloadCoroutineStarted = false;
-    }
+    // public IEnumerator DamageOverload()
+    // {
+    //     DamageOverloadCoroutineStarted = true;
+    //     Shield.SetActive(true);
+    //     yield return new WaitForSeconds(3f);
+    //     Shield.SetActive(false);
+    //     DamageOverloadCoroutineStarted = false;
+    // }
     
     public void lookForward()
     {
