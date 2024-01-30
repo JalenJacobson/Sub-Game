@@ -27,6 +27,7 @@ public class LoadNextScene : MonoBehaviour
 
     public void NextScene()
     {
+        PlayerPrefs.SetInt("end", 1);
         SceneManager.LoadScene(2);
     }
 

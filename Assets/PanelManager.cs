@@ -14,6 +14,7 @@ public class PanelManager : MonoBehaviour
     public GameObject RiddleGuessPannel;
     public GameObject WinPannel;
     public GameObject SettingsPanel;
+    public GameObject LevelsPanel;
     public GameObject StartPanel;
     
     public string inputGuess;
@@ -81,6 +82,17 @@ public class PanelManager : MonoBehaviour
     {
         StartPanel.SetActive(true);
         SettingsPanel.SetActive(false);
+    }
+    
+    public void LevelsPannelOpen()
+    {
+        StartPanel.SetActive(false);
+        LevelsPanel.SetActive(true);
+    }
+    public void LevelsPannelClose()
+    {
+        StartPanel.SetActive(true);
+        LevelsPanel.SetActive(false);
     }
     
 

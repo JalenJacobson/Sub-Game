@@ -62,6 +62,7 @@ public class InitiateDriveMotherShip : MonoBehaviour
         {
            // RiddlePannel_Script.addRiddlePart();
            // NewRiddleAvalable.SetActive(true);
+            PlayerPrefs.SetInt("climb", 1);
             VesselMovement_Script.nextTrigger(false);
             Speeders = GameObject.FindGameObjectsWithTag("Speeder");
             StartCoroutine("initiateDriveMotherShip");

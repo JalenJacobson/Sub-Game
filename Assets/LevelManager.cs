@@ -17,4 +17,13 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void loadClimb()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void loadEnd()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
