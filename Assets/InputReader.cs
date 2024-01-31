@@ -8,6 +8,7 @@ public class InputReader : MonoBehaviour
     public string inputGuess;
     public GameObject WinPannel;
     public GameObject GuessPannel;
+    public GameObject Remediate;
     
     public void ReadStringInput(string inputReceive)
     {
@@ -22,5 +23,6 @@ public class InputReader : MonoBehaviour
             WinPannel.SetActive(true);
             GuessPannel.SetActive(false);
         }
+        else Remediate.GetComponent<Animator>().Play("Remediate");
     }
 }

@@ -13,8 +13,8 @@ public class LevelsPanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("climb", 0);
-        PlayerPrefs.SetInt("end", 0);
+        // PlayerPrefs.SetInt("climb", 0);
+        // PlayerPrefs.SetInt("end", 0);
 
         if(PlayerPrefs.GetInt("climb") == 0) climbUnlocked = false; 
         else climbUnlocked = true;

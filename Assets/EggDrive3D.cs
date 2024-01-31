@@ -38,6 +38,7 @@ public class EggDrive3D : MonoBehaviour
     public AudioSource movingAudioSource;
     public AudioClip MoveAudio;
     public bool dead = false;
+    public bool movingSound = false;
     
     
 
@@ -85,6 +86,8 @@ public class EggDrive3D : MonoBehaviour
         if(collision.gameObject.tag == ("spikes"))
         {
             dead = true;
+            rb.isKinematic = true;
+            StopAllCoroutines();
             StartCoroutine("fall");
         }
         if(collision.gameObject.tag == ("bounce"))
@@ -183,63 +186,75 @@ public class EggDrive3D : MonoBehaviour
     public void processInputs()
     {
         
-        if (Input.GetKey("s"))
+        if (Input.GetKeyDown("s"))
         {
+            movingSound = !movingSound;
             y = -1;  
-            // movingAudioSource.clip = MoveAudio;
-            // movingAudioSource.Play();  
+            if(grounded && movingSound == true)
+            {
+                movingAudioSource.clip = MoveAudio;
+                movingAudioSource.Play(); 
+            } 
         }
         if (Input.GetKeyUp("s"))
         {
             y=0;
-            // movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2);
             }
         }
-        if (Input.GetKey("w"))
+        if (Input.GetKeyDown("w"))
         {
+            movingSound = !movingSound;
             y = 1;
-            // movingAudioSource.clip = MoveAudio;
-            // movingAudioSource.Play();  
+            if(grounded && movingSound == true)
+            {
+                movingAudioSource.clip = MoveAudio;
+                movingAudioSource.Play(); 
+            }   
         }
         if (Input.GetKeyUp("w"))
         {;
             y=0;
-            movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2); 
             }
              
         }
-        if (Input.GetKey("a"))
+        if (Input.GetKeyDown("a"))
         {
+            movingSound = !movingSound;
             x = -1;  
-            // movingAudioSource.clip = MoveAudio;
-            // movingAudioSource.Play();  
+            if(grounded && movingSound == true)
+            {
+                movingAudioSource.clip = MoveAudio;
+                movingAudioSource.Play(); 
+            }   
         }
         if (Input.GetKeyUp("a"))
         {
             x=0;
-            // movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x/2, rb.velocity.y, rb.velocity.z); 
             }
               
         }
-        if (Input.GetKey("d"))
+        if (Input.GetKeyDown("d"))
         {
+            movingSound = !movingSound;
             x = 1;  
-            // movingAudioSource.clip = MoveAudio;
-            // movingAudioSource.Play();  
+            if(grounded && movingSound == true)
+            {
+                movingAudioSource.clip = MoveAudio;
+                movingAudioSource.Play(); 
+            }  
         }
         if (Input.GetKeyUp("d"))
         {
             x=0;
-        //    movingAudioSource.Stop();
             if(!grappling)
             {
                 rb.velocity = new Vector3(rb.velocity.x/2, rb.velocity.y, rb.velocity.z); 
@@ -397,6 +412,7 @@ public class EggDrive3D : MonoBehaviour
 
     public IEnumerator fall()
     {
+        print("coStarted");
         anim.Play("MS_Dead");
         audioSource.clip = ExplodeAudio;
         audioSource.Play();
@@ -404,7 +420,9 @@ public class EggDrive3D : MonoBehaviour
         rb.velocity = new Vector3(0,0,0);
         transform.position = respawnPoint;
         anim.Play("Ms_Alive");
+        rb.isKinematic = false;
         dead = false;
+        print("coFinished");
     }
     
 }

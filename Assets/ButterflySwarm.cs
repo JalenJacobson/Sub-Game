@@ -9,6 +9,8 @@ public class ButterflySwarm : MonoBehaviour
     public int spawnNumber;
     public List<GameObject> butterflys;
     public Animator anim;
+    public AudioSource flowerAudioSource;
+    public AudioClip flowerBumped;
 
     public void Start()
     {
@@ -45,6 +47,9 @@ public class ButterflySwarm : MonoBehaviour
         if(collision.gameObject.tag == ("egg"))
         {
             anim.Play("FlowerBumped");
+            flowerAudioSource.clip = flowerBumped;
+            flowerAudioSource.Play();
         }
     }
+    
 }

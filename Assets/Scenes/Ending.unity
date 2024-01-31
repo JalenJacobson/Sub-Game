@@ -241,6 +241,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1017865
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6255,6 +6257,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &138290938
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6299,7 +6303,7 @@ GameObject:
   - component: {fileID: 141877386}
   - component: {fileID: 141877385}
   m_Layer: 0
-  m_Name: Audio Source (1)
+  m_Name: FlowerBump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6318,8 +6322,8 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
-  Loop: 1
+  m_Pitch: 0.5
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -6408,13 +6412,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141877384}
-  m_LocalRotation: {x: -0, y: -0, z: -5.551115e-17, w: 1}
-  m_LocalPosition: {x: 0, y: 4.209999, z: -15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 5.551115e-17, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.00033448715, z: -0.007163444}
+  m_LocalScale: {x: 0.000054808297, y: 0.00009754659, z: 0.000054808297}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_Father: {fileID: 1512394171}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &155724344 stripped
 GameObject:
@@ -6645,8 +6649,10 @@ MonoBehaviour:
   BoostAudio: {fileID: 8300000, guid: 381b3163ce886414fa7f8ef303f59984, type: 3}
   BounceAudio: {fileID: 8300000, guid: 381b3163ce886414fa7f8ef303f59984, type: 3}
   ExplodeAudio: {fileID: 8300000, guid: 381b3163ce886414fa7f8ef303f59984, type: 3}
-  movingAudioSource: {fileID: 141877385}
-  MoveAudio: {fileID: 8300000, guid: 381b3163ce886414fa7f8ef303f59984, type: 3}
+  movingAudioSource: {fileID: 1411011703}
+  MoveAudio: {fileID: 8300000, guid: e2010185038c39a43b42c307ab27a09c, type: 3}
+  dead: 0
+  movingSound: 0
   groundJump: 0
   recentGrapple: 0
 --- !u!54 &162287983
@@ -6742,6 +6748,7 @@ Transform:
   m_Children:
   - {fileID: 55465707}
   - {fileID: 1241437197}
+  - {fileID: 1411011704}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7428,6 +7435,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &220721366
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12719,7 +12728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 489, y: 95}
+  m_AnchoredPosition: {x: 536, y: 95}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &241944791
@@ -13442,6 +13451,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &257937810
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -13931,6 +13942,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271624277}
   m_CullTransparentMesh: 1
+--- !u!1 &305598956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 305598957}
+  - component: {fileID: 305598958}
+  m_Layer: 5
+  m_Name: Remediate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &305598957
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305598956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 613666284}
+  m_Father: {fileID: 1643141420}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &305598958
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 305598956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f457491e11973841a1b7b74cd797819, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &321717400
 GameObject:
   m_ObjectHideFlags: 0
@@ -18984,6 +19053,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &323474449
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -19817,6 +19888,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &364185193
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -21277,6 +21350,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &432330174
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32404,6 +32479,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &579459171
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -32633,6 +32710,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &585312452
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -37359,6 +37438,141 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &613666283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 613666284}
+  - component: {fileID: 613666286}
+  - component: {fileID: 613666285}
+  m_Layer: 5
+  m_Name: RemediateText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &613666284
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613666283}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6400601, y: 0.6400601, z: 0.6400601}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 305598957}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -215, y: -310}
+  m_SizeDelta: {x: 858.52, y: -192.2114}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &613666285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613666283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: TRY AGAIN (hint one word)
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278649087
+  m_fontColor: {r: 1, g: 0, b: 0.028217316, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 61.23
+  m_fontSizeBase: 61.23
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 3
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &613666286
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613666283}
+  m_CullTransparentMesh: 1
 --- !u!1 &616312114
 GameObject:
   m_ObjectHideFlags: 0
@@ -37477,6 +37691,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &616312121
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -37871,6 +38087,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &640661944
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -38655,6 +38873,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &711626968
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -44008,6 +44228,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &761847614
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -46875,6 +47097,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &964655648
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -49473,6 +49697,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1149220885
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -49697,6 +49923,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1154459797
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56062,6 +56290,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1268669321
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56348,6 +56578,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1283072406
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56822,6 +57054,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1313185806
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -57191,7 +57425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 662, y: 154}
+  m_AnchoredPosition: {x: 709, y: 161}
   m_SizeDelta: {x: 157.00146, y: 42.0035}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1324360289
@@ -57639,6 +57873,134 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d3bb4dbb83256854dbee555f0b034fb5, type: 3}
   m_PrefabInstance: {fileID: 1810537467}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1411011702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411011704}
+  - component: {fileID: 1411011703}
+  m_Layer: 0
+  m_Name: Movments
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1411011703
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411011702}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -4698864470779532253, guid: 5cafdd0702022c142ab69dc71ec9759c, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 0.14
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1411011704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411011702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 162287987}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1413273224
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58237,6 +58599,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1428311962
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -58695,6 +59059,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1441933821
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -58917,6 +59283,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1452009574
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -65223,6 +65591,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1552822819
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -70633,7 +71003,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'A thousand Hopes. '
+  m_text: 'A thousand hopes. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -70974,6 +71344,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1624944287
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -71154,6 +71526,7 @@ RectTransform:
   - {fileID: 929194975}
   - {fileID: 1752951070}
   - {fileID: 132714966}
+  - {fileID: 305598957}
   m_Father: {fileID: 1095489447}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71635,6 +72008,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1681829490
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -72024,6 +72399,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1713690048
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -76971,6 +77348,7 @@ MonoBehaviour:
   inputGuess: 
   WinPannel: {fileID: 1637250175}
   GuessPannel: {fileID: 1643141419}
+  Remediate: {fileID: 305598956}
 --- !u!114 &1752951072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77420,7 +77798,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A thousand Fears.
+  m_text: A thousand fears.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -77761,6 +78139,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1799624034
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -78386,6 +78766,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1825563099
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -78990,6 +79372,8 @@ MonoBehaviour:
   spawnNumber: 0
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1853460044
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -79505,6 +79889,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1891264505
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -79792,6 +80178,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1914445942
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -80016,6 +80404,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1916470065
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -85483,6 +85873,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &1995835054
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -85871,6 +86263,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &2028400072
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -86509,6 +86903,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &2068203988
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -86859,8 +87255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.6622572, y: 305}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -16.4325, y: 259}
+  m_SizeDelta: {x: 96.2164, y: 18.81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2080224014
 MonoBehaviour:
@@ -92066,6 +92462,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &2143899345
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -92217,6 +92615,8 @@ MonoBehaviour:
   spawnNumber: 10
   butterflys: []
   anim: {fileID: 0}
+  flowerAudioSource: {fileID: 141877385}
+  flowerBumped: {fileID: 8300000, guid: 9c6e745343454014eb755add717d0193, type: 3}
 --- !u!135 &7978576288341113437
 SphereCollider:
   m_ObjectHideFlags: 0
