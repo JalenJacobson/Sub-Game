@@ -153,9 +153,9 @@ public class VesselMovement : MonoBehaviour
             if((Time.time - lastTapTimeSpace) <= tapSpeed)
             {
                 // StartCoroutine(forceJumpSpaceCoroutine());
-                print("start double tap");
+                // print("start double tap");
                 // transform.rotation = Quaternion.LookRotation (-transform.rotation);;
-                print("double tap space");
+                // print("double tap space");
             }
             lastTapTimeSpace = Time.time;
             
@@ -281,7 +281,7 @@ public class VesselMovement : MonoBehaviour
         if(collisionWallBounce)
         {
             rb.AddForce(normalDirection * 5000);
-            print("should be bouncing" + normalDirection);
+            // print("should be bouncing" + normalDirection);
         }
 
         if (thrusting == true)

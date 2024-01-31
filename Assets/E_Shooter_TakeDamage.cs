@@ -8,6 +8,7 @@ public class E_Shooter_TakeDamage : MonoBehaviour
     public float health;
     public Animator anim;
     public ShooterSlider healthbar;
+    public bool hollagram = false;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class E_Shooter_TakeDamage : MonoBehaviour
     {
         if(other.name.Contains("Bullet"))
         {
+            if(hollagram) return;
             health -= 1;
             StartCoroutine(Dmg_Indicator());
             healthbar.setHealth(health);

@@ -145,6 +145,11 @@ public class EggDrive3D : MonoBehaviour
         }
         
     }
+    public void addJumps()
+    {
+        remainingJumps = 2;
+        jumpClicks = 2;
+    }
     void OnCollisionExit(Collision collision)
     {
         if(collision.gameObject.tag == ("ground"))
@@ -412,7 +417,7 @@ public class EggDrive3D : MonoBehaviour
 
     public IEnumerator fall()
     {
-        print("coStarted");
+        // print("coStarted");
         anim.Play("MS_Dead");
         audioSource.clip = ExplodeAudio;
         audioSource.Play();
@@ -422,7 +427,7 @@ public class EggDrive3D : MonoBehaviour
         anim.Play("Ms_Alive");
         rb.isKinematic = false;
         dead = false;
-        print("coFinished");
+        // print("coFinished");
     }
     
 }

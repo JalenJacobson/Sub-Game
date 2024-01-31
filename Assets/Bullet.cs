@@ -83,7 +83,7 @@ public class Bullet : MonoBehaviour
     public virtual void detonate()
     {
         // StartCoroutine(detonateSequence());
-        print("detonate");
+        // print("detonate");
         Destroy(gameObject);  
     }
 

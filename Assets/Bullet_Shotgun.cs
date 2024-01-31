@@ -74,7 +74,7 @@ public class Bullet_Shotgun : MonoBehaviour
     public void detonate()
     {
         // StartCoroutine(detonateSequence());
-        print("detonate");
+        // print("detonate");
         Destroy(gameObject);  
     }
 

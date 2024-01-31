@@ -65,7 +65,7 @@ public class Butterfly : MonoBehaviour
     public void swarmEgg()
     {
         StartCoroutine(followEgg());
-        print("followegg");
+        // print("followegg");
     }
 
     private bool followingEgg = false;

@@ -93,10 +93,10 @@ public class JumpPointer : MonoBehaviour
         {
             if(!hit.transform.gameObject.GetComponent<GrapplePoint>().grappleable)
             {
-                print("didn't work");
+                // print("didn't work");
                 return;
             } 
-            print("should grapple" + hit.transform.name);
+            // print("should grapple" + hit.transform.name);
             eggDrive_Script.startGrapple();
             grapplePoint = hit.transform.position;
             joint = MotherShip.gameObject.AddComponent<SpringJoint>();

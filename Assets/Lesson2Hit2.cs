@@ -28,10 +28,10 @@ public class Lesson2Hit2 : MonoBehaviour
     {
         if(other.name.Contains("weenie"))
         {
-            vessel.GetComponent<VesselMovement>().thrusterDisabled = true;
             if(trainingSkipped == false)
             {
                 lessonController.SendMessage("Trigger2");
+                vessel.GetComponent<VesselMovement>().thrusterDisabled = true;
             }
             Destroy(gameObject);
         }
@@ -39,7 +39,7 @@ public class Lesson2Hit2 : MonoBehaviour
 
     public void moveAtVessel()
     {
-        movetoVessel = true;
         trainingSkipped = true;
+        movetoVessel = true;
     }
 }

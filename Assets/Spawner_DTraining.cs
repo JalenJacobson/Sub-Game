@@ -37,7 +37,6 @@ public class Spawner_DTraining : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        print(other.name);
         if(other.name.Contains("weenie") && spawned == false && enemiesKilled <= 5)
         {
             StartCoroutine("spawn");
@@ -60,7 +59,7 @@ public class Spawner_DTraining : MonoBehaviour
         yield return new WaitForSeconds(5f);
         for(var i = 0; i <= spawnAmount; i++)
             {
-                print(i);
+                // print(i);
                 var randomPosition = getRandomPosition();
                 Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
             } 
@@ -80,7 +79,7 @@ public class Spawner_DTraining : MonoBehaviour
         yield return new WaitForSeconds(5f);
         for(var i = 0; i <= spawn2Amount; i++)
             {
-                print(i);
+                // print(i);
                 var randomPosition = getRandomPosition();
                 Instantiate(defenderPrefab, randomPosition, gameObject.transform.rotation);
             }
