@@ -91,6 +91,7 @@ public class VesselMovement : MonoBehaviour
 
     private bool firstTimeDeath = true;
     public bool thrusting = false;
+    public bool thrusterDisabled = false;
 
     void Update()
     {
@@ -121,20 +122,21 @@ public class VesselMovement : MonoBehaviour
         {
             shieldRegenCountUp += Time.deltaTime;
         }
-
-        if(vesselDead) return;
-        if (Input.GetKeyDown("space"))
-        {
-            audioSourceIdle.clip = ThrusterIdle;
-            audioSourceIdle.Play();
-            thrusting = true;
-        }
-
         if (Input.GetKeyUp("space"))
         {
             audioSourceIdle.Stop();
             thrusting = false;
         }
+
+        if(vesselDead) return;
+        if (Input.GetKeyDown("space"))
+        {
+            if(thrusterDisabled) return;
+            audioSourceIdle.clip = ThrusterIdle;
+            audioSourceIdle.Play();
+            thrusting = true;
+        }
+
         timer = timer + Time.deltaTime;
         
         if(Input.GetKeyUp("c"))
@@ -252,7 +254,7 @@ public class VesselMovement : MonoBehaviour
         // playerControlling = false;
         if (Keyboard.current[Key.Space].isPressed)
         {
-            
+            if(thrusterDisabled) return;
             rb.AddForce(transform.forward * speed);
         }
 

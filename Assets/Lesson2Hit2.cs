@@ -13,7 +13,7 @@ public class Lesson2Hit2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //vessel = GameObject.FindGameObjectWithTag("Vessel");
+        vessel = GameObject.FindGameObjectWithTag("Vessel");
     }
 
     // Update is called once per frame
@@ -21,13 +21,14 @@ public class Lesson2Hit2 : MonoBehaviour
     {
         if(movetoVessel == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 10);
+            transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 500 * Time.deltaTime);
         }
     }
     void OnTriggerEnter(Collider other)
     {
         if(other.name.Contains("weenie"))
         {
+            vessel.GetComponent<VesselMovement>().thrusterDisabled = true;
             if(trainingSkipped == false)
             {
                 lessonController.SendMessage("Trigger2");

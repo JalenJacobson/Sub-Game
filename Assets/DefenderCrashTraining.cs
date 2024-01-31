@@ -23,7 +23,11 @@ public class DefenderCrashTraining : MonoBehaviour
         if (other.name.Contains("Bullet"))
         {
             DefenderParent.GetComponent<DefenderFollow>().explodeSequence();
-            Spawner.SendMessage("killedOne");
+            if(Spawner != null)
+            {
+                Spawner.SendMessage("killedOne");
+            }
+            
         }
         else if (other.name.Contains("weenie"))
         {

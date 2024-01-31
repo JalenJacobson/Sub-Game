@@ -66,13 +66,13 @@ public class E_Shooter_Hollogram : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.name.Contains("Bullet"))
-        {
-            Destroy(gameObject);
-        }
-    }
+    // void OnCollisionEnter(Collision collision)
+    // {
+    //     if(collision.collider.name.Contains("Bullet"))
+    //     {
+    //         Destroy(gameObject);
+    //     }
+    // }
 
     public void StopShooting()
     {

@@ -16,10 +16,16 @@ public class Spawner_DTraining : MonoBehaviour
     public bool lastSpawn = false;
     public SwimSchool schoolManager;
     public bool lessonComplete = false;
+    public GameObject vessel;
+
+    void Start()
+    {
+        vessel = GameObject.FindGameObjectWithTag("Vessel");
+    }
 
     void Update()
     {
-        if(enemiesKilled == 5 && lastSpawn == false)
+        if(enemiesKilled >= 5 && lastSpawn == false)
         {
             SchoolUI.SendMessage("P2Lesson2");
             StartCoroutine("spawn2");
@@ -92,6 +98,7 @@ public class Spawner_DTraining : MonoBehaviour
         {
             SchoolUI.SendMessage("P2Lesson3");
             schoolManager.SendMessage("schoolisDone");
+            vessel.GetComponent<VesselMovement>().thrusterDisabled = false;
             lessonComplete = true;
             //Destroy(gameObject, 1);
         }

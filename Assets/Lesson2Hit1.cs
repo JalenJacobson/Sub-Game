@@ -20,7 +20,7 @@ public class Lesson2Hit1 : MonoBehaviour
     {
         if(movetoVessel == true)
         {
-            transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 10);
+            transform.position = Vector3.MoveTowards(transform.position, vessel.transform.position, 500 * Time.deltaTime);
         }
     }
     void OnTriggerEnter(Collider other)
