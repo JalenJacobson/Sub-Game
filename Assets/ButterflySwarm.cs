@@ -6,7 +6,7 @@ public class ButterflySwarm : MonoBehaviour
 {
     public GameObject butterflyPrefab;
     public GameObject nestCirclePoint;
-    public int spawnNumber;
+    public int spawnNumber = 3;
     public List<GameObject> butterflys;
     public Animator anim;
     public AudioSource flowerAudioSource;
@@ -15,7 +15,6 @@ public class ButterflySwarm : MonoBehaviour
     public void Start()
     {
         anim = GetComponent<Animator>();
-        spawnNumber = 3;
 
         for(var i = 0; i< spawnNumber; i++)
         {
