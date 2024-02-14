@@ -58,7 +58,7 @@ public class Bullet : MonoBehaviour
     {
         if(type == 0)
         {
-            lifeTime =  3f;
+            lifeTime =  1.25f;
         }
         else if(type == 1)
         {

@@ -61,9 +61,6 @@ public class VesselMovement : MonoBehaviour
     public AudioClip ThrusterDown;
     public RiddleTriggerFollowPoint RiddleTriggerFollowPoint_Script;
     
-
-
-    // Start is called before the first frame update
     void Start()
     {
         lastTapTimeDown = 0;
@@ -100,11 +97,6 @@ public class VesselMovement : MonoBehaviour
             if(!firstTimeDeath) return;
             StartCoroutine(loseCondition());
         }
-
-        // if(damageInThisCountdown >= 20 && !DamageOverloadCoroutineStarted)
-        // {
-        //     StartCoroutine(DamageOverload());
-        // }
         
         if(Shield_Script.shieldHealth <= 0)
         {
@@ -160,44 +152,32 @@ public class VesselMovement : MonoBehaviour
             lastTapTimeSpace = Time.time;
             
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+
+        if(canDodge)
         {
-            // if((Time.time - lastTapTimeDown) <= tapSpeed)
-            // {
-                StartCoroutine(forceJumpDownCoroutine());
-            // }
-            // lastTapTimeDown = Time.time;
-            
+            handleDodges();
+        }
+        
+    }
+
+    void handleDodges()
+    {
+         if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            StartCoroutine(forceJumpDownCoroutine());
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            // if((Time.time - lastTapTimeUp) <= tapSpeed)
-            // {
-            //     // print("double tap Up");
-            //     // rb.AddForce(Vector3.up * 1000);
-                StartCoroutine(forceJumpUpCoroutine());
-            // }
-            // lastTapTimeUp = Time.time;
-            
+            StartCoroutine(forceJumpUpCoroutine());
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            // if((Time.time - lastTapTimeRight) <= tapSpeed)
-            // {
-                StartCoroutine(forceJumpRightCoroutine());
-            // }
-            // lastTapTimeRight = Time.time;
-            
+            StartCoroutine(forceJumpRightCoroutine());
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            // if((Time.time - lastTapTimeLeft) <= tapSpeed)
-            // {
-                StartCoroutine(forceJumpLeftCoroutine());
-            // }
-            // lastTapTimeLeft = Time.time;
+            StartCoroutine(forceJumpLeftCoroutine());
         }
-             
     }
 
     private Vector3 normalDirection;
@@ -362,19 +342,23 @@ public class VesselMovement : MonoBehaviour
         } 
     }
   
-
+    private bool canDodge = true;
     public IEnumerator forceJumpUpCoroutine()
     {
+        canDodge = false;
         anim.Play("BarrelRoll_Up");
-                    audioSource.clip = ThrusterDown;
-            audioSource.Play();
+        audioSource.clip = ThrusterDown;
+        audioSource.Play();
         yield return new WaitForSeconds(.15f);
         forceJumpUp = true;
         yield return new WaitForSeconds(.3f);
         forceJumpUp = false;
+        yield return new WaitForSeconds(.55f);
+        canDodge = true;
     }
     public IEnumerator forceJumpDownCoroutine()
     {
+        canDodge = false;
         anim.Play("BarrelRoll_Down");
         audioSource.clip = ThrusterDown;
         audioSource.Play();
@@ -382,9 +366,12 @@ public class VesselMovement : MonoBehaviour
         forceJumpDown = true;
         yield return new WaitForSeconds(.3f);
         forceJumpDown = false;
+        yield return new WaitForSeconds(.55f);
+        canDodge = true;
     }
     public IEnumerator forceJumpRightCoroutine()
     {
+        canDodge = false;
         anim.Play("BarrelRoll_Right");
         audioSource.clip = ThrusterDown;
         audioSource.Play();
@@ -392,9 +379,12 @@ public class VesselMovement : MonoBehaviour
         forceJumpRight = true;
         yield return new WaitForSeconds(.3f);
         forceJumpRight = false;
+        yield return new WaitForSeconds(.55f);
+        canDodge = true;
     }
     public IEnumerator forceJumpLeftCoroutine()
     {
+        canDodge = false;
         anim.Play("BarrelRoll_Left");
         audioSource.clip = ThrusterDown;
         audioSource.Play();
@@ -402,6 +392,8 @@ public class VesselMovement : MonoBehaviour
         forceJumpLeft = true;
         yield return new WaitForSeconds(.3f);
         forceJumpLeft = false;
+        yield return new WaitForSeconds(.55f);
+        canDodge = true;
     }
 
     public void lookAtNextTrigger()
@@ -564,10 +556,11 @@ public class VesselMovement : MonoBehaviour
         RiddlePannel.SetActive(false);
     }
 
+    private Coroutine speedCoroutine;
     public void speedMove()
     {
-        StopAllCoroutines();
-        StartCoroutine("SpeedMoveRoutine");
+        if(speedCoroutine != null) StopCoroutine(speedCoroutine);
+        speedCoroutine = StartCoroutine("SpeedMoveRoutine");
     }
 
     public IEnumerator SpeedMoveRoutine()
