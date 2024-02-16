@@ -191,7 +191,7 @@ public class EggDrive3D : MonoBehaviour
     public void processInputs()
     {
         
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKey("s"))
         {
             movingSound = !movingSound;
             y = -1;  
@@ -209,7 +209,7 @@ public class EggDrive3D : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z/2);
             }
         }
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKey("w"))
         {
             movingSound = !movingSound;
             y = 1;
@@ -228,7 +228,7 @@ public class EggDrive3D : MonoBehaviour
             }
              
         }
-        if (Input.GetKeyDown("a"))
+        if (Input.GetKey("a"))
         {
             movingSound = !movingSound;
             x = -1;  
@@ -247,7 +247,7 @@ public class EggDrive3D : MonoBehaviour
             }
               
         }
-        if (Input.GetKeyDown("d"))
+        if (Input.GetKey("d"))
         {
             movingSound = !movingSound;
             x = 1;  
