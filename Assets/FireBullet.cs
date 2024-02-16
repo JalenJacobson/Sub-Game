@@ -20,6 +20,7 @@ public class FireBullet : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip RapidFire;
     public AudioClip BurstFire;
+    public AudioClip ArmGrenade;
     public Bullet grenade;
     public float grenadeReleasePower;
     public bool holdingGrenade = false;
@@ -129,6 +130,15 @@ public class FireBullet : MonoBehaviour
         {
             Crosshairs.gameObject.SendMessage("sniperAmmo");
             AmmoType.gameObject.SendMessage("LayMines");
+            if(Input.GetMouseButtonDown(0))
+            {
+                audioSource.clip = ArmGrenade;
+                audioSource.Play();
+            }
+            if(Input.GetMouseButtonUp(0))
+            {
+                audioSource.Stop();
+            }
         }
         if(Input.GetMouseButtonDown(1))
         {

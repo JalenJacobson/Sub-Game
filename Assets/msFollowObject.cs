@@ -7,6 +7,7 @@ public class msFollowObject : MonoBehaviour
 
     public GameObject MS;
     public float yOffset;
+    public float zOffset;
     public bool shouldFollow = false;
     public GameObject ObjectivePannel;
     public bool Level2;
@@ -26,7 +27,7 @@ public class msFollowObject : MonoBehaviour
     {
         if(shouldFollow)
         {
-            transform.position = MS.GetComponent<Transform>().position + new Vector3(0, yOffset, 0);  
+            transform.position = MS.GetComponent<Transform>().position + new Vector3(0, yOffset, zOffset);  
         }
        
     }
