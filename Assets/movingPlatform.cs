@@ -20,6 +20,7 @@ public class movingPlatform : MonoBehaviour
     public float speedActual;
 
     public bool touchToStart = false;
+    public Vector3 startPosition;
 
     // Start is called before the first frame update
     void Awake()
@@ -29,6 +30,7 @@ public class movingPlatform : MonoBehaviour
 
     void Start()
     {
+        startPosition = transform.position;
         pauseTimeActual = moveTime + pauseTime;
         
     }
