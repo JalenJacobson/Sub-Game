@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class VesselMovement : MonoBehaviour
 {
@@ -61,6 +62,7 @@ public class VesselMovement : MonoBehaviour
     public AudioClip ThrusterDown;
     public RiddleTriggerFollowPoint RiddleTriggerFollowPoint_Script;
     
+    
     void Start()
     {
         lastTapTimeDown = 0;
@@ -84,11 +86,20 @@ public class VesselMovement : MonoBehaviour
         }
         currentCheckPoint = gameObject.GetComponent<Transform>().position;
         anim = GetComponent<Animator>();
+        //player.FindAction("HoldTriggerR").performed += ctx => thruster();
+        //player.FindAction("PressA").performed += ctx => lookAtNextTrigger();
+        // movement = player.FindAction("LJoystick");
     }
 
     private bool firstTimeDeath = true;
     public bool thrusting = false;
     public bool thrusterDisabled = false;
+
+    void thruster()
+    {
+        if(thrusterDisabled) return;
+        rb.AddForce(transform.forward * speed);
+    }
 
     void Update()
     {
@@ -160,6 +171,7 @@ public class VesselMovement : MonoBehaviour
         
     }
 
+
     void handleDodges()
     {
          if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -226,6 +238,7 @@ public class VesselMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+
         if(lookingAtNextTrigger == true || drivingMS == true)
         {
             lookAtNextTrigger();
@@ -284,6 +297,7 @@ public class VesselMovement : MonoBehaviour
             }
             
         }
+        
     }
 
     public void steerThrusting()
