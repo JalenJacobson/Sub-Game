@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EggDrive3D : MonoBehaviour
 {
@@ -40,12 +41,23 @@ public class EggDrive3D : MonoBehaviour
     public bool dead = false;
     public bool movingSound = false;
     
+    public static EggDrive3D instance;
+
+    public UnityEvent OnDeath;
     
 
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogError("duplicate, ignoring this one");
+        }
     }
 
     void Start()
@@ -418,6 +430,7 @@ public class EggDrive3D : MonoBehaviour
     public IEnumerator fall()
     {
         // print("coStarted");
+        OnDeath.Invoke();
         anim.Play("MS_Dead");
         audioSource.clip = ExplodeAudio;
         audioSource.Play();
